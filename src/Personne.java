@@ -1,8 +1,3 @@
-
-<<<<<<< HEAD
-public class Personne 
-{
-=======
 public class Personne {
 
 	private String strNom;
@@ -16,5 +11,4 @@ public class Personne {
 		this.strAdresse = strAdresse;
 		this.intNumeroTelephone = intNumeroTelephone;
 	}
->>>>>>> branch 'master' of https://github.com/BboySwifty/Projet-2-Java.git
 }
