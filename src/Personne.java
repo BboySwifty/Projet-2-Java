@@ -5,7 +5,8 @@ public class Personne {
 	private String strAdresse;
 	private int intNumeroTelephone;
 
-	Personne(String strNom, String strPrenom, String strAdresse, int intNumeroTelephone) {
+	Personne(String strNom, String strPrenom, String strAdresse, int intNumeroTelephone) 
+	{
 		this.strNom = strNom;
 		this.strPrenom = strPrenom;
 		this.strAdresse = strAdresse;
