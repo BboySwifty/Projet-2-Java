@@ -31,5 +31,18 @@ public class Interface extends JFrame
 		setVisible(true);
 		setSize(800,700);
 		setLocationRelativeTo(null);
+		
+		/*
+		jmenuquitter.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(e.getSource() == jmenuquitter)
+				{
+					System.exit(0);
+				}
+			}
+		});
+		*/
 	}
 }
