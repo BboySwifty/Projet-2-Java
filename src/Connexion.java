@@ -45,8 +45,7 @@ public class Connexion extends JFrame
 		super("Connexion");
 		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
-		
-		//jMediatheque.setIcon(new ImageIcon("src\\authentification"));
+		jMediatheque.setIcon(new ImageIcon("authentification.png"));
 		
 		jpanelLogin.add(jMediatheque);
 		add(jpanelLogin);
