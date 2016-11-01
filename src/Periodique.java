@@ -9,7 +9,7 @@ public class Periodique extends Document
 	
 	public Periodique(int intNumeroDocument, String strTitre, int intNombrePret,GregorianCalendar calendar,int intNumeroVolume, int intNumeroPeriodique) 
 	{
-		super(intNumeroDocument, strTitre, intNombrePret, calendar);
+		super(intNumeroDocument, strTitre, intNombrePret, calendar, boolRetourner);
 		
 		this.intNumeroVolume = intNumeroVolume;
 		this.intNumeroPeriodique = intNumeroPeriodique;

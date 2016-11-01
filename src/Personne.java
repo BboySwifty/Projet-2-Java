@@ -1,4 +1,4 @@
 
-public class Personne {
-
+public class Personne 
+{
 }
