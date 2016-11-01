@@ -1,21 +1,10 @@
 
-public class Adherent 
-{
-	int intNumeroInscription;
-	int intNumeroTelephone;
-	
-	String strNom;
-	String strPrenom;
-	String strAdresse;
-	
-	public Adherent(int intNumeroInscription, int intNumeroTelephone, String strNom, String strPrenom, String strAdresse)
-	{
+public class Adherent extends Personne {
+	private int intNumeroInscription;
+
+	public Adherent(int intNumeroTelephone, String strNom, String strPrenom, String strAdresse,
+			int intNumeroInscription) {
+		super(strNom, strPrenom, strAdresse, intNumeroTelephone);
 		this.intNumeroInscription = intNumeroInscription;
-		this.intNumeroTelephone = intNumeroTelephone;
-		
-		this.strNom = strNom;
-		this.strPrenom = strPrenom;
-		this.strAdresse = strAdresse;
-		
 	}
 }
