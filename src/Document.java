@@ -1,0 +1,17 @@
+import java.util.GregorianCalendar;
+
+public class Document 
+{
+	String strTitre;
+	int intNumeroDocument;
+	int intNombrePret;
+	GregorianCalendar calendar;
+	
+	public Document(int intNumeroDocument, String strTitre, int intNombrePret, GregorianCalendar calendar)
+	{
+		this.strTitre = strTitre;
+		this.intNombrePret = intNombrePret;
+		this.intNumeroDocument = intNumeroDocument;
+		this.calendar = calendar;
+	}
+}
