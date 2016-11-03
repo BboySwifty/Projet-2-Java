@@ -15,24 +15,34 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class Interface extends JFrame
 {
 	private Container c = getContentPane();
 	
+	JFrame jframe = new JFrame();
+	
+	JTabbedPane jtab = new JTabbedPane();
+	
+	String[] strArray = {"Livre","Periodiques","DVDs","Recherche"};
+	
 	Interface()
 	{
 		super("La mediatheque de GG");
 		
-		JFrame jframe = new JFrame();
+		for(int i =0; i<strArray.length; i++)
+		{
+			jtab.addTab(strArray[i],null);
+		}
 		
-		jframe.setLayout(new BorderLayout());
+		add(jtab);
 		
 		setVisible(true);
-		setSize(800,700);
+		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
-		/*
+		/* 
 		jmenuquitter.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) 

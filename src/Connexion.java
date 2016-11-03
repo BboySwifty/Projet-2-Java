@@ -23,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class Connexion extends JFrame
 {
@@ -36,8 +37,8 @@ public class Connexion extends JFrame
 	JLabel jNom  = new JLabel("Nom d'utilisateur: ");
 	JLabel jMotDePasse = new JLabel ("Mot de passe: ");
 	
-	JTextArea jtNom = new JTextArea();
-	JTextArea jtMotDePasse = new JTextArea();
+	JTextField jtNom = new JTextField();
+	JTextField jtMotDePasse = new JTextField();
 	
 	JButton jbConnexion = new JButton("Connexion");
 	JButton jbEffacer= new JButton("Effacer");
@@ -56,12 +57,12 @@ public class Connexion extends JFrame
 		
 		jpanelLogin.add(jMediatheque);
 		
-		jpanel.setLayout(new GridLayout(3,2));
+		
+		jpanel.setLayout(new GridLayout(3,1));
 		
 		jpanel.add(jTypeConnexion);
-		//jpanel.add(jcBox);
-		
 		jpanel.add(jNom);
+		
 		//jpanel.add(jtNom);
 		
 		jpanel.add(jMotDePasse);
@@ -69,6 +70,7 @@ public class Connexion extends JFrame
 		
 		add(jpanelLogin);
 		add(jpanel);
+		
 		
 		
 		setSize(500,500);
