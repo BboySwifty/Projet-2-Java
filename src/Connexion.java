@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,12 +44,20 @@ public class Connexion extends JFrame
 	Connexion()
 	{
 		super("Connexion");
+		setLayout(new GridLayout(2,1));
 		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
 		
 		jpanelLogin.add(jMediatheque);
+		
+		jpanel.setLayout(new GridLayout(3,2));
+		jpanel.add(jTypeConnexion);
+		jpanel.add(jNom);
+		jpanel.add(jMotDePasse);
+		
 		add(jpanelLogin);
+		add(jpanel);
 		
 		setSize(400,400);
 		setVisible(true);
