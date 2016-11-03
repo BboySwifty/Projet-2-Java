@@ -6,6 +6,9 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -42,7 +45,9 @@ public class Interface extends JFrame
 		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
-		/* 
+		lireFichier("DVD.txt");
+		
+		/*//quitter
 		jmenuquitter.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -55,4 +60,27 @@ public class Interface extends JFrame
 		});
 		*/
 	}
+	
+	public void lireFichier(String strFichier)
+	{
+		BufferedReader br = null;
+		
+		try
+		{
+			String strLigne;
+			
+			br = new BufferedReader(new FileReader(strFichier));
+			
+			while((strLigne=br.readLine()) != null)
+			{
+				System.out.println(strLigne);
+			}
+		}
+		
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 }
