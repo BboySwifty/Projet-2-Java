@@ -5,9 +5,9 @@ public class Livre extends Document
 
 	String strNomAuteur;
 	
-	public Livre(int intNumeroDocument, String strTitre, int intNombrePret, GregorianCalendar calendar,String strNomAuteur) 
+	public Livre(int intNumeroDocument, String strTitre,  GregorianCalendar calendar,String strNomAuteur) 
 	{
-		super(intNumeroDocument, strTitre, intNombrePret, calendar, boolRetourner);
+		super(intNumeroDocument, strTitre, calendar, boolRetourner);
 		
 		this.strNomAuteur = strNomAuteur;
 		

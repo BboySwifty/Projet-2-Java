@@ -26,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -42,7 +43,7 @@ public class Connexion extends JFrame
 	JLabel jMotDePasse = new JLabel ("Mot de passe: ");
 	
 	JTextField jtNom = new JTextField();
-	JTextField jtMotDePasse = new JTextField();
+	JPasswordField jtMotDePasse = new JPasswordField();
 	
 	JButton jbConnexion = new JButton("Connexion");
 	JButton jbEffacer= new JButton("Effacer");
@@ -75,6 +76,15 @@ public class Connexion extends JFrame
 		jpanel.add(jbConnexion);
 		jpanel.add(jbEffacer);
 		
+		jbConnexion.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						dispose();
+						Interface demarrage = new Interface();
+					}
+				});
+		
 		jbEffacer.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 
@@ -82,7 +92,6 @@ public class Connexion extends JFrame
 						jtNom.setText("");
 						jtMotDePasse.setText("");
 					}
-			
 				});
 		
 		add(jpanelLogin);
@@ -93,5 +102,4 @@ public class Connexion extends JFrame
 		setLocationRelativeTo(null);
 		
 	}
-	
 }
