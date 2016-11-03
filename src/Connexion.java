@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -32,8 +33,8 @@ public class Connexion extends JFrame
 	
 	JLabel jMediatheque = new JLabel("Mediatheque");
 	JLabel jTypeConnexion = new JLabel("Type de connexion: ");
-	JLabel jNom  = new JLabel("Nom d'utilisateur");
-	JLabel jMotDePasse = new JLabel ("Mot de passe");
+	JLabel jNom  = new JLabel("Nom d'utilisateur: ");
+	JLabel jMotDePasse = new JLabel ("Mot de passe: ");
 	
 	JTextArea jtNom = new JTextArea();
 	JTextArea jtMotDePasse = new JTextArea();
@@ -41,6 +42,10 @@ public class Connexion extends JFrame
 	JButton jbConnexion = new JButton("Connexion");
 	JButton jbEffacer= new JButton("Effacer");
 	
+	JComboBox jcBox = new JComboBox();
+	
+	String[] strComboBox = {"Administration","Adhérent","Préposé"};
+			
 	Connexion()
 	{
 		super("Connexion");
@@ -52,14 +57,21 @@ public class Connexion extends JFrame
 		jpanelLogin.add(jMediatheque);
 		
 		jpanel.setLayout(new GridLayout(3,2));
+		
 		jpanel.add(jTypeConnexion);
+		//jpanel.add(jcBox);
+		
 		jpanel.add(jNom);
+		//jpanel.add(jtNom);
+		
 		jpanel.add(jMotDePasse);
+		//jpanel.add(jtMotDePasse);
 		
 		add(jpanelLogin);
 		add(jpanel);
 		
-		setSize(400,400);
+		
+		setSize(500,500);
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
