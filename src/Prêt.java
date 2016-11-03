@@ -5,7 +5,8 @@ public class Prêt {
 	private String dateRetourPrevue;
 	private String dateEffectiveRetour;
 	
-	Prêt(int noPrêt, String dateDuJour, String dateRetourPrevue, String dateEffectiveRetour){
+	Prêt(int noPrêt, String dateDuJour, String dateRetourPrevue, String dateEffectiveRetour)
+	{
 		this.noPrêt = noPrêt;
 		this.dateDuJour = dateDuJour;
 		this.dateRetourPrevue = dateRetourPrevue;

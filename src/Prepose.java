@@ -1,5 +1,6 @@
 
-public class Prepose extends Personne {
+public class Prepose extends Personne 
+{
 	private int noEmployé;
 	private String motpasse;
 
