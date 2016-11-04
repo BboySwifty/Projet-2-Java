@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -11,6 +12,9 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -22,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -38,14 +43,14 @@ public class Connexion extends JFrame
 	JLabel jMotDePasse = new JLabel ("Mot de passe: ");
 	
 	JTextField jtNom = new JTextField();
-	JTextField jtMotDePasse = new JTextField();
+	JPasswordField jtMotDePasse = new JPasswordField();
 	
 	JButton jbConnexion = new JButton("Connexion");
 	JButton jbEffacer= new JButton("Effacer");
 	
-	JComboBox jcBox = new JComboBox();
 	
 	String[] strComboBox = {"Administration","Adhérent","Préposé"};
+	JComboBox jcBox = new JComboBox(strComboBox);
 			
 	Connexion()
 	{
@@ -57,24 +62,44 @@ public class Connexion extends JFrame
 		
 		jpanelLogin.add(jMediatheque);
 		
-		
-		jpanel.setLayout(new GridLayout(3,1));
+		jpanel.setLayout(new GridLayout(4,2));
 		
 		jpanel.add(jTypeConnexion);
-		jpanel.add(jNom);
+		jpanel.add(jcBox);
 		
-		//jpanel.add(jtNom);
+		jpanel.add(jNom);
+		jpanel.add(jtNom);
 		
 		jpanel.add(jMotDePasse);
-		//jpanel.add(jtMotDePasse);
+		jpanel.add(jtMotDePasse);
+		
+		jpanel.add(jbConnexion);
+		jpanel.add(jbEffacer);
+		
+		jbConnexion.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						dispose();
+						Interface demarrage = new Interface();
+					}
+				});
+		
+		jbEffacer.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						jtNom.setText("");
+						jtMotDePasse.setText("");
+					}
+				});
 		
 		add(jpanelLogin);
 		add(jpanel);
 		
-		
-		
 		setSize(500,500);
 		setVisible(true);
 		setLocationRelativeTo(null);
+		
 	}
 }

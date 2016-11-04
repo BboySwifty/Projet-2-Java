@@ -7,7 +7,7 @@ public class DVD extends Document
 	
 	public DVD(int intNumeroDocument, String strTitre, int intNombrePret, GregorianCalendar calendar, String strNomRealisateur, int intNombreDisques) 
 	{
-		super(intNumeroDocument, strTitre, intNombrePret, calendar, boolRetourner);
+		super(intNumeroDocument, strTitre, calendar, boolRetourner);
 		
 		this.strNomRealisateur = strNomRealisateur;
 		this.intNombreDisques = intNombreDisques;
