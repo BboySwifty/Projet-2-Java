@@ -9,7 +9,12 @@ import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
 import javax.swing.JButton;
@@ -50,7 +55,7 @@ public class Interface extends JFrame
 		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
-		lireFichier("DVD.txt");
+		lireFichier("Livres.txt");
 		
 		/*//quitter
 		jmenuquitter.addActionListener(new ActionListener()
@@ -89,30 +94,52 @@ public class Interface extends JFrame
 			
 			br = new BufferedReader(new FileReader(strFichier));
 		
-			/*
-			StringTokenizer st = new StringTokenizer(br.readLine());
+			StringTokenizer st = null;
 			
-		     while (st.hasMoreTokens()) 
-		     {
-		         System.out.println(st.nextToken());
-		     }
-		    */
+			String strMot;
+			int intRefLivre;
+			String strLivre;
+			String strDate;
+			String strAuteur;
 			
 			while((strLigne=br.readLine()) != null)
 			{
-				if(strFichier.compareTo("Livres.Txt".toLowerCase()) == 0)
-				{
-					
-				}
+				st = new StringTokenizer(strLigne,",");
 				
-				else if(strFichier.compareTo("DVD.txt".toLowerCase())==0)
+				if(strFichier.compareTo("Livres.txt")==0)
 				{
-					
-				}
-				
-				else if(strFichier.compareTo("Periodiques.txt".toLowerCase())==0)
-				{
-					
+					while(st.hasMoreTokens())
+					{
+						strMot = st.nextToken();
+						intRefLivre =Integer.parseInt(strMot.substring(3));
+						
+						strLivre = st.nextToken();
+						strDate = st.nextToken();
+						
+						Calendar cal = null;
+						SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+						
+						strAuteur = st.nextToken();
+						
+						Livre livre = new Livre(intRefLivre,strLivre,cal,strAuteur);
+						
+						//Livre livre = new Livre(strMot.substring(3));
+						/*
+						if(strFichier.compareTo("Livres.Txt".toLowerCase()) == 0)
+						{
+						}
+						
+						else if(strFichier.compareTo("DVD.txt".toLowerCase())==0)
+						{
+							
+						}
+						
+						else if(strFichier.compareTo("Periodiques.txt".toLowerCase())==0)
+						{
+							
+						}
+						*/
+					}
 				}
 				
 			//System.out.println(strLigne);

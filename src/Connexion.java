@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -58,9 +59,9 @@ public class Connexion extends JFrame
 		setLayout(new GridLayout(2,1));
 		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
-		jUsager.setFont(new Font("Calibri", Font.BOLD, 25));
-		jNom.setFont(new Font("Calibri", Font.BOLD, 25));
-		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 25));
+		jUsager.setFont(new Font("Calibri", Font.BOLD, 23));
+		jNom.setFont(new Font("Calibri", Font.BOLD, 23));
+		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 23));
 		
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
 		
@@ -89,8 +90,8 @@ public class Connexion extends JFrame
 						
 						try
 						{
-							String strMot;
 							String strLigne;
+							
 							br = new BufferedReader(new FileReader("Usagers.txt"));
 							
 							while((strLigne=br.readLine()) !=null)
@@ -121,7 +122,7 @@ public class Connexion extends JFrame
 						catch(IOException o)
 						{
 							System.out.println(e);
-						}
+						} 
 					}
 				});
 		
