@@ -6,7 +6,7 @@ public class Demarrage
 	
 		Connexion connexion = new Connexion();
 		
-	//Interface demaragge = new Interface();
+	//Interface demarrage = new Interface();
 		//connexion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

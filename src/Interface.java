@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,6 +20,7 @@ import java.util.StringTokenizer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -35,8 +37,10 @@ public class Interface extends JFrame
 	JFrame jframe = new JFrame();
 	JTabbedPane jtab = new JTabbedPane();
 	
-	ArrayList<DVD> alDVD = new ArrayList<DVD>();
-	ArrayList<Livre> alLvres= new ArrayList<Livre>();
+	JLabel jlabel = new JLabel();
+	
+	ArrayList<DVD> alDVDs = new ArrayList<DVD>();
+	ArrayList<Livre> alLivres= new ArrayList<Livre>();
 	ArrayList<Periodique> alPeriodiques = new ArrayList<Periodique>();
 	
 	String[] strAdmin= {"Admin","Livre","Periodiques","DVDs","Recherche","Quitter"};
@@ -87,18 +91,17 @@ public class Interface extends JFrame
 	public void lireFichier(String strFichier)
 	{
 		BufferedReader br = null;
-		
+
 		try
 		{
-			String strLigne;
-			
-			br = new BufferedReader(new FileReader(strFichier));
-		
 			StringTokenizer st = null;
-			
-			String strMot;
+			br = new BufferedReader(new FileReader(strFichier));
+
 			int intRefLivre;
-			String strLivre;
+			
+			String strLigne;
+			String strMot;
+			String strNomLivre;
 			String strDate;
 			String strAuteur;
 			
@@ -110,38 +113,55 @@ public class Interface extends JFrame
 				{
 					while(st.hasMoreTokens())
 					{
+						//int Ref du livre
 						strMot = st.nextToken();
 						intRefLivre =Integer.parseInt(strMot.substring(3));
 						
-						strLivre = st.nextToken();
-						strDate = st.nextToken();
+						//nom du livre
+						strNomLivre = st.nextToken();
 						
-						Calendar cal = null;
+						//Date publication
+						strDate = st.nextToken().trim();
+						
 						SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+						Calendar cal = Calendar.getInstance();
 						
+						try
+						{
+							cal.setTime(sdf.parse(strDate));
+						} 
+						
+						catch (ParseException e) 
+						{
+							e.printStackTrace();
+						}
+						
+						//System.out.println(sdf.format(cal.getTime()));
+						
+						//Nom de l'auteur
 						strAuteur = st.nextToken();
 						
-						Livre livre = new Livre(intRefLivre,strLivre,cal,strAuteur);
+						Livre livre = new Livre(intRefLivre,strNomLivre,cal,strAuteur);
 						
-						//Livre livre = new Livre(strMot.substring(3));
-						/*
-						if(strFichier.compareTo("Livres.Txt".toLowerCase()) == 0)
-						{
-						}
-						
-						else if(strFichier.compareTo("DVD.txt".toLowerCase())==0)
-						{
-							
-						}
-						
-						else if(strFichier.compareTo("Periodiques.txt".toLowerCase())==0)
-						{
-							
-						}
-						*/
+						alLivres.add(livre);
 					}
 				}
 				
+				else if(strFichier.compareTo("Livres.Txt".toLowerCase()) == 0)
+				{
+					while(st.hasMoreTokens())
+					{
+						
+					}
+				}
+				
+				else if(strFichier.compareTo("Periodiques.txt".toLowerCase())==0)
+				{
+					while(st.hasMoreTokens())
+					{
+						
+					}
+				}
 			//System.out.println(strLigne);
 			}
 		}
