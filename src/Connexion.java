@@ -39,7 +39,7 @@ public class Connexion extends JFrame
 	JPanel jpanel = new JPanel();
 	
 	JLabel jMediatheque = new JLabel("Mediatheque");
-	JLabel jTypeConnexion = new JLabel("Type de connexion: ");
+	JLabel jUsager = new JLabel("Type de connexion: ");
 	JLabel jNom  = new JLabel("Nom d'utilisateur: ");
 	JLabel jMotDePasse = new JLabel ("Mot de passe: ");
 	
@@ -58,7 +58,7 @@ public class Connexion extends JFrame
 		setLayout(new GridLayout(2,1));
 		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
-		jTypeConnexion.setFont(new Font("Calibri", Font.BOLD, 25));
+		jUsager.setFont(new Font("Calibri", Font.BOLD, 25));
 		jNom.setFont(new Font("Calibri", Font.BOLD, 25));
 		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 25));
 		
@@ -68,7 +68,7 @@ public class Connexion extends JFrame
 		
 		jpanel.setLayout(new GridLayout(4,2));
 		
-		jpanel.add(jTypeConnexion);
+		jpanel.add(jUsager);
 		jpanel.add(jcBox);
 		
 		jpanel.add(jNom);
@@ -99,21 +99,29 @@ public class Connexion extends JFrame
 								 
 							     while(st.hasMoreTokens())
 							     {
-							    	 strMot = st.nextToken();
-							    	 System.out.println(strMot);
-							    	// System.out.println(jcBox.getSelectedItem());
+							    	 //verifie si l'usager est dans le bon compte
+							    	 //verifie si l'usager existe
+							    	 //verifie si c'est le meme mot de passe
+							    	 if(st.nextToken().compareToIgnoreCase((String)jcBox.getSelectedItem())==0
+							    			 && st.nextToken().compareTo(jtNom.getText()) ==0
+							    			 && st.nextToken().compareTo(jtMotDePasse.getText())==0)
+							    	 {
+							    		 dispose();
+										 Interface demarrage = new Interface(usager());
+							    	 }
 							    	 
+							    	 else
+							    	 {
+							    		 br.readLine();
+							    	 }
 							     }
 							}
 						}
 						
 						catch(IOException o)
 						{
-							System.err.println("L'usager n'existe pas ou vous avez entree le mauvais mot de passe!");
+							System.out.println(e);
 						}
-						
-						// dispose();
-						// Interface demarrage = new Interface();
 					}
 				});
 		
@@ -133,5 +141,10 @@ public class Connexion extends JFrame
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
+	}
+	
+	public String usager()
+	{
+		return (String)jcBox.getSelectedItem();
 	}
 }

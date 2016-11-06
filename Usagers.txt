@@ -1,1 +1,2 @@
-administration,admin,admin
+administration,a,a
+adminstration,admin,admin

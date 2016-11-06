@@ -34,16 +34,15 @@ public class Interface extends JFrame
 	ArrayList<Livre> alLvres= new ArrayList<Livre>();
 	ArrayList<Periodique> alPeriodiques = new ArrayList<Periodique>();
 	
-	String[] strArray = {"Livre","Periodiques","DVDs","Recherche","Quitter"};
+	String[] strAdmin= {"Admin","Livre","Periodiques","DVDs","Recherche","Quitter"};
+	String[] strAdherent = {"Adherent","Livre","Periodiques","DVDs","Recherche","Quitter"};
+	String[] strPrepose = {"Prepose","Livre","Periodiques","DVDs","Recherche","Quitter"};
 	
-	Interface()
+	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
 		
-		for(int i =0; i<strArray.length; i++)
-		{
-			jtab.addTab(strArray[i],null);
-		}
+		CreeTab(strUsager);
 		
 		add(jtab);
 		
@@ -66,6 +65,7 @@ public class Interface extends JFrame
 		});
 		*/
 		
+		/*
 		jtab.addChangeListener(new ChangeListener()
 				{
 					public void stateChanged(ChangeEvent e)
@@ -76,7 +76,7 @@ public class Interface extends JFrame
 						}
 					}
 				});
-		//System.out.println(jtab.getTitleAt(strArray.length-1));
+				*/
 	}
 	
 	public void lireFichier(String strFichier)
@@ -125,4 +125,30 @@ public class Interface extends JFrame
 		}
 	}
 	
+	public void CreeTab(String strUsager)
+	{
+		if(strUsager == "Administration")
+		{
+			for(int i =0; i<strAdmin.length; i++)
+			{
+				jtab.addTab(strAdmin[i],null);
+			}
+		}
+		
+		else if(strUsager == "Adhérent")
+		{
+			for(int i =0; i<strAdherent.length; i++)
+			{
+				jtab.addTab(strAdherent[i],null);
+			}
+		}
+		
+		else
+		{
+			for(int i =0; i<strPrepose.length; i++)
+			{
+				jtab.addTab(strPrepose[i],null);
+			}
+		}
+	}
 }
