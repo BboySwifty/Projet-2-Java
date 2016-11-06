@@ -115,7 +115,7 @@ public class Interface extends JFrame
 					
 				}
 				
-				System.out.println(strLigne);
+			//System.out.println(strLigne);
 			}
 		}
 		

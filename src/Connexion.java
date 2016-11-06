@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,7 +49,6 @@ public class Connexion extends JFrame
 	JButton jbConnexion = new JButton("Connexion");
 	JButton jbEffacer= new JButton("Effacer");
 	
-	
 	String[] strComboBox = {"Administration","Adhérent","Préposé"};
 	JComboBox jcBox = new JComboBox(strComboBox);
 			
@@ -58,6 +58,10 @@ public class Connexion extends JFrame
 		setLayout(new GridLayout(2,1));
 		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
+		jTypeConnexion.setFont(new Font("Calibri", Font.BOLD, 25));
+		jNom.setFont(new Font("Calibri", Font.BOLD, 25));
+		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 25));
+		
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
 		
 		jpanelLogin.add(jMediatheque);
@@ -80,8 +84,36 @@ public class Connexion extends JFrame
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
-						dispose();
-						Interface demarrage = new Interface();
+						BufferedReader br = null;
+						StringTokenizer st= null;
+						
+						try
+						{
+							String strMot;
+							String strLigne;
+							br = new BufferedReader(new FileReader("Usagers.txt"));
+							
+							while((strLigne=br.readLine()) !=null)
+							{
+								 st = new StringTokenizer(strLigne,",");
+								 
+							     while(st.hasMoreTokens())
+							     {
+							    	 strMot = st.nextToken();
+							    	 System.out.println(strMot);
+							    	// System.out.println(jcBox.getSelectedItem());
+							    	 
+							     }
+							}
+						}
+						
+						catch(IOException o)
+						{
+							System.err.println("L'usager n'existe pas ou vous avez entree le mauvais mot de passe!");
+						}
+						
+						// dispose();
+						// Interface demarrage = new Interface();
 					}
 				});
 		
