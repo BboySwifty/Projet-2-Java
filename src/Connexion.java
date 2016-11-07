@@ -32,120 +32,108 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Connexion extends JFrame
-{
+public class Connexion extends JFrame {
 	Container c = getContentPane();
-	
+
 	JPanel jpanelLogin = new JPanel();
 	JPanel jpanel = new JPanel();
-	
+
 	JLabel jMediatheque = new JLabel("Mediatheque");
 	JLabel jUsager = new JLabel("Type de connexion: ");
-	JLabel jNom  = new JLabel("Nom d'utilisateur: ");
-	JLabel jMotDePasse = new JLabel ("Mot de passe: ");
-	
+	JLabel jNom = new JLabel("Nom d'utilisateur: ");
+	JLabel jMotDePasse = new JLabel("Mot de passe: ");
+
 	JTextField jtNom = new JTextField();
 	JPasswordField jtMotDePasse = new JPasswordField();
-	
+
 	JButton jbConnexion = new JButton("Connexion");
-	JButton jbEffacer= new JButton("Effacer");
-	
-	String[] strComboBox = {"Administration","Adhérent","Préposé"};
+	JButton jbEffacer = new JButton("Effacer");
+
+	String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
 	JComboBox jcBox = new JComboBox(strComboBox);
-			
-	Connexion()
-	{
+
+	Connexion() {
 		super("Connexion");
-		setLayout(new GridLayout(2,1));
-		
+		setLayout(new GridLayout(2, 1));
+
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
 		jUsager.setFont(new Font("Calibri", Font.BOLD, 23));
 		jNom.setFont(new Font("Calibri", Font.BOLD, 23));
 		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 23));
-		
+
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
-		
+
 		jpanelLogin.add(jMediatheque);
-		
-		jpanel.setLayout(new GridLayout(4,2));
-		
+
+		jpanel.setLayout(new GridLayout(4, 2));
+
 		jpanel.add(jUsager);
 		jpanel.add(jcBox);
-		
+
 		jpanel.add(jNom);
 		jpanel.add(jtNom);
-		
+
 		jpanel.add(jMotDePasse);
 		jpanel.add(jtMotDePasse);
-		
+
 		jpanel.add(jbConnexion);
 		jpanel.add(jbEffacer);
-		
-		jbConnexion.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						BufferedReader br = null;
-						StringTokenizer st= null;
-						
-						try
-						{
-							String strLigne;
-							
-							br = new BufferedReader(new FileReader("Usagers.txt"));
-							
-							while((strLigne=br.readLine()) !=null)
-							{
-								 st = new StringTokenizer(strLigne,",");
-								 
-							     while(st.hasMoreTokens())
-							     {
-							    	 //verifie si l'usager est dans le bon compte
-							    	 //verifie si l'usager existe
-							    	 //verifie si c'est le meme mot de passe
-							    	 if(st.nextToken().compareToIgnoreCase((String)jcBox.getSelectedItem())==0
-							    			 && st.nextToken().compareTo(jtNom.getText()) ==0
-							    			 && st.nextToken().compareTo(jtMotDePasse.getText())==0)
-							    	 {
-							    		 dispose();
-										 Interface demarrage = new Interface(usager());
-							    	 }
-							    	 
-							    	 else
-							    	 {
-							    		 br.readLine();
-							    	 }
-							     }
+
+		jbConnexion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BufferedReader br = null;
+				StringTokenizer st = null;
+
+				try {
+					String strLigne;
+
+					br = new BufferedReader(new FileReader("Usagers.txt"));
+
+					while ((strLigne = br.readLine()) != null) {
+						st = new StringTokenizer(strLigne, ",");
+
+						while (st.hasMoreTokens()) {
+							// verifie si l'usager est dans le bon compte
+							// verifie si l'usager existe
+							// verifie si c'est le meme mot de passe
+							System.out.println(jtNom.getText());
+							System.out.println(String.valueOf(jtMotDePasse.getPassword()));
+							if (st.nextToken().compareToIgnoreCase((String) jcBox.getSelectedItem()) == 0
+									&& st.nextToken().compareTo(jtNom.getText()) == 0
+									&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) {
+								dispose();
+								Interface demarrage = new Interface(usager());
+							}
+
+							else {
 							}
 						}
-						
-						catch(IOException o)
-						{
-							System.out.println(e);
-						} 
 					}
-				});
-		
-		jbEffacer.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						jtNom.setText("");
-						jtMotDePasse.setText("");
-					}
-				});
-		
+				}
+
+				catch (IOException o) {
+					System.out.println(e);
+				}
+			}
+		});
+
+		jbEffacer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jtNom.setText("");
+				jtMotDePasse.setText("");
+			}
+		});
+
 		add(jpanelLogin);
 		add(jpanel);
-		
-		setSize(500,500);
+
+		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		
+
 	}
-	
-	public String usager()
-	{
-		return (String)jcBox.getSelectedItem();
+
+	public String usager() {
+		return (String) jcBox.getSelectedItem();
 	}
 }

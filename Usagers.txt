@@ -1,2 +1,3 @@
 administration,a,a
-adminstration,admin,admin
+administration,admin,admin
+adhérent,f,f
