@@ -47,6 +47,18 @@ public class Interface extends JFrame
 	String[] strAdherent = {"Adherent","Livre","Periodiques","DVDs","Recherche","Quitter"};
 	String[] strPrepose = {"Prepose","Livre","Periodiques","DVDs","Recherche","Quitter"};
 	
+
+	int intRef;
+	int intNombreDisques;
+	int intNumeroVolume;
+	int intNumeroPeriodique;
+	
+	String strLigne;
+	String strMot;
+	String strTitre;
+	String strDate;
+	String strAuteur;
+	
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
@@ -59,7 +71,7 @@ public class Interface extends JFrame
 		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
-		lireFichier("Livres.txt");
+		lireFichier("dvd.txt");
 		
 		/*//quitter
 		jmenuquitter.addActionListener(new ActionListener()
@@ -96,29 +108,21 @@ public class Interface extends JFrame
 		{
 			StringTokenizer st = null;
 			br = new BufferedReader(new FileReader(strFichier));
-
-			int intRefLivre;
-			
-			String strLigne;
-			String strMot;
-			String strNomLivre;
-			String strDate;
-			String strAuteur;
 			
 			while((strLigne=br.readLine()) != null)
 			{
 				st = new StringTokenizer(strLigne,",");
 				
-				if(strFichier.compareTo("Livres.txt")==0)
+				if(strFichier.equalsIgnoreCase("livres.txt"))
 				{
 					while(st.hasMoreTokens())
 					{
 						//int Ref du livre
 						strMot = st.nextToken();
-						intRefLivre =Integer.parseInt(strMot.substring(3));
+						intRef =Integer.parseInt(strMot.substring(3));
 						
-						//nom du livre
-						strNomLivre = st.nextToken();
+						//Titre du livre
+						strTitre= st.nextToken().trim();
 						
 						//Date publication
 						strDate = st.nextToken().trim();
@@ -136,22 +140,31 @@ public class Interface extends JFrame
 							e.printStackTrace();
 						}
 						
-						//System.out.println(sdf.format(cal.getTime()));
-						
 						//Nom de l'auteur
-						strAuteur = st.nextToken();
+						strAuteur = st.nextToken().trim();
 						
-						Livre livre = new Livre(intRefLivre,strNomLivre,cal,strAuteur);
+						Livre livre = new Livre(intRef,strTitre,strDate,strAuteur);
 						
 						alLivres.add(livre);
 					}
 				}
 				
-				else if(strFichier.compareTo("Livres.Txt".toLowerCase()) == 0)
+				else if(strFichier.equalsIgnoreCase("dvd.txt"))
 				{
 					while(st.hasMoreTokens())
 					{
+						strMot = st.nextToken();
+						intRef = Integer.parseInt(strMot.substring(3));
 						
+						strTitre = st.nextToken();
+						strDate = st.nextToken().trim();
+						
+						intNombreDisques = Integer.parseInt(st.nextToken());
+						strAuteur = st.nextToken();
+						
+						DVD dvd = new DVD(intRef, strTitre, strDate, intNombreDisques, strAuteur);
+						
+						alDVDs.add(dvd);
 					}
 				}
 				
@@ -159,10 +172,19 @@ public class Interface extends JFrame
 				{
 					while(st.hasMoreTokens())
 					{
+						strMot = st.nextToken();
+						intRef = Integer.parseInt(strMot.substring(3));
 						
+						strTitre = st.nextToken().trim();;
+						strDate = st.nextToken().trim();
+						intNumeroVolume = Integer.parseInt(st.nextToken());
+						intNumeroPeriodique = Integer.parseInt(st.nextToken());
+						
+						Periodique periodique = new Periodique(intRef, strTitre, strDate, intNumeroVolume, intNumeroPeriodique);
+						
+						alPeriodiques.add(periodique);
 					}
 				}
-			//System.out.println(strLigne);
 			}
 		}
 		
@@ -197,5 +219,54 @@ public class Interface extends JFrame
 				jtab.addTab(strPrepose[i],null);
 			}
 		}
+	}
+
+	//getters
+	public String getStrDate() {
+		return strDate;
+	}
+
+	public void setStrDate(String strDate) {
+		this.strDate = strDate;
+	}
+
+	public String getStrAuteur() {
+		return strAuteur;
+	}
+
+	public void setStrAuteur(String strAuteur) {
+		this.strAuteur = strAuteur;
+	}
+
+	public String[] getStrPrepose() {
+		return strPrepose;
+	}
+
+	public int getIntRef() {
+		return intRef;
+	}
+
+	public int getIntNombreDisques() {
+		return intNombreDisques;
+	}
+
+	public int getIntNumeroVolume() {
+		return intNumeroVolume;
+	}
+
+	public int getIntNumeroPeriodique() {
+		return intNumeroPeriodique;
+	}
+
+	public String getStrLigne() {
+		return strLigne;
+	}
+
+	public String getStrMot() {
+		return strMot;
+	}
+
+	public String getStrTitre() {
+		return strTitre;
 	}
 }
