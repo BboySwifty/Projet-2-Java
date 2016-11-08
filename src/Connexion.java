@@ -52,7 +52,8 @@ public class Connexion extends JFrame {
 	String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
 	JComboBox jcBox = new JComboBox(strComboBox);
 
-	Connexion() {
+	Connexion() 
+	{
 		super("Connexion");
 		setLayout(new GridLayout(2, 1));
 
@@ -92,33 +93,41 @@ public class Connexion extends JFrame {
 					while ((strLigne = br.readLine()) != null) {
 						st = new StringTokenizer(strLigne, ",");
 
-						while (st.hasMoreTokens()) {
+						while (st.hasMoreTokens()) 
+						{
 							// verifie si l'usager est dans le bon compte
 							// verifie si l'usager existe
 							// verifie si c'est le meme mot de passe
-							System.out.println(jtNom.getText());
-							System.out.println(String.valueOf(jtMotDePasse.getPassword()));
+							//System.out.println(jtNom.getText());
+							//System.out.println(String.valueOf(jtMotDePasse.getPassword()));
+							
 							if (st.nextToken().compareToIgnoreCase((String) jcBox.getSelectedItem()) == 0
 									&& st.nextToken().compareTo(jtNom.getText()) == 0
-									&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) {
+									&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) 
+							{
 								dispose();
 								Interface demarrage = new Interface(usager());
 							}
 
-							else {
+							else 
+							{
+								
 							}
 						}
 					}
 				}
 
-				catch (IOException o) {
+				catch (IOException o) 
+				{
 					System.out.println(e);
 				}
 			}
 		});
 
-		jbEffacer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		jbEffacer.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				jtNom.setText("");
 				jtMotDePasse.setText("");
 			}
@@ -133,7 +142,8 @@ public class Connexion extends JFrame {
 
 	}
 
-	public String usager() {
+	public String usager() 
+	{
 		return (String) jcBox.getSelectedItem();
 	}
 }

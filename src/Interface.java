@@ -36,6 +36,7 @@ public class Interface extends JFrame
 	
 	JFrame jframe = new JFrame();
 	JTabbedPane jtab = new JTabbedPane();
+	JButton jbutton = new JButton("sss");
 	
 	JLabel jlabel = new JLabel();
 	
@@ -43,9 +44,9 @@ public class Interface extends JFrame
 	ArrayList<Livre> alLivres= new ArrayList<Livre>();
 	ArrayList<Periodique> alPeriodiques = new ArrayList<Periodique>();
 	
-	String[] strAdmin= {"Admin","Livre","Periodiques","DVDs","Recherche","Quitter"};
-	String[] strAdherent = {"Adherent","Livre","Periodiques","DVDs","Recherche","Quitter"};
-	String[] strPrepose = {"Prepose","Livre","Periodiques","DVDs","Recherche","Quitter"};
+	String[] strAdmin= {"Admin","Livre","Periodiques","DVDs","Recherche"};
+	String[] strAdherent = {"Adherent","Livre","Periodiques","DVDs","Recherche"};
+	String[] strPrepose = {"Prepose","Livre","Periodiques","DVDs","Recherche"};
 	
 
 	int intRef;
