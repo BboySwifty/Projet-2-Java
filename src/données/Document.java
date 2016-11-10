@@ -19,5 +19,4 @@ public class Document
 		this.boolRetourner = boolRetourner;
 	}
 	
-
 }

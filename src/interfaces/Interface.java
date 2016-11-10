@@ -1,6 +1,9 @@
 package interfaces;
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,22 +30,29 @@ public class Interface extends JFrame
 
 	JFrame jframe = new JFrame();
 	JTabbedPane jtab = new JTabbedPane();
-	JButton jbutton = new JButton("sss");
-	JTable jtest = new JTable();
+	
+	JButton jbtnQuitter = new JButton("Quitter");
+	
+	JTable jtable = new JTable();
 	
 	JPanel jpanel1 = new JPanel();
 	JPanel jpanel2 = new JPanel();
 	 
 	JPanel jpanelCollection = new JPanel();
 	JPanel jpanelLivres = new JPanel();
-	JPanel jpanelPeriodique = new JPanel();
+	JPanel jpanelPeriodiques = new JPanel();
 	JPanel jpanelDVDs = new JPanel();
 	JPanel jpanelRecherche = new JPanel();
 	JPanel jpanelOptions = new JPanel();
+	JPanel jpanelQuitter = new JPanel();
 	
-	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
-	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche"};
-	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche"};
+	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options","Quitter"};
+	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche","Quitter"};
+	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche","Quitter"};
+	
+	JPanel[] jpanelAdmin ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions, jpanelQuitter};
+	JPanel[] jpanelAdherent ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions, jpanelQuitter};
+	JPanel[] jpanelPrepose ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions, jpanelQuitter};
 	
 	ArrayList<DVD> alDVDs = new ArrayList<DVD>();
 	ArrayList<Livre> alLivres= new ArrayList<Livre>();
@@ -71,34 +81,18 @@ public class Interface extends JFrame
 		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
-		
 		lireFichier("dvd.txt");
 		
-		/*//quitter
-		jmenuquitter.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				if(e.getSource() == jmenuquitter)
+		jbtnQuitter.addActionListener(new ActionListener()
 				{
-					System.exit(0);
-				}
-			}
-		});
-		*/
-		
-		/*
-		jtab.addChangeListener(new ChangeListener()
-				{
-					public void stateChanged(ChangeEvent e)
+					public void actionPerformed(ActionEvent e) 
 					{
-						if(e.getSource().equals(jtab.getTitleAt(strArray.length-1)))
+						if(e.getSource() == jbtnQuitter)
 						{
 							System.exit(0);
 						}
 					}
 				});
-				*/
 	}
 	
 	public void lireFichier(String strFichier)
@@ -130,7 +124,6 @@ public class Interface extends JFrame
 						
 						SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 						Calendar cal = Calendar.getInstance();
-						
 						
 						try
 						{
@@ -201,7 +194,8 @@ public class Interface extends JFrame
 		{
 			for(int i =0; i<strAdmin.length; i++)
 			{
-				jtab.addTab(strAdmin[i],null);
+				jtab.addTab(strAdmin[i],jpanelAdmin[i]);
+				jpanelQuitter.add(jbtnQuitter,BorderLayout.CENTER);
 			}
 		}
 		
@@ -209,7 +203,8 @@ public class Interface extends JFrame
 		{
 			for(int i =0; i<strAdherent.length; i++)
 			{
-				jtab.addTab(strAdherent[i],null);
+				jtab.addTab(strAdherent[i],jpanelAdherent[i]);
+				jpanelQuitter.add(jbtnQuitter,BorderLayout.CENTER);
 			}
 		}
 		
@@ -217,7 +212,8 @@ public class Interface extends JFrame
 		{
 			for(int i =0; i<strPrepose.length; i++)
 			{
-				jtab.addTab(strPrepose[i],null);
+				jtab.addTab(strPrepose[i],jpanelPrepose[i]);
+				jpanelQuitter.add(jbtnQuitter,BorderLayout.CENTER);
 			}
 		}
 	}
