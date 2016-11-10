@@ -1,5 +1,4 @@
 package données;
-import java.util.Calendar;
 
 public class Periodique extends Document 
 {
@@ -13,6 +12,14 @@ public class Periodique extends Document
 		
 		this.intNumeroVolume = intNumeroVolume;
 		this.intNumeroPeriodique = intNumeroPeriodique;
+	}
+
+	public int getIntNumeroVolume() {
+		return intNumeroVolume;
+	}
+
+	public int getIntNumeroPeriodique() {
+		return intNumeroPeriodique;
 	}
 
 }

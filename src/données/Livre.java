@@ -1,5 +1,4 @@
 package données;
-import java.util.Calendar;
 
 public class Livre extends Document
 {
@@ -12,6 +11,10 @@ public class Livre extends Document
 		
 		this.strNomAuteur = strNomAuteur;
 		
+	}
+
+	public String getStrNomAuteur() {
+		return strNomAuteur;
 	}
 	
 

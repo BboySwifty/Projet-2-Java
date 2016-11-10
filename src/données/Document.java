@@ -1,11 +1,21 @@
 package données;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Document 
 {
 	int intNumeroDocument;
 	
+	public int getIntNumeroDocument() {
+		return intNumeroDocument;
+	}
+
+	public String getStrTitre() {
+		return strTitre;
+	}
+
+	public String getStrDate() {
+		return strDate;
+	}
+
 	String strTitre;
 	String strDate;
 	

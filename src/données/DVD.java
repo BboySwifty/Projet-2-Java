@@ -15,4 +15,12 @@ public class DVD extends Document
 		
 	}
 
+	public String getStrNomRealisateur() {
+		return strNomRealisateur;
+	}
+
+	public int getIntNombreDisques() {
+		return intNombreDisques;
+	}
+
 }
