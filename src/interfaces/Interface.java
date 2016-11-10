@@ -1,5 +1,6 @@
 package interfaces;
 import java.awt.Container;
+import java.awt.GridBagLayout;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -23,18 +24,15 @@ import données.Periodique;
 public class Interface extends JFrame
 {
 	private Container c = getContentPane();
-	
+
 	JFrame jframe = new JFrame();
 	JTabbedPane jtab = new JTabbedPane();
 	JButton jbutton = new JButton("sss");
 	JTable jtest = new JTable();
 	
-	JLabel jlabel = new JLabel();
-	
-	ArrayList<DVD> alDVDs = new ArrayList<DVD>();
-	ArrayList<Livre> alLivres= new ArrayList<Livre>();
-	ArrayList<Periodique> alPeriodiques = new ArrayList<Periodique>();
-	
+	JPanel jpanel1 = new JPanel();
+	JPanel jpanel2 = new JPanel();
+	 
 	JPanel jpanelCollection = new JPanel();
 	JPanel jpanelLivres = new JPanel();
 	JPanel jpanelPeriodique = new JPanel();
@@ -45,6 +43,10 @@ public class Interface extends JFrame
 	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
 	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche"};
 	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche"};
+	
+	ArrayList<DVD> alDVDs = new ArrayList<DVD>();
+	ArrayList<Livre> alLivres= new ArrayList<Livre>();
+	ArrayList<Periodique> alPeriodiques = new ArrayList<Periodique>();
 	
 	int intRef;
 	int intNombreDisques;
@@ -68,6 +70,7 @@ public class Interface extends JFrame
 		setVisible(true);
 		setSize(1000,700);
 		setLocationRelativeTo(null);
+		
 		
 		lireFichier("dvd.txt");
 		
@@ -128,6 +131,7 @@ public class Interface extends JFrame
 						SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 						Calendar cal = Calendar.getInstance();
 						
+						
 						try
 						{
 							cal.setTime(sdf.parse(strDate));
@@ -140,7 +144,6 @@ public class Interface extends JFrame
 						
 						//Nom de l'auteur
 						strAuteur = st.nextToken().trim();
-						
 						Livre livre = new Livre(intRef,strTitre,strDate,strAuteur);
 						
 						alLivres.add(livre);
