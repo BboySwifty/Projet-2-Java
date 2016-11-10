@@ -1,32 +1,21 @@
 package interfaces;
-import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Scanner;
-import java.util.StringTokenizer;
-
-import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
 
-import données.DVD;
 import données.LectureFichier;
-import données.Livre;
-import données.Periodique;
 import données.TableModelCollection;
  
 public class Interface extends JFrame
@@ -38,18 +27,36 @@ public class Interface extends JFrame
 	
 	JButton jbtnQuitter = new JButton("Quitter");
 	JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
+	JButton jbtnRecherche = new JButton("Chercher: ");
 	
 	JTable jtable = new JTable();
 	
-	JPanel jpanel1 = new JPanel();
-	JPanel jpanel2 = new JPanel();
-	 
+	JPanel jpanelSousRecherche1 = new JPanel();
+	JPanel jpanelSousRecherche2 = new JPanel();
+	JPanel jpanelSousRecherche3 = new JPanel();
+	
+	JPanel jpanelSousRechercheParAuteur = new JPanel();
+	JPanel jpanelSousRechercheInformation = new JPanel();
+	
 	JPanel jpanelCollection = new JPanel();
 	JPanel jpanelLivres = new JPanel();
 	JPanel jpanelPeriodiques = new JPanel();
 	JPanel jpanelDVDs = new JPanel();
 	JPanel jpanelRecherche = new JPanel();
 	JPanel jpanelOptions = new JPanel();
+	
+	TitledBorder tbRechercheParAuteur = new TitledBorder("Recherche par auteur ou mot clé");
+	TitledBorder tbRecherche = new TitledBorder("Recherche");
+	TitledBorder tbResultat = new TitledBorder("Résultats");
+	TitledBorder tbInformation = new TitledBorder("Information");
+	TitledBorder tbSousInformation = new TitledBorder("Information");
+	
+	JTextArea jtAuteur = new JTextArea();
+	JTextArea jtMotCle = new JTextArea();
+	
+	JLabel jlabelmario = new JLabel( new ImageIcon("mario.png"));
+	JLabel jlabelboo = new JLabel( new ImageIcon("boo.png"));
+	JLabel jlabelluigi = new JLabel( new ImageIcon("luigi.png"));
 	
 	String[] strTable ={"Numéro de document","Titre","Date de parution","Disponibilité"};
 	
@@ -98,11 +105,26 @@ public class Interface extends JFrame
 						
 						if(e.getSource() == jbtnAjouterPrepose)
 						{
-							Scanner scanner = new Scanner(System.in);
+							String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usagee: ");
+							System.out.println(strNomEntree);
 							
-							strAjoutNom = scanner.nextLine();
+							String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
+							System.out.println(strMotDePasseEntree);
 							
-							strAjoutMotDePasse = scanner.nextLine();
+							/*
+							try
+							{
+								FileWriter file = new FileWriter("Usagers.txt",false);
+								file.write("123");
+								file.close();
+								
+							}
+							
+							catch(IOException o)
+							{
+								
+							}
+							*/
 						}
 					}
 				});
@@ -110,8 +132,6 @@ public class Interface extends JFrame
 
 		add(jtab);
 	}
-	
-	
 	
 	public void CreeTab(String strUsager)
 	{
@@ -121,8 +141,34 @@ public class Interface extends JFrame
 			{
 				jtab.addTab(strAdmin[i],jpanelAdmin[i]);
 				jpanelOptions.add(jbtnAjouterPrepose);
-				
 			}
+			
+			jpanelOptions.add(jbtnAjouterPrepose);
+			
+			jpanelSousRecherche1.setLayout( new GridLayout(1,2));
+			jpanelSousRecherche3.setLayout( new GridLayout(1,2));
+			jpanelRecherche.setLayout(new GridLayout(3,1));
+			
+			jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
+			
+			jpanelSousRechercheInformation.setBorder(tbSousInformation);
+			
+			jpanelSousRechercheParAuteur.add(jbtnRecherche);
+			jpanelSousRechercheParAuteur.add(jtAuteur);
+			
+			jpanelSousRecherche1.setBorder(tbRecherche);
+			jpanelSousRecherche2.setBorder(tbResultat);
+			jpanelSousRecherche3.setBorder(tbInformation);
+			
+			jpanelSousRecherche1.add(jlabelmario);
+			jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
+			jpanelSousRecherche2.add(jlabelboo);
+			jpanelSousRecherche3.add(jlabelluigi);
+			jpanelSousRecherche3.add(jpanelSousRechercheInformation);
+			
+			jpanelRecherche.add(jpanelSousRecherche1);
+			jpanelRecherche.add(jpanelSousRecherche2);
+			jpanelRecherche.add(jpanelSousRecherche3);
 		}
 		
 		else if(strUsager == "Adhérent")
