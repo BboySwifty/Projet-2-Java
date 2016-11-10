@@ -1,3 +1,4 @@
+package données;
 public class Personne {
 
 	private String strNom;

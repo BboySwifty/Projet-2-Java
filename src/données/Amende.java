@@ -1,3 +1,4 @@
+package données;
 public class Amende {
 	
 	private int no;

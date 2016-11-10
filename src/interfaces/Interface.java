@@ -1,3 +1,4 @@
+package interfaces;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -29,6 +30,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import données.DVD;
+import données.Livre;
+import données.Periodique;
 
 public class Interface extends JFrame
 {

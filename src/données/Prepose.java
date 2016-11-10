@@ -1,4 +1,4 @@
-
+package données;
 public class Prepose extends Personne 
 {
 	private int noEmployé;

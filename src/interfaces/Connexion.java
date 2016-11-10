@@ -1,3 +1,4 @@
+package interfaces;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -52,7 +53,7 @@ public class Connexion extends JFrame {
 	String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
 	JComboBox jcBox = new JComboBox(strComboBox);
 
-	Connexion() 
+	public Connexion() 
 	{
 		super("Connexion");
 		setLayout(new GridLayout(2, 1));

@@ -1,3 +1,4 @@
+package données;
 public class Prêt {
 	
 	private int noPrêt;

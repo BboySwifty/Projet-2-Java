@@ -1,4 +1,4 @@
-
+package données;
 public class Adherent extends Personne 
 {
 	private int intNumeroInscription;
