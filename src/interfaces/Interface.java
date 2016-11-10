@@ -48,6 +48,8 @@ public class Interface extends JFrame
 	JPanel jpanelRecherche = new JPanel();
 	JPanel jpanelOptions = new JPanel();
 	
+	String[] strTable ={"Numéro de document","Titre","Date de parution","Disponibilité"};
+	
 	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
 	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
 	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
@@ -83,7 +85,7 @@ public class Interface extends JFrame
 		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
-		lireFichier("dvd.txt");
+		lireFichier("livres.txt");
 		
 		jbtnQuitter.addActionListener(new ActionListener()
 				{
@@ -162,6 +164,8 @@ public class Interface extends JFrame
 						
 						alLivres.add(livre);
 					}
+					
+					
 				}
 				
 				else if(strFichier.equalsIgnoreCase("dvd.txt"))
