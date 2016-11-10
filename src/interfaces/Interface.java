@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
@@ -34,11 +35,17 @@ public class Interface extends JFrame
 	ArrayList<Livre> alLivres= new ArrayList<Livre>();
 	ArrayList<Periodique> alPeriodiques = new ArrayList<Periodique>();
 	
-	String[] strAdmin= {"Admin","Livre","Periodiques","DVDs","Recherche"};
-	String[] strAdherent = {"Adherent","Livre","Periodiques","DVDs","Recherche"};
-	String[] strPrepose = {"Prepose","Livre","Periodiques","DVDs","Recherche"};
+	JPanel jpanelCollection = new JPanel();
+	JPanel jpanelLivres = new JPanel();
+	JPanel jpanelPeriodique = new JPanel();
+	JPanel jpanelDVDs = new JPanel();
+	JPanel jpanelRecherche = new JPanel();
+	JPanel jpanelOptions = new JPanel();
 	
-
+	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
+	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche"};
+	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche"};
+	
 	int intRef;
 	int intNombreDisques;
 	int intNumeroVolume;
