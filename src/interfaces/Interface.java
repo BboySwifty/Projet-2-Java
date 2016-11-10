@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import javax.swing.BoxLayout;
@@ -95,13 +96,21 @@ public class Interface extends JFrame
 					}
 				});
 		
+		
 		jbtnAjouterPrepose.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
+						String strAjoutNom;
+						String strAjoutMotDePasse;
+						
 						if(e.getSource() == jbtnAjouterPrepose)
 						{
-							System.out.println("hello");
+							Scanner scanner = new Scanner(System.in);
+							
+							strAjoutNom = scanner.nextLine();
+							
+							strAjoutMotDePasse = scanner.nextLine();
 						}
 					}
 				});
