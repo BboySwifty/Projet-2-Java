@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +33,7 @@ public class Interface extends JFrame
 	JTabbedPane jtab = new JTabbedPane();
 	
 	JButton jbtnQuitter = new JButton("Quitter");
+	JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
 	
 	JTable jtable = new JTable();
 	
@@ -44,15 +46,14 @@ public class Interface extends JFrame
 	JPanel jpanelDVDs = new JPanel();
 	JPanel jpanelRecherche = new JPanel();
 	JPanel jpanelOptions = new JPanel();
-	JPanel jpanelQuitter = new JPanel();
 	
-	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options","Quitter"};
-	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche","Quitter"};
-	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche","Quitter"};
+	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
+	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche"};
+	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche"};
 	
-	JPanel[] jpanelAdmin ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions, jpanelQuitter};
-	JPanel[] jpanelAdherent ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions, jpanelQuitter};
-	JPanel[] jpanelPrepose ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions, jpanelQuitter};
+	JPanel[] jpanelAdmin ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
+	JPanel[] jpanelAdherent ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
+	JPanel[] jpanelPrepose ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
 	
 	ArrayList<DVD> alDVDs = new ArrayList<DVD>();
 	ArrayList<Livre> alLivres= new ArrayList<Livre>();
@@ -195,7 +196,8 @@ public class Interface extends JFrame
 			for(int i =0; i<strAdmin.length; i++)
 			{
 				jtab.addTab(strAdmin[i],jpanelAdmin[i]);
-				jpanelQuitter.add(jbtnQuitter,BorderLayout.CENTER);
+				jpanelOptions.add(jbtnQuitter);
+				jpanelOptions.add(jbtnAjouterPrepose);
 			}
 		}
 		
@@ -204,7 +206,7 @@ public class Interface extends JFrame
 			for(int i =0; i<strAdherent.length; i++)
 			{
 				jtab.addTab(strAdherent[i],jpanelAdherent[i]);
-				jpanelQuitter.add(jbtnQuitter,BorderLayout.CENTER);
+				jpanelOptions.add(jbtnQuitter);
 			}
 		}
 		
@@ -213,7 +215,7 @@ public class Interface extends JFrame
 			for(int i =0; i<strPrepose.length; i++)
 			{
 				jtab.addTab(strPrepose[i],jpanelPrepose[i]);
-				jpanelQuitter.add(jbtnQuitter,BorderLayout.CENTER);
+				jpanelOptions.add(jbtnQuitter,BorderLayout.CENTER);
 			}
 		}
 	}
