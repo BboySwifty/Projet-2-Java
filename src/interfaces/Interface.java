@@ -48,8 +48,8 @@ public class Interface extends JFrame
 	JPanel jpanelOptions = new JPanel();
 	
 	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
-	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche"};
-	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche"};
+	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
+	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
 	
 	JPanel[] jpanelAdmin ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
 	JPanel[] jpanelAdherent ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
@@ -91,6 +91,17 @@ public class Interface extends JFrame
 						if(e.getSource() == jbtnQuitter)
 						{
 							System.exit(0);
+						}
+					}
+				});
+		
+		jbtnAjouterPrepose.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						if(e.getSource() == jbtnAjouterPrepose)
+						{
+							System.out.println("hello");
 						}
 					}
 				});
@@ -196,7 +207,6 @@ public class Interface extends JFrame
 			for(int i =0; i<strAdmin.length; i++)
 			{
 				jtab.addTab(strAdmin[i],jpanelAdmin[i]);
-				jpanelOptions.add(jbtnQuitter);
 				jpanelOptions.add(jbtnAjouterPrepose);
 			}
 		}
@@ -206,7 +216,6 @@ public class Interface extends JFrame
 			for(int i =0; i<strAdherent.length; i++)
 			{
 				jtab.addTab(strAdherent[i],jpanelAdherent[i]);
-				jpanelOptions.add(jbtnQuitter);
 			}
 		}
 		
@@ -215,9 +224,10 @@ public class Interface extends JFrame
 			for(int i =0; i<strPrepose.length; i++)
 			{
 				jtab.addTab(strPrepose[i],jpanelPrepose[i]);
-				jpanelOptions.add(jbtnQuitter,BorderLayout.CENTER);
 			}
 		}
+		
+		jpanelOptions.add(jbtnQuitter);
 	}
 
 	//getters
