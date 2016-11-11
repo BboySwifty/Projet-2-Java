@@ -1,5 +1,7 @@
 package interfaces;
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import données.LectureFichier;
@@ -52,8 +55,8 @@ public class Interface extends JFrame
 	TitledBorder tbInformation = new TitledBorder("Information");
 	TitledBorder tbSousInformation = new TitledBorder("Information");
 	
-	JTextArea jtAuteur = new JTextArea();
-	JTextArea jtMotCle = new JTextArea();
+	JTextField jtAuteur = new JTextField();
+	JTextField jtMotDePasse = new JTextField();
 	
 	JLabel jlabelmario = new JLabel( new ImageIcon("mario.png"));
 	JLabel jlabelboo = new JLabel( new ImageIcon("boo.png"));
@@ -76,7 +79,6 @@ public class Interface extends JFrame
 		super("La mediatheque de GG");
 		
 		CreeTab(strUsager);
-		
 		
 		setVisible(true);
 		setSize(1000,700);
@@ -129,22 +131,34 @@ public class Interface extends JFrame
 		LectureFichier lf = new LectureFichier();
 		
 		TableModelCollection tmLivre = new TableModelCollection(lf, "Livre");
+		TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
+		TableModelCollection tmPer = new TableModelCollection(lf, "Periodique");
 		TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
-		
-		JTable jtColl = new JTable(tmColl);
+
 		JTable jtLiv = new JTable(tmLivre);
-		
-		JScrollPane jspColl = new JScrollPane(jtColl);
+		JTable jtDVD = new JTable(tmDVD);
+		JTable jtPer = new JTable(tmPer);
+		JTable jtColl = new JTable(tmColl);
+
 		JScrollPane jspLiv = new JScrollPane(jtLiv);
-		
-		jtColl.setOpaque(true);
+		JScrollPane jspDVD = new JScrollPane(jtDVD);
+		JScrollPane jspPer = new JScrollPane(jtPer);
+		JScrollPane jspColl = new JScrollPane(jtColl);
+
 		jtLiv.setOpaque(true);
+		jtDVD.setOpaque(true);
+		jtPer.setOpaque(true);
+		jtColl.setOpaque(true);
 		
 		jpanelCollection.setLayout(new GridLayout(1,1));
 		jpanelLivres.setLayout(new GridLayout(1,1));
+		jpanelDVDs.setLayout(new GridLayout(1,1));
+		jpanelPeriodiques.setLayout(new GridLayout(1,1));
 		
-		jpanelCollection.add(jspColl);
 		jpanelLivres.add(jspLiv);
+		jpanelDVDs.add(jspDVD);
+		jpanelPeriodiques.add(jspPer);
+		jpanelCollection.add(jspColl);
 
 		add(jtab);
 	}
@@ -162,8 +176,10 @@ public class Interface extends JFrame
 			jpanelOptions.add(jbtnAjouterPrepose);
 			
 			jpanelSousRecherche1.setLayout( new GridLayout(1,2));
+			//jpanelSousRecherche2.setLayout( new GridLayout(1,2));
 			jpanelSousRecherche3.setLayout( new GridLayout(1,2));
 			jpanelRecherche.setLayout(new GridLayout(3,1));
+			jpanelSousRechercheParAuteur.setLayout(new FlowLayout());
 			
 			jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
 			
@@ -171,6 +187,7 @@ public class Interface extends JFrame
 			
 			jpanelSousRechercheParAuteur.add(jbtnRecherche);
 			jpanelSousRechercheParAuteur.add(jtAuteur);
+		//	jpanelSousRechercheParAuteur.add(jtMotDePasse);
 			
 			jpanelSousRecherche1.setBorder(tbRecherche);
 			jpanelSousRecherche2.setBorder(tbResultat);
