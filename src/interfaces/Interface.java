@@ -1,11 +1,11 @@
 package interfaces;
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
@@ -31,28 +30,32 @@ public class Interface extends JFrame
 	
 	JButton jbtnQuitter = new JButton("Quitter");
 	JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
-	JButton jbtnRecherche = new JButton("Chercher: ");
+	JButton jbtnRecherche = new JButton("Recherche de la requete: ");
 	
-	JTable jtable = new JTable();
+	JLabel jlabelParAuteur = new JLabel("Par Auteur");
+	JLabel jlabelParMotCles = new JLabel("Par Mot cles");
 	
 	JPanel jpanelSousRecherche1 = new JPanel();
 	JPanel jpanelSousRecherche2 = new JPanel();
 	JPanel jpanelSousRecherche3 = new JPanel();
 	
 	JPanel jpanelSousRechercheParAuteur = new JPanel();
+	JPanel jpanelSousRechercheResultat = new JPanel();
 	JPanel jpanelSousRechercheInformation = new JPanel();
 	
 	JPanel jpanelCollection = new JPanel();
 	JPanel jpanelLivres = new JPanel();
 	JPanel jpanelPeriodiques = new JPanel();
 	JPanel jpanelDVDs = new JPanel();
+	
 	JPanel jpanelRecherche = new JPanel();
 	JPanel jpanelOptions = new JPanel();
 	
-	TitledBorder tbRechercheParAuteur = new TitledBorder("Recherche par auteur ou mot clé");
 	TitledBorder tbRecherche = new TitledBorder("Recherche");
 	TitledBorder tbResultat = new TitledBorder("Résultats");
 	TitledBorder tbInformation = new TitledBorder("Information");
+	TitledBorder tbRechercheParAuteur = new TitledBorder("Recherche par auteur ou mot clé");
+	TitledBorder tbSousResultat = new TitledBorder("Résultats");
 	TitledBorder tbSousInformation = new TitledBorder("Information");
 	
 	JTextField jtAuteur = new JTextField();
@@ -63,7 +66,6 @@ public class Interface extends JFrame
 	JLabel jlabelluigi = new JLabel( new ImageIcon("luigi.png"));
 	
 	String[] strTable ={"Numéro de document","Titre","Date de parution","Disponibilité"};
-	
 	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
 	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
 	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
@@ -72,79 +74,34 @@ public class Interface extends JFrame
 	JPanel[] jpanelAdherent ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
 	JPanel[] jpanelPrepose ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
 	
+	LectureFichier lf = new LectureFichier();
 	
+	TableModelCollection tmLivre = new TableModelCollection(lf, "Livre");
+	TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
+	TableModelCollection tmPer = new TableModelCollection(lf, "Periodique");
+	TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
+
+	JTable jtLiv = new JTable(tmLivre);
+	JTable jtDVD = new JTable(tmDVD);
+	JTable jtPer = new JTable(tmPer);
+	JTable jtColl = new JTable(tmColl);
+
+	JScrollPane jspLiv = new JScrollPane(jtLiv);
+	JScrollPane jspDVD = new JScrollPane(jtDVD);
+	JScrollPane jspPer = new JScrollPane(jtPer);
+	JScrollPane jspColl = new JScrollPane(jtColl);
 	
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
 		
-		CreeTab(strUsager);
+		CreeTabRecherche(strUsager);
+		CreeTabOption(strUsager);
 		
 		setVisible(true);
 		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
-		jbtnQuitter.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						if(e.getSource() == jbtnQuitter)
-						{
-							System.exit(0);
-						}
-					}
-				});
-		
-		
-		jbtnAjouterPrepose.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						String strAjoutNom;
-						String strAjoutMotDePasse;
-						
-						if(e.getSource() == jbtnAjouterPrepose)
-						{
-							String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usagee: ");
-							System.out.println(strNomEntree);
-							
-							String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
-							System.out.println(strMotDePasseEntree);
-							
-							/*
-							try
-							{
-								FileWriter file = new FileWriter("Usagers.txt",false);
-								file.write("123");
-								file.close();
-								
-							}
-							
-							catch(IOException o)
-							{
-								
-							}
-							*/
-						}
-					}
-				});
-		LectureFichier lf = new LectureFichier();
-		
-		TableModelCollection tmLivre = new TableModelCollection(lf, "Livre");
-		TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
-		TableModelCollection tmPer = new TableModelCollection(lf, "Periodique");
-		TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
-
-		JTable jtLiv = new JTable(tmLivre);
-		JTable jtDVD = new JTable(tmDVD);
-		JTable jtPer = new JTable(tmPer);
-		JTable jtColl = new JTable(tmColl);
-
-		JScrollPane jspLiv = new JScrollPane(jtLiv);
-		JScrollPane jspDVD = new JScrollPane(jtDVD);
-		JScrollPane jspPer = new JScrollPane(jtPer);
-		JScrollPane jspColl = new JScrollPane(jtColl);
-
 		jtLiv.setOpaque(true);
 		jtDVD.setOpaque(true);
 		jtPer.setOpaque(true);
@@ -161,42 +118,87 @@ public class Interface extends JFrame
 		jpanelCollection.add(jspColl);
 
 		add(jtab);
+		
+		jbtnQuitter.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						if(e.getSource() == jbtnQuitter)
+						{
+							System.exit(0);
+						}
+					}
+				});
+		
+		jbtnAjouterPrepose.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				String strAjoutNom;
+				String strAjoutMotDePasse;
+				
+				if(e.getSource() == jbtnAjouterPrepose)
+				{
+					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usagee: ");
+					System.out.println(strNomEntree);
+					
+					String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
+					System.out.println(strMotDePasseEntree);
+					
+					/*
+					try
+					{
+						FileWriter file = new FileWriter("Usagers.txt",false);
+						file.write("123");
+						file.close();
+						
+					}
+					
+					catch(IOException o)
+					{
+						
+					}
+					*/
+				}
+			}
+		});
 	}
 	
-	public void CreeTab(String strUsager)
+	public void CreeTabRecherche(String strUsager)
 	{
 		if(strUsager == "Administration")
 		{
 			for(int i =0; i<strAdmin.length; i++)
 			{
 				jtab.addTab(strAdmin[i],jpanelAdmin[i]);
-				jpanelOptions.add(jbtnAjouterPrepose);
 			}
 			
-			jpanelOptions.add(jbtnAjouterPrepose);
-			
 			jpanelSousRecherche1.setLayout( new GridLayout(1,2));
-			//jpanelSousRecherche2.setLayout( new GridLayout(1,2));
+			jpanelSousRecherche2.setLayout( new GridLayout(1,2));
 			jpanelSousRecherche3.setLayout( new GridLayout(1,2));
 			jpanelRecherche.setLayout(new GridLayout(3,1));
 			jpanelSousRechercheParAuteur.setLayout(new FlowLayout());
 			
 			jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
-			
+			jpanelSousRechercheResultat.setBorder(tbSousResultat);
 			jpanelSousRechercheInformation.setBorder(tbSousInformation);
 			
-			jpanelSousRechercheParAuteur.add(jbtnRecherche);
+			jpanelSousRechercheParAuteur.add(jlabelParAuteur);
+			jpanelSousRechercheParAuteur.add(jlabelParMotCles);
+			//jpanelSousRechercheParAuteur.add(jbtnRecherche);
 			jpanelSousRechercheParAuteur.add(jtAuteur);
-		//	jpanelSousRechercheParAuteur.add(jtMotDePasse);
+			//jpanelSousRechercheParAuteur.add(jtMotDePasse);
 			
 			jpanelSousRecherche1.setBorder(tbRecherche);
 			jpanelSousRecherche2.setBorder(tbResultat);
 			jpanelSousRecherche3.setBorder(tbInformation);
 			
 			jpanelSousRecherche1.add(jlabelmario);
-			jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
 			jpanelSousRecherche2.add(jlabelboo);
 			jpanelSousRecherche3.add(jlabelluigi);
+			
+			jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
+			jpanelSousRecherche2.add(jpanelSousRechercheResultat);
 			jpanelSousRecherche3.add(jpanelSousRechercheInformation);
 			
 			jpanelRecherche.add(jpanelSousRecherche1);
@@ -218,6 +220,25 @@ public class Interface extends JFrame
 			{
 				jtab.addTab(strPrepose[i],jpanelPrepose[i]);
 			}
+		}
+	}
+	
+	//cree les buttons dans le tab d'option
+	public void CreeTabOption(String strUsager)
+	{
+		if(strUsager == "Administration")
+		{
+			jpanelOptions.add(jbtnAjouterPrepose);
+		}
+
+		else if(strUsager == "Adhérent")
+		{
+			
+		}
+		
+		else
+		{
+			
 		}
 		
 		jpanelOptions.add(jbtnQuitter);

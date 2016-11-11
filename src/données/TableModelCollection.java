@@ -20,12 +20,14 @@ public class TableModelCollection extends AbstractTableModel {
 
 	boolean editable = true;
 
-	public TableModelCollection(LectureFichier lf, String strColl) {
+	public TableModelCollection(LectureFichier lf, String strColl) 
+	{
 		this.strColl = strColl;
 		this.alCollection = lf.alCollection;
 		this.alLivre = lf.alLivres;
 		this.alDVD = lf.alDVDs;
 		this.alPeriodique = lf.alPeriodiques;
+		
 		if (strColl.equals("Livre")) {
 			for (int i = 0; i < alLivre.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
@@ -35,7 +37,9 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add("Oui");
 				alDonnees.add(ligne);
 			}
-		} else if (strColl.equals("DVD")) {
+		} 
+		
+		else if (strColl.equals("DVD")) {
 			for (int i = 0; i < alDVD.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alDVD.get(i).getStrNumeroDocument());
@@ -44,7 +48,9 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add("Oui");
 				alDonnees.add(ligne);
 			}
-		} else if (strColl.equals("Periodique")) {
+			
+		} 
+		else if (strColl.equals("Periodique")) {
 			for (int i = 0; i < alPeriodique.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alPeriodique.get(i).getStrNumeroDocument());
@@ -53,7 +59,9 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add("Oui");
 				alDonnees.add(ligne);
 			}
-		} else if (strColl.equals("Collection")) {
+			
+		} 
+		else if (strColl.equals("Collection")) {
 			for (int i = 0; i < alCollection.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alCollection.get(i).getStrNumeroDocument());

@@ -43,14 +43,13 @@ public class Connexion extends JFrame {
 	JLabel jUsager = new JLabel("Type de connexion: ");
 	JLabel jNom = new JLabel("Nom d'utilisateur: ");
 	JLabel jMotDePasse = new JLabel("Mot de passe: ");
-
+	
 	JTextField jtNom = new JTextField();
 	JPasswordField jtMotDePasse = new JPasswordField();
 
 	JButton jbConnexion = new JButton("Connexion");
 	JButton jbEffacer = new JButton("Effacer");
 
-	
 	String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
 	JComboBox jcBox = new JComboBox(strComboBox);
 
