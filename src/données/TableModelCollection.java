@@ -1,24 +1,23 @@
 package données;
 
 import java.util.ArrayList;
-
 import javax.swing.table.AbstractTableModel;
 
 public class TableModelCollection extends AbstractTableModel {
 
 	ArrayList<ArrayList> alDonnees = new ArrayList<ArrayList>();
-	static ArrayList<Livre> alDocuments;
+	ArrayList<Livre> alDocuments;
 	ArrayList<String> alColonne = new ArrayList<String>();
-	
-	
-	public TableModelCollection(ArrayList<Livre> alLivres){
+
+	boolean editable = true;
+
+	public TableModelCollection(ArrayList<Livre> alLivres) {
 		this.alDocuments = alLivres;
-		this.alColonne = alColonne;
 		alColonne.add("Numéro de document");
 		alColonne.add("Titre");
 		alColonne.add("Date de parution");
 		alColonne.add("Disponible");
-		
+
 		for (int i = 0; i < alLivres.size(); i++) {
 			ArrayList<Object> ligne = new ArrayList<Object>();
 			ligne.add(LectureFichier.alLivres.get(i).getIntNumeroDocument());
@@ -29,22 +28,37 @@ public class TableModelCollection extends AbstractTableModel {
 		}
 	}
 	
+	public String getColumnName(int col) {
+
+		return alColonne.get(col);
+	}
+
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return alColonne.size();
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return alDocuments.size();
 	}
 
 	@Override
-	public Object getValueAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getValueAt(int ligne, int colonne) {
+		return alDonnees.get(ligne).get(colonne);
+
 	}
 
+	@SuppressWarnings("unchecked")
+	public void setValueAt(Object o, int ligne, int colonne) {
+
+		alDonnees.get(ligne).set(colonne, o);
+		fireTableCellUpdated(ligne, colonne);
+	}
+
+	public boolean isCellEditable(int ligne, int colonne) {
+		return editable;
+	}
 }

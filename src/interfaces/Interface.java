@@ -1,5 +1,6 @@
 package interfaces;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -128,6 +129,8 @@ public class Interface extends JFrame
 						}
 					}
 				});
+		jt.setOpaque(true);
+		jpanelCollection.setLayout(new GridLayout(1,1));
 		jpanelCollection.add(jsp);
 
 		add(jtab);
