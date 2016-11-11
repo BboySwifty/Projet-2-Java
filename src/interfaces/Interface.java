@@ -69,6 +69,8 @@ public class Interface extends JFrame
 	JPanel[] jpanelAdherent ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
 	JPanel[] jpanelPrepose ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
 	
+	
+	
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
@@ -79,11 +81,6 @@ public class Interface extends JFrame
 		setVisible(true);
 		setSize(1000,700);
 		setLocationRelativeTo(null);
-		
-		LectureFichier lf = new LectureFichier("livres.txt");
-		TableModelCollection tm = new TableModelCollection(lf.alLivres);
-		JTable jt = new JTable(tm);
-		JScrollPane jsp = new JScrollPane(jt);
 		
 		jbtnQuitter.addActionListener(new ActionListener()
 				{
@@ -129,9 +126,25 @@ public class Interface extends JFrame
 						}
 					}
 				});
-		jt.setOpaque(true);
+		LectureFichier lf = new LectureFichier();
+		
+		TableModelCollection tmLivre = new TableModelCollection(lf, "Livre");
+		TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
+		
+		JTable jtColl = new JTable(tmColl);
+		JTable jtLiv = new JTable(tmLivre);
+		
+		JScrollPane jspColl = new JScrollPane(jtColl);
+		JScrollPane jspLiv = new JScrollPane(jtLiv);
+		
+		jtColl.setOpaque(true);
+		jtLiv.setOpaque(true);
+		
 		jpanelCollection.setLayout(new GridLayout(1,1));
-		jpanelCollection.add(jsp);
+		jpanelLivres.setLayout(new GridLayout(1,1));
+		
+		jpanelCollection.add(jspColl);
+		jpanelLivres.add(jspLiv);
 
 		add(jtab);
 	}

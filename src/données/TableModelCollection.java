@@ -6,43 +6,66 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelCollection extends AbstractTableModel {
 
 	ArrayList<ArrayList> alDonnees = new ArrayList<ArrayList>();
-	ArrayList<Livre> alDocuments;
-	ArrayList<String> alColonne = new ArrayList<String>();
+	ArrayList<Document> alCollection;
+	ArrayList<Livre> alLivre;
+	ArrayList<DVD> alDVD;
+	ArrayList<Periodique> alPeriodique;
+	
+	String strColl;
+	
+	String[] tabColonne = {"Numéro de document", "Titre", "Date de parution", "Disponible"};
 
 	boolean editable = true;
 
-	public TableModelCollection(ArrayList<Livre> alLivres) {
-		this.alDocuments = alLivres;
-		alColonne.add("Numéro de document");
-		alColonne.add("Titre");
-		alColonne.add("Date de parution");
-		alColonne.add("Disponible");
-
-		for (int i = 0; i < alLivres.size(); i++) {
-			ArrayList<Object> ligne = new ArrayList<Object>();
-			ligne.add(LectureFichier.alLivres.get(i).getIntNumeroDocument());
-			ligne.add(LectureFichier.alLivres.get(i).getStrTitre());
-			ligne.add(LectureFichier.alLivres.get(i).getStrDate());
-			ligne.add("Oui");
-			alDonnees.add(ligne);
+	public TableModelCollection(LectureFichier lf, String strColl) {
+		this.strColl = strColl;
+		this.alCollection = lf.alCollection;
+		this.alLivre = lf.alLivres;
+		this.alDVD = lf.alDVDs;
+		this.alPeriodique = lf.alPeriodiques;
+		if(strColl.equals("Livre")){
+			for (int i = 0; i < alLivre.size(); i++) {
+				ArrayList<Object> ligne = new ArrayList<Object>();
+				ligne.add(alLivre.get(i).getIntNumeroDocument());
+				ligne.add(alLivre.get(i).getStrTitre());
+				ligne.add(alLivre.get(i).getStrDate());
+				ligne.add("Oui");
+				alDonnees.add(ligne);
+			}
+		}
+		else if(strColl.equals("Collection")){
+			for (int i = 0; i < alCollection.size(); i++) {
+				ArrayList<Object> ligne = new ArrayList<Object>();
+				ligne.add(alCollection.get(i).getIntNumeroDocument());
+				ligne.add(alCollection.get(i).getStrTitre());
+				ligne.add(alCollection.get(i).getStrDate());
+				ligne.add("Oui");
+				alDonnees.add(ligne);
+			}
 		}
 	}
 	
 	public String getColumnName(int col) {
 
-		return alColonne.get(col);
+		return tabColonne[col];
 	}
 
 	@Override
 	public int getColumnCount() {
 
-		return alColonne.size();
+		return tabColonne.length;
 	}
 
 	@Override
 	public int getRowCount() {
-
-		return alDocuments.size();
+		switch(strColl){
+			case "Livre":
+				return alLivre.size();
+			case "Collection":
+				return alCollection.size();
+			default:
+				return alCollection.size();
+		}
 	}
 
 	@Override
