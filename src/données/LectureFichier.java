@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.StringTokenizer;
+
 
 public class LectureFichier {
 
@@ -51,19 +52,24 @@ public class LectureFichier {
 					strDate = st.nextToken().trim();
 
 					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-					Calendar cal = Calendar.getInstance();
-
+					Date date = null;
+					
 					try {
-						cal.setTime(sdf.parse(strDate));
-					}
-
-					catch (ParseException e) {
+						date = sdf.parse(strDate);
+					} catch (ParseException e) {
+						
 						e.printStackTrace();
 					}
 
+					/*try {
+						cal.setTime(sdf.parse(strDate));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}*/
+
 					// Nom de l'auteur
 					strAuteur = st.nextToken().trim();
-					Livre livre = new Livre(strNumeroDocument, strTitre, strDate, strAuteur);
+					Livre livre = new Livre(strNumeroDocument, strTitre, date, strAuteur);
 
 					alLivres.add(livre);
 					alCollection.add(livre);
@@ -80,10 +86,27 @@ public class LectureFichier {
 					strTitre = st.nextToken();
 					strDate = st.nextToken().trim();
 
+					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					Date date = null;
+					
+					try {
+						date = sdf.parse(strDate);
+					} catch (ParseException e) {
+						
+						e.printStackTrace();
+					}
+					/*Calendar cal = Calendar.getInstance();
+
+					try {
+						cal.setTime(sdf.parse(strDate));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}*/
+
 					intNombreDisques = Integer.parseInt(st.nextToken());
 					strAuteur = st.nextToken();
 
-					DVD dvd = new DVD(strNumeroDocument, strTitre, strDate, intNombreDisques, strAuteur);
+					DVD dvd = new DVD(strNumeroDocument, strTitre, date, intNombreDisques, strAuteur);
 
 					alDVDs.add(dvd);
 					alCollection.add(dvd);
@@ -99,10 +122,29 @@ public class LectureFichier {
 
 					strTitre = st.nextToken().trim();
 					strDate = st.nextToken().trim();
+
+					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					Date date = null;
+					
+					try {
+						date = sdf.parse(strDate);
+					} catch (ParseException e) {
+						
+						e.printStackTrace();
+					}
+					
+					/*Calendar cal = Calendar.getInstance();
+
+					try {
+						cal.setTime(sdf.parse(strDate));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}*/
+
 					intNumeroVolume = Integer.parseInt(st.nextToken());
 					intNumeroPeriodique = Integer.parseInt(st.nextToken());
 
-					Periodique periodique = new Periodique(strNumeroDocument, strTitre, strDate, intNumeroVolume,
+					Periodique periodique = new Periodique(strNumeroDocument, strTitre, date, intNumeroVolume,
 							intNumeroPeriodique);
 
 					alPeriodiques.add(periodique);

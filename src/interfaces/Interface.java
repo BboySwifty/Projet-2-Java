@@ -1,11 +1,9 @@
 package interfaces;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,14 +15,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import données.LectureFichier;
 import données.TableModelCollection;
  
 public class Interface extends JFrame
 {
-	private Container c = getContentPane();
-
 	JFrame jframe = new JFrame();
 	JTabbedPane jtab = new JTabbedPane();
 	
@@ -91,6 +89,11 @@ public class Interface extends JFrame
 	JScrollPane jspPer = new JScrollPane(jtPer);
 	JScrollPane jspColl = new JScrollPane(jtColl);
 	
+	TableRowSorter<TableModel> sorterLiv = new TableRowSorter<TableModel>(jtLiv.getModel());
+	TableRowSorter<TableModel> sorterDVD = new TableRowSorter<TableModel>(jtDVD.getModel());
+	TableRowSorter<TableModel> sorterPer = new TableRowSorter<TableModel>(jtPer.getModel());
+	TableRowSorter<TableModel> sorterColl = new TableRowSorter<TableModel>(jtColl.getModel());
+	
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
@@ -106,6 +109,11 @@ public class Interface extends JFrame
 		jtDVD.setOpaque(true);
 		jtPer.setOpaque(true);
 		jtColl.setOpaque(true);
+		
+		jtLiv.setRowSorter(sorterLiv);
+		jtDVD.setRowSorter(sorterDVD);
+		jtPer.setRowSorter(sorterPer);
+		jtColl.setRowSorter(sorterColl);
 		
 		jpanelCollection.setLayout(new GridLayout(1,1));
 		jpanelLivres.setLayout(new GridLayout(1,1));
@@ -134,12 +142,9 @@ public class Interface extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				String strAjoutNom;
-				String strAjoutMotDePasse;
-				
 				if(e.getSource() == jbtnAjouterPrepose)
 				{
-					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usagee: ");
+					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
 					System.out.println(strNomEntree);
 					
 					String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");

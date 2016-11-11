@@ -1,9 +1,10 @@
 package données;
 
-public class Document 
-{
+import java.util.Date;
+
+public class Document {
 	String strNumeroDocument;
-	
+
 	public String getStrNumeroDocument() {
 		return strNumeroDocument;
 	}
@@ -12,21 +13,20 @@ public class Document
 		return strTitre;
 	}
 
-	public String getStrDate() {
-		return strDate;
+	public Date getDate() {
+		return date;
 	}
 
 	String strTitre;
-	String strDate;
-	
+	Date date;
+
 	static boolean boolRetourner;
-	
-	public Document(String strNumeroDocument, String strTitre, String strDate, boolean boolRetourner)
-	{
+
+	public Document(String strNumeroDocument, String strTitre, Date date, boolean boolRetourner) {
 		this.strTitre = strTitre;
 		this.strNumeroDocument = strNumeroDocument;
-		this.strDate = strDate;
-		this.boolRetourner = boolRetourner;
+		this.date = date;
+		Document.boolRetourner = boolRetourner;
 	}
-	
+
 }

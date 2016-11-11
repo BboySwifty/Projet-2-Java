@@ -1,18 +1,18 @@
 package données;
-import java.util.Calendar;
 
-public class DVD extends Document 
-{
+import java.util.Date;
+
+public class DVD extends Document {
 	String strNomRealisateur;
 	int intNombreDisques;
-	
-	public DVD(String strIntDocument, String strTitre, String strDate,int intNombreDisques, String strNomRealisateur) 
-	{
-		super(strIntDocument, strTitre, strDate, boolRetourner);
-		
+
+	public DVD(String strIntDocument, String strTitre, Date date, int intNombreDisques,
+			String strNomRealisateur) {
+		super(strIntDocument, strTitre, date, boolRetourner);
+
 		this.strNomRealisateur = strNomRealisateur;
 		this.intNombreDisques = intNombreDisques;
-		
+
 	}
 
 	public String getStrNomRealisateur() {

@@ -33,7 +33,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alLivre.get(i).getStrNumeroDocument());
 				ligne.add(alLivre.get(i).getStrTitre());
-				ligne.add(alLivre.get(i).getStrDate());
+				ligne.add(alLivre.get(i).getDate());
 				ligne.add("Oui");
 				alDonnees.add(ligne);
 			}
@@ -44,7 +44,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alDVD.get(i).getStrNumeroDocument());
 				ligne.add(alDVD.get(i).getStrTitre());
-				ligne.add(alDVD.get(i).getStrDate());
+				ligne.add(alDVD.get(i).getDate());
 				ligne.add("Oui");
 				alDonnees.add(ligne);
 			}
@@ -55,7 +55,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alPeriodique.get(i).getStrNumeroDocument());
 				ligne.add(alPeriodique.get(i).getStrTitre());
-				ligne.add(alPeriodique.get(i).getStrDate());
+				ligne.add(alPeriodique.get(i).getDate());
 				ligne.add("Oui");
 				alDonnees.add(ligne);
 			}
@@ -66,7 +66,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alCollection.get(i).getStrNumeroDocument());
 				ligne.add(alCollection.get(i).getStrTitre());
-				ligne.add(alCollection.get(i).getStrDate());
+				ligne.add(alCollection.get(i).getDate());
 				ligne.add("Oui");
 				alDonnees.add(ligne);
 			}
@@ -119,6 +119,11 @@ public class TableModelCollection extends AbstractTableModel {
 			return alCollection.size();
 		}
 	}
+	
+	@Override
+    public Class<?> getColumnClass(int column) {
+        return getValueAt(0, column).getClass();
+    }
 
 	@Override
 	public Object getValueAt(int ligne, int colonne) {
@@ -128,7 +133,7 @@ public class TableModelCollection extends AbstractTableModel {
 
 	@SuppressWarnings("unchecked")
 	public void setValueAt(Object o, int ligne, int colonne) {
-
+		
 		alDonnees.get(ligne).set(colonne, o);
 		fireTableCellUpdated(ligne, colonne);
 	}
