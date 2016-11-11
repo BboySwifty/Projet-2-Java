@@ -56,8 +56,8 @@ public class Interface extends JFrame
 	TitledBorder tbSousResultat = new TitledBorder("Résultats");
 	TitledBorder tbSousInformation = new TitledBorder("Information");
 	
-	JTextField jtAuteur = new JTextField();
-	JTextField jtMotDePasse = new JTextField();
+	static JTextField jtAuteur = new JTextField();
+	static JTextField jtMotDePasse = new JTextField();
 	
 	JLabel jlabelmario = new JLabel( new ImageIcon("mario.png"));
 	JLabel jlabelboo = new JLabel( new ImageIcon("boo.png"));

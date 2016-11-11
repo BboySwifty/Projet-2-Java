@@ -28,5 +28,6 @@ public class Document {
 		this.date = date;
 		Document.boolRetourner = boolRetourner;
 	}
+	
 
 }

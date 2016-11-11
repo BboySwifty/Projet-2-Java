@@ -75,12 +75,13 @@ public class TableModelCollection extends AbstractTableModel {
 		
 		else if(strColl.equals("Recherche"))
 		{
-			for(int i =0; i<alRecherche.size();i++)
+			for(int i =0; i<alCollection.size();i++)
 			{
-				//if()
-				{
-					
-				}
+				ligne= new ArrayList<Object>();
+				//ligne.add(alLivre.get(i).getStrNumeroDocument());
+				//ligne.add(alLivre.get(i).getStrNomAuteur());
+				//ligne.add(alDVD.get(i).getStrNomRealisateur());
+				//ligne.add("Oui");
 			}
 		}
 	}
