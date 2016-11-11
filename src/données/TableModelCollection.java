@@ -11,21 +11,26 @@ public class TableModelCollection extends AbstractTableModel {
 
 	boolean editable = true;
 
-	public TableModelCollection(ArrayList<Livre> alLivres) {
+	public TableModelCollection(ArrayList<Livre> alLivres,ArrayList<DVD> alDV,ArrayList<Periodique> alPeriodique) 
+	{
 		this.alDocuments = alLivres;
+		
 		alColonne.add("Numéro de document");
 		alColonne.add("Titre");
 		alColonne.add("Date de parution");
 		alColonne.add("Disponible");
 
-		for (int i = 0; i < alLivres.size(); i++) {
+		for (int i = 0; i < alLivres.size(); i++) 
+		{
 			ArrayList<Object> ligne = new ArrayList<Object>();
-			ligne.add(LectureFichier.alLivres.get(i).getIntNumeroDocument());
+			ligne.add(LectureFichier.alLivres.get(i).getStrNumeroDocument());
 			ligne.add(LectureFichier.alLivres.get(i).getStrTitre());
 			ligne.add(LectureFichier.alLivres.get(i).getStrDate());
 			ligne.add("Oui");
+			
 			alDonnees.add(ligne);
 		}
+		
 	}
 	
 	public String getColumnName(int col) {

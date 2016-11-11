@@ -2,10 +2,10 @@ package données;
 
 public class Document 
 {
-	int intNumeroDocument;
+	String strNumeroDocument;
 	
-	public int getIntNumeroDocument() {
-		return intNumeroDocument;
+	public String getStrNumeroDocument() {
+		return strNumeroDocument;
 	}
 
 	public String getStrTitre() {
@@ -21,10 +21,10 @@ public class Document
 	
 	static boolean boolRetourner;
 	
-	public Document(int intNumeroDocument, String strTitre, String strDate, boolean boolRetourner)
+	public Document(String strNumeroDocument, String strTitre, String strDate, boolean boolRetourner)
 	{
 		this.strTitre = strTitre;
-		this.intNumeroDocument = intNumeroDocument;
+		this.strNumeroDocument = strNumeroDocument;
 		this.strDate = strDate;
 		this.boolRetourner = boolRetourner;
 	}

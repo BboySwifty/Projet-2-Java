@@ -21,7 +21,7 @@ public class LectureFichier {
 	int intNumeroPeriodique;
 
 	String strLigne;
-	String strMot;
+	String strNumeroDocument;
 	String strTitre;
 	String strDate;
 	String strAuteur;
@@ -40,8 +40,7 @@ public class LectureFichier {
 				if (strFichier.equalsIgnoreCase("livres.txt")) {
 					while (st.hasMoreTokens()) {
 						// int Ref du livre
-						strMot = st.nextToken();
-						intRef = Integer.parseInt(strMot.substring(3));
+						strNumeroDocument = st.nextToken();
 
 						// Titre du livre
 						strTitre = st.nextToken().trim();
@@ -62,7 +61,7 @@ public class LectureFichier {
 
 						// Nom de l'auteur
 						strAuteur = st.nextToken().trim();
-						Livre livre = new Livre(intRef, strTitre, strDate, strAuteur);
+						Livre livre = new Livre(strNumeroDocument, strTitre, strDate, strAuteur);
 						
 						alLivres.add(livre);
 					}
@@ -70,8 +69,7 @@ public class LectureFichier {
 
 				else if (strFichier.equalsIgnoreCase("dvd.txt")) {
 					while (st.hasMoreTokens()) {
-						strMot = st.nextToken();
-						intRef = Integer.parseInt(strMot.substring(3));
+						strNumeroDocument = st.nextToken();
 
 						strTitre = st.nextToken();
 						strDate = st.nextToken().trim();
@@ -79,7 +77,7 @@ public class LectureFichier {
 						intNombreDisques = Integer.parseInt(st.nextToken());
 						strAuteur = st.nextToken();
 
-						DVD dvd = new DVD(intRef, strTitre, strDate, intNombreDisques, strAuteur);
+						DVD dvd = new DVD(strNumeroDocument, strTitre, strDate, intNombreDisques, strAuteur);
 
 						alDVDs.add(dvd);
 					}
@@ -87,8 +85,7 @@ public class LectureFichier {
 
 				else if (strFichier.equalsIgnoreCase("Periodiques.txt")) {
 					while (st.hasMoreTokens()) {
-						strMot = st.nextToken();
-						intRef = Integer.parseInt(strMot.substring(3));
+						strNumeroDocument = st.nextToken();
 
 						strTitre = st.nextToken().trim();
 						;
@@ -96,7 +93,7 @@ public class LectureFichier {
 						intNumeroVolume = Integer.parseInt(st.nextToken());
 						intNumeroPeriodique = Integer.parseInt(st.nextToken());
 
-						Periodique periodique = new Periodique(intRef, strTitre, strDate, intNumeroVolume,
+						Periodique periodique = new Periodique(strNumeroDocument, strTitre, strDate, intNumeroVolume,
 								intNumeroPeriodique);
 
 						alPeriodiques.add(periodique);

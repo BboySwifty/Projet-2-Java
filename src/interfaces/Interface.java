@@ -1,5 +1,7 @@
 package interfaces;
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import données.LectureFichier;
@@ -52,8 +55,8 @@ public class Interface extends JFrame
 	TitledBorder tbInformation = new TitledBorder("Information");
 	TitledBorder tbSousInformation = new TitledBorder("Information");
 	
-	JTextArea jtAuteur = new JTextArea();
-	JTextArea jtMotCle = new JTextArea();
+	JTextField jtAuteur = new JTextField();
+	JTextField jtMotDePasse = new JTextField();
 	
 	JLabel jlabelmario = new JLabel( new ImageIcon("mario.png"));
 	JLabel jlabelboo = new JLabel( new ImageIcon("boo.png"));
@@ -75,13 +78,12 @@ public class Interface extends JFrame
 		
 		CreeTab(strUsager);
 		
-		
 		setVisible(true);
 		setSize(1000,700);
 		setLocationRelativeTo(null);
 		
 		LectureFichier lf = new LectureFichier("livres.txt");
-		TableModelCollection tm = new TableModelCollection(lf.alLivres);
+		TableModelCollection tm = new TableModelCollection(lf.alLivres,lf.alDVDs,lf.alPeriodiques);
 		JTable jt = new JTable(tm);
 		JScrollPane jsp = new JScrollPane(jt);
 		
@@ -149,8 +151,10 @@ public class Interface extends JFrame
 			jpanelOptions.add(jbtnAjouterPrepose);
 			
 			jpanelSousRecherche1.setLayout( new GridLayout(1,2));
+			//jpanelSousRecherche2.setLayout( new GridLayout(1,2));
 			jpanelSousRecherche3.setLayout( new GridLayout(1,2));
 			jpanelRecherche.setLayout(new GridLayout(3,1));
+			jpanelSousRechercheParAuteur.setLayout(new FlowLayout());
 			
 			jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
 			
@@ -158,6 +162,7 @@ public class Interface extends JFrame
 			
 			jpanelSousRechercheParAuteur.add(jbtnRecherche);
 			jpanelSousRechercheParAuteur.add(jtAuteur);
+		//	jpanelSousRechercheParAuteur.add(jtMotDePasse);
 			
 			jpanelSousRecherche1.setBorder(tbRecherche);
 			jpanelSousRecherche2.setBorder(tbResultat);

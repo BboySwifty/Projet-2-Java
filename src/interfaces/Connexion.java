@@ -81,8 +81,10 @@ public class Connexion extends JFrame {
 		jpanel.add(jbConnexion);
 		jpanel.add(jbEffacer);
 
-		jbConnexion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		jbConnexion.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				BufferedReader br = null;
 				StringTokenizer st = null;
 
@@ -140,7 +142,6 @@ public class Connexion extends JFrame {
 		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);
-
 	}
 
 	public String usager() 
