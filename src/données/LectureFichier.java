@@ -113,6 +113,7 @@ public class LectureFichier {
 				}
 			}
 			br2.close();
+			
 			br3 = new BufferedReader(new FileReader("Periodiques.txt"));
 			while ((strLigne = br3.readLine()) != null) {
 				st = new StringTokenizer(strLigne, ",");

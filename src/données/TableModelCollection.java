@@ -10,18 +10,16 @@ public class TableModelCollection extends AbstractTableModel {
 	ArrayList<Livre> alLivre;
 	ArrayList<DVD> alDVD;
 	ArrayList<Periodique> alPeriodique;
-
-	String strColl;
-
-	String[] tabLivre = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-	String[] tabDVD = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-	String[] tabPeriodique = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-	String[] tabCollection = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-
+	ArrayList<Document> alRecherche;
+	ArrayList<Object> ligne;
+	
 	boolean editable = true;
+	String strColl;
+	String[] tabTitre = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
 
 	public TableModelCollection(LectureFichier lf, String strColl) 
 	{
+		ligne= new ArrayList<Object>();
 		this.strColl = strColl;
 		this.alCollection = lf.alCollection;
 		this.alLivre = lf.alLivres;
@@ -30,7 +28,7 @@ public class TableModelCollection extends AbstractTableModel {
 		
 		if (strColl.equals("Livre")) {
 			for (int i = 0; i < alLivre.size(); i++) {
-				ArrayList<Object> ligne = new ArrayList<Object>();
+				ligne= new ArrayList<Object>();
 				ligne.add(alLivre.get(i).getStrNumeroDocument());
 				ligne.add(alLivre.get(i).getStrTitre());
 				ligne.add(alLivre.get(i).getDate());
@@ -41,7 +39,7 @@ public class TableModelCollection extends AbstractTableModel {
 		
 		else if (strColl.equals("DVD")) {
 			for (int i = 0; i < alDVD.size(); i++) {
-				ArrayList<Object> ligne = new ArrayList<Object>();
+				ligne= new ArrayList<Object>();
 				ligne.add(alDVD.get(i).getStrNumeroDocument());
 				ligne.add(alDVD.get(i).getStrTitre());
 				ligne.add(alDVD.get(i).getDate());
@@ -52,7 +50,7 @@ public class TableModelCollection extends AbstractTableModel {
 		} 
 		else if (strColl.equals("Periodique")) {
 			for (int i = 0; i < alPeriodique.size(); i++) {
-				ArrayList<Object> ligne = new ArrayList<Object>();
+				ligne= new ArrayList<Object>();
 				ligne.add(alPeriodique.get(i).getStrNumeroDocument());
 				ligne.add(alPeriodique.get(i).getStrTitre());
 				ligne.add(alPeriodique.get(i).getDate());
@@ -62,13 +60,27 @@ public class TableModelCollection extends AbstractTableModel {
 			
 		} 
 		else if (strColl.equals("Collection")) {
-			for (int i = 0; i < alCollection.size(); i++) {
-				ArrayList<Object> ligne = new ArrayList<Object>();
+			for (int i = 0; i < alCollection.size(); i++)
+			{
+				ligne= new ArrayList<Object>();
 				ligne.add(alCollection.get(i).getStrNumeroDocument());
 				ligne.add(alCollection.get(i).getStrTitre());
 				ligne.add(alCollection.get(i).getDate());
 				ligne.add("Oui");
+				
+				
 				alDonnees.add(ligne);
+			}
+		}
+		
+		else if(strColl.equals("Recherche"))
+		{
+			for(int i =0; i<alRecherche.size();i++)
+			{
+				//if()
+				{
+					
+				}
 			}
 		}
 	}
@@ -76,15 +88,15 @@ public class TableModelCollection extends AbstractTableModel {
 	public String getColumnName(int col) {
 		switch (strColl) {
 			case "Livre":
-				return tabLivre[col];
+				return tabTitre[col];
 			case "DVD":
-				return tabDVD[col];
+				return tabTitre[col];
 			case "Periodique":
-				return tabPeriodique[col];
+				return tabTitre[col];
 			case "Collection":
-				return tabCollection[col];
+				return tabTitre[col];
 			default:
-				return tabCollection[col];
+				return tabTitre[col];
 		}
 	}
 
@@ -92,15 +104,15 @@ public class TableModelCollection extends AbstractTableModel {
 	public int getColumnCount() {
 		switch (strColl) {
 			case "Livre":
-				return tabLivre.length;
+				return tabTitre.length;
 			case "DVD":
-				return tabDVD.length;
+				return tabTitre.length;
 			case "Periodique":
-				return tabPeriodique.length;
+				return tabTitre.length;
 			case "Collection":
-				return tabCollection.length;
+				return tabTitre.length;
 			default:
-				return tabCollection.length;
+				return tabTitre.length;
 		}
 	}
 
