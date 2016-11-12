@@ -2,32 +2,63 @@ package données;
 
 import java.util.Date;
 
-public class Document {
-	String strNumeroDocument;
-
-	public String getStrNumeroDocument() {
-		return strNumeroDocument;
-	}
-
-	public String getStrTitre() {
-		return strTitre;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	String strTitre;
-	Date date;
-
+public class Document 
+{
+	private String strNumeroDocument;
+	private String strTitre;
+	private Date dateParution;
 	static boolean boolRetourner;
-
-	public Document(String strNumeroDocument, String strTitre, Date date, boolean boolRetourner) {
+	
+	public Document(String strNumeroDocument, String strTitre, Date dateParution, boolean boolRetourner) 
+	{
 		this.strTitre = strTitre;
 		this.strNumeroDocument = strNumeroDocument;
-		this.date = date;
+		this.dateParution = dateParution;
 		Document.boolRetourner = boolRetourner;
 	}
 	
+	public String getStrNumeroDocument() 
+	{
+		return strNumeroDocument;
+	}
 
+	public String getStrTitre() 
+	{
+		return strTitre;
+	}
+
+	public Date getDate() 
+	{
+		return dateParution;
+	}
+
+	public void modifierDocument()
+	{
+		
+	}
+	
+	public void listerDocument()
+	{
+		
+	}
+	
+	public void ajouterDocument()
+	{
+		
+	}
+	
+	public void emprunterDocument()
+	{
+		
+	}
+	
+	public void changerEtatDocument()
+	{
+		
+	}
+	
+	public void verifierDisponibiliteDocument()
+	{
+		
+	}
 }

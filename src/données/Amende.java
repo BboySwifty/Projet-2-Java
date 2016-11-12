@@ -11,4 +11,14 @@ public class Amende {
 		this.état = état;
 		this.montant = montant;
 	}
+	
+	public void inscrireAmende()
+	{
+		
+	}
+	
+	public void payerAmende()
+	{
+		
+	}
 }

@@ -13,4 +13,24 @@ public class Prêt {
 		this.dateRetourPrevue = dateRetourPrevue;
 		this.dateEffectiveRetour = dateEffectiveRetour;
 	}
+	
+	public void ajouterPret()
+	{
+		
+	}
+	
+	public void modifierPret()
+	{
+		
+	}
+	
+	public void listerPret()
+	{
+		
+	}
+	
+	private void calculerDateRetour()
+	{
+		
+	}
 }

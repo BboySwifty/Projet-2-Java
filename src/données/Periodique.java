@@ -4,9 +4,8 @@ import java.util.Date;
 
 public class Periodique extends Document 
 {
-
-	int intNumeroVolume;
-	int intNumeroPeriodique;
+	private int intNumeroVolume;
+	private int intNumeroPeriodique;
 	
 	public Periodique(String strIntDocument, String strTitre, Date date, int intNumeroVolume, int intNumeroPeriodique) 
 	{

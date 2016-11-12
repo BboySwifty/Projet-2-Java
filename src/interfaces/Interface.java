@@ -29,9 +29,16 @@ public class Interface extends JFrame
 	JButton jbtnQuitter = new JButton("Quitter");
 	JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
 	JButton jbtnRecherche = new JButton("Recherche de la requete: ");
+	JButton jbtnModifierDocument = new JButton("Modifier document");
+	JButton jbtnListerDocument = new JButton("Lister document");
+	JButton jbtnAjouterDocument = new JButton("Ajouter document");
+	JButton jbtnEmprunterDocument = new JButton("Emprunter document");
+	JButton jbtnRetournerDocument = new JButton("Retourner document");
+	JButton jbtnChangerEtat = new JButton("Changer etat");
+	JButton jbtnVerifierDispo = new JButton("Verifier disponibilite");
 	
-	JLabel jlabelParAuteur = new JLabel("Par Auteur");
-	JLabel jlabelParMotCles = new JLabel("Par Mot cles");
+	JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
+	JLabel jlabelParMotCles = new JLabel("Par Mot cles: ");
 	
 	JPanel jpanelSousRecherche1 = new JPanel();
 	JPanel jpanelSousRecherche2 = new JPanel();
@@ -40,6 +47,10 @@ public class Interface extends JFrame
 	JPanel jpanelSousRechercheParAuteur = new JPanel();
 	JPanel jpanelSousRechercheResultat = new JPanel();
 	JPanel jpanelSousRechercheInformation = new JPanel();
+	
+	JPanel jpanela= new JPanel();
+	JPanel jpanelb= new JPanel();
+	JPanel jpanelc= new JPanel();
 	
 	JPanel jpanelCollection = new JPanel();
 	JPanel jpanelLivres = new JPanel();
@@ -57,7 +68,7 @@ public class Interface extends JFrame
 	TitledBorder tbSousInformation = new TitledBorder("Information");
 	
 	public static JTextField jtAuteur = new JTextField();
-	JTextField jtMotDePasse = new JTextField();
+	public JTextField jtMotDePasse = new JTextField();
 	
 	JLabel jlabelmario = new JLabel( new ImageIcon("mario.png"));
 	JLabel jlabelboo = new JLabel( new ImageIcon("boo.png"));
@@ -127,17 +138,6 @@ public class Interface extends JFrame
 
 		add(jtab);
 		
-		jbtnQuitter.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						if(e.getSource() == jbtnQuitter)
-						{
-							System.exit(0);
-						}
-					}
-				});
-		
 		jbtnAjouterPrepose.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -167,6 +167,27 @@ public class Interface extends JFrame
 				}
 			}
 		});
+		
+		jbtnVerifierDispo.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						
+					}
+			
+				});
+		
+		//button Quitter
+		jbtnQuitter.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						if(e.getSource() == jbtnQuitter)
+						{
+							System.exit(0);
+						}
+					}
+				});
 	}
 	
 	public void CreeTabRecherche(String strUsager)
@@ -182,21 +203,23 @@ public class Interface extends JFrame
 			jpanelSousRecherche2.setLayout( new GridLayout(1,2));
 			jpanelSousRecherche3.setLayout( new GridLayout(1,2));
 			jpanelRecherche.setLayout(new GridLayout(3,1));
-			jpanelSousRechercheParAuteur.setLayout(new FlowLayout());
+			
+			jpanelSousRechercheParAuteur.setLayout(new GridLayout(3,1));
 			
 			jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
 			jpanelSousRechercheResultat.setBorder(tbSousResultat);
 			jpanelSousRechercheInformation.setBorder(tbSousInformation);
 			
-			jpanelSousRechercheParAuteur.add(jlabelParAuteur);
-			jpanelSousRechercheParAuteur.add(jlabelParMotCles);
-			jpanelSousRechercheParAuteur.add(jbtnRecherche);
-			jpanelSousRechercheParAuteur.add(jtAuteur);
+			jpanela.add(jlabelParAuteur);
+			jpanela.add(jtAuteur);
+			jpanelSousRechercheParAuteur.add(jpanela);
+
+			jpanelb.add(jlabelParMotCles);
+			jpanelb.add(jtMotDePasse);
+			jpanelSousRechercheParAuteur.add(jpanelb);
 			
-			
-			
-			
-			//jpanelSousRechercheParAuteur.add(jtMotDePasse);
+			jpanelc.add(jbtnRecherche);
+			jpanelSousRechercheParAuteur.add(jpanelc);
 			
 			jpanelSousRecherche1.setBorder(tbRecherche);
 			jpanelSousRecherche2.setBorder(tbResultat);
@@ -242,12 +265,18 @@ public class Interface extends JFrame
 
 		else if(strUsager == "Adhérent")
 		{
-			
+			jpanelOptions.add(jbtnRetournerDocument);
+			jpanelOptions.add(jbtnListerDocument);
 		}
 		
 		else
 		{
-			
+			jpanelOptions.add(jbtnModifierDocument);
+			jpanelOptions.add(jbtnAjouterDocument);
+			jpanelOptions.add(jbtnEmprunterDocument);
+			jpanelOptions.add(jbtnRetournerDocument);
+			jpanelOptions.add(jbtnChangerEtat);
+			jpanelOptions.add(jbtnVerifierDispo);
 		}
 		
 		jpanelOptions.add(jbtnQuitter);
