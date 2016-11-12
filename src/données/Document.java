@@ -2,6 +2,10 @@ package données;
 
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
+import interfaces.Interface;
+
 public class Document 
 {
 	private String strNumeroDocument;
@@ -52,13 +56,21 @@ public class Document
 		
 	}
 	
-	public void changerEtatDocument()
+	public void changerEtat()
 	{
-		
+		//	this.boolRetourner = !boolRetourner;
 	}
 	
 	public void verifierDisponibiliteDocument()
 	{
+		if(boolRetourner)
+		{
+			System.out.println("Le document est disponible");
+		}
 		
+		else
+		{
+			System.out.println("Le document n'est pas disponible");
+		}
 	}
 }

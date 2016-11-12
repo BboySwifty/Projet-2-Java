@@ -3,13 +3,15 @@ package données;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
+import interfaces.Interface;
+
 public class TableModelCollection extends AbstractTableModel {
 
 	ArrayList<ArrayList> alDonnees = new ArrayList<ArrayList>();
 	ArrayList<Document> alCollection;
+	ArrayList<Periodique> alPeriodique;
 	ArrayList<Livre> alLivre;
 	ArrayList<DVD> alDVD;
-	ArrayList<Periodique> alPeriodique;
 
 	String strColl;
 
@@ -71,17 +73,23 @@ public class TableModelCollection extends AbstractTableModel {
 				alDonnees.add(ligne);
 			}
 		}
-		
-		/*else if(strColl.equals("Recherche"))
+		/*
+		else if(strColl.equals("Recherche"))
 		{
-			for(int i =0; i<alRecherche.size();i++)
+			for(int i =0; i<alCollection.size();i++)
 			{
-				//if()
+				if(Interface.jtAuteur.equals(alDVD.get(i).getStrNomRealisateur()))
 				{
-					
+					ArrayList<Object> ligne = new ArrayList<Object>();
+					ligne.add(alCollection.get(i).getStrNumeroDocument());
+					ligne.add(alCollection.get(i).getStrTitre());
+					ligne.add(alCollection.get(i).getDate());
+					ligne.add("Oui");
+					alDonnees.add(ligne);
 				}
 			}
-		}*/
+		}
+		*/
 	}
 
 	public String getColumnName(int col) {
