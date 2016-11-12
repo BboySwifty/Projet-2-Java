@@ -190,7 +190,7 @@ public class Interface extends JFrame
 			
 			jpanelSousRechercheParAuteur.add(jlabelParAuteur);
 			jpanelSousRechercheParAuteur.add(jlabelParMotCles);
-			//jpanelSousRechercheParAuteur.add(jbtnRecherche);
+			jpanelSousRechercheParAuteur.add(jbtnRecherche);
 			jpanelSousRechercheParAuteur.add(jtAuteur);
 			//jpanelSousRechercheParAuteur.add(jtMotDePasse);
 			
