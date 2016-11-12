@@ -72,6 +72,7 @@ public class Interface extends JFrame {
 	private JLabel jlabelmario = new JLabel(new ImageIcon("mario.png"));
 	private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
 	private JLabel jlabelluigi = new JLabel(new ImageIcon("luigi.png"));
+	private JLabel jlabeletoile = new JLabel(new ImageIcon("etoile.png"));
 
 	private JPanel[] jpanelAdmin = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
 			jpanelOptions };
@@ -123,12 +124,11 @@ public class Interface extends JFrame {
 		setSize(1000, 700);
 		setLocationRelativeTo(null);
 
-		jpanelCollection.setLayout(new GridLayout());
-		jpanelLivres.setLayout(new GridLayout());
-		jpanelDVDs.setLayout(new GridLayout());
-		jpanelPeriodiques.setLayout(new GridLayout());
+		jspLiv.setPreferredSize(new Dimension(975, 400));
+		jspDVD.setPreferredSize(new Dimension(975, 400));
+		jspPer.setPreferredSize(new Dimension(975, 400));
+		jspColl.setPreferredSize(new Dimension(975, 400));
 
-		
 		jtLiv.setOpaque(true);
 		jtDVD.setOpaque(true);
 		jtPer.setOpaque(true);
@@ -143,6 +143,16 @@ public class Interface extends JFrame {
 		jpanelDVDs.add(jspDVD);
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
+		
+		jpanelLivres.add(jpanelSousLivres);
+		jpanelDVDs.add(jpanelSousDVDs);
+		jpanelPeriodiques.add(jpanelSousPeriodiques);
+		jpanelCollection.add(jpanelSousCollection);
+		
+		jpanelSousLivres.add(jlabeletoile);
+		jpanelSousDVDs.add(jlabeletoile);
+		jpanelSousPeriodiques.add(jlabeletoile);
+		jpanelSousCollection.add(jlabeletoile);
 		
 		
 		add(jtab);
@@ -255,16 +265,18 @@ public class Interface extends JFrame {
 						{
 							TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
 							JTable jtRecherche = new JTable(tmRecherche);
-							JScrollPane jspRecherche = new JScrollPane(jtRecherche);
-							TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
+							if(tmRecherche.getRowCount() != 0){
+								JScrollPane jspRecherche = new JScrollPane(jtRecherche);
+								TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
+								jspRecherche.setPreferredSize(new Dimension(465, 155));
 
-							jtRecherche.setOpaque(true);
-							jtRecherche.setRowSorter(sorterRecherche);
-							
-							jpanelSousRechercheResultat.removeAll();
-							jpanelSousRechercheResultat.add(jspRecherche);
-							jpanelSousRechercheResultat.validate();
-							jpanelSousRechercheResultat.repaint();
+								jtRecherche.setOpaque(true);
+								jtRecherche.setRowSorter(sorterRecherche);
+								jpanelSousRechercheResultat.removeAll();
+								jpanelSousRechercheResultat.add(jspRecherche);
+								jpanelSousRechercheResultat.validate();
+								jpanelSousRechercheResultat.repaint();
+							}
 						}
 					}
 			
