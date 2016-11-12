@@ -151,15 +151,13 @@ public class Interface extends JFrame {
 		jpanelRecherche.setLayout(new GridLayout(3, 1));
 		
 		jtAuteur.setPreferredSize(new Dimension(200, 25));
+		jtMotDePasse.setPreferredSize(new Dimension(200,25));
 
 		jpanelSousRechercheParAuteur.setLayout(new GridLayout(3, 1));
 
 		jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
 		jpanelSousRechercheResultat.setBorder(tbSousResultat);
 		jpanelSousRechercheInformation.setBorder(tbSousInformation);
-		
-		jtAuteur.setPreferredSize(new Dimension(100,20));
-		jtMotDePasse.setPreferredSize(new Dimension(100,20));
 		
 		jpanela.add(jlabelParAuteur);
 		jpanela.add(jtAuteur);
