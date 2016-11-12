@@ -74,28 +74,36 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alCollection.get(i).getStrNumeroDocument());
 				ligne.add(alCollection.get(i).getStrTitre());
 				ligne.add(alCollection.get(i).getDate());
-				ligne.add("Oui");
+				ligne.add(alCollection.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
 		}
 		
-		/*
 		else if(strColl.equals("Recherche"))
 		{
-			for(int i =0; i<alCollection.size();i++)
+			for(int i = 0; i<alDVD.size();i++)
 			{
-				if(Interface.jtAuteur.equals(alDVD.get(i).getStrNomRealisateur()))
+				if(Interface.jtAuteur.getText().equals(alDVD.get(i).getStrNomRealisateur()))
 				{
 					ArrayList<Object> ligne = new ArrayList<Object>();
-					ligne.add(alCollection.get(i).getStrNumeroDocument());
-					ligne.add(alCollection.get(i).getStrTitre());
-					ligne.add(alCollection.get(i).getDate());
-					ligne.add("Oui");
+					ligne.add(alDVD.get(i).getStrNumeroDocument());
+					ligne.add(alDVD.get(i).getStrTitre());
+					ligne.add(alDVD.get(i).getDate());
+					ligne.add(alDVD.get(i).getBoolRetourner().toString());
+					alDonnees.add(ligne);
+				}
+			}
+			for(int i = 0; i < alLivre.size(); i++){
+				if(Interface.jtAuteur.getText().equals(alLivre.get(i).getStrNomAuteur())){
+					ArrayList<Object> ligne = new ArrayList<Object>();
+					ligne.add(alLivre.get(i).getStrNumeroDocument());
+					ligne.add(alLivre.get(i).getStrTitre());
+					ligne.add(alLivre.get(i).getDate());
+					ligne.add(alLivre.get(i).getBoolRetourner().toString());
 					alDonnees.add(ligne);
 				}
 			}
 		}
-		*/
 	}
 
 	public String getColumnName(int col) {
@@ -141,7 +149,7 @@ public class TableModelCollection extends AbstractTableModel {
 		case "Collection":
 			return alCollection.size();
 		default:
-			return alCollection.size();
+			return alDonnees.size();
 		}
 	}
 	
