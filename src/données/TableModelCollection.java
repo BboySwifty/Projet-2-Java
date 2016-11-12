@@ -3,19 +3,21 @@ package données;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
+import interfaces.Interface;
+
 public class TableModelCollection extends AbstractTableModel {
 
 	ArrayList<ArrayList> alDonnees = new ArrayList<ArrayList>();
 	ArrayList<Document> alCollection;
+	ArrayList<Periodique> alPeriodique;
 	ArrayList<Livre> alLivre;
 	ArrayList<DVD> alDVD;
-	ArrayList<Periodique> alPeriodique;
 
 	String strColl;
 
-	String[] tabLivre = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-	String[] tabDVD = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-	String[] tabPeriodique = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
+	String[] tabLivre = { "Numéro de document", "Titre", "Auteur", "Date de parution", "Disponible" };
+	String[] tabDVD = { "Numéro de document", "Titre", "Nom du réalisateur", "Nombre de disques", "Date de parution", "Disponible" };
+	String[] tabPeriodique = { "Numéro de document", "Titre", "Numéro de Périodique", "Numéro de Volume", "Date de Parution", "Disponible"};
 	String[] tabCollection = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
 
 	boolean editable = true;
@@ -33,8 +35,9 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alLivre.get(i).getStrNumeroDocument());
 				ligne.add(alLivre.get(i).getStrTitre());
+				ligne.add(alLivre.get(i).getStrNomAuteur());
 				ligne.add(alLivre.get(i).getDate());
-				ligne.add("Oui");
+				ligne.add(alLivre.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
 		} 
@@ -44,8 +47,10 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alDVD.get(i).getStrNumeroDocument());
 				ligne.add(alDVD.get(i).getStrTitre());
+				ligne.add(alDVD.get(i).getStrNomRealisateur());
+				ligne.add(alDVD.get(i).getIntNombreDisques());
 				ligne.add(alDVD.get(i).getDate());
-				ligne.add("Oui");
+				ligne.add(alDVD.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
 			
@@ -55,8 +60,10 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alPeriodique.get(i).getStrNumeroDocument());
 				ligne.add(alPeriodique.get(i).getStrTitre());
+				ligne.add(alPeriodique.get(i).getIntNumeroPeriodique());
+				ligne.add(alPeriodique.get(i).getIntNumeroVolume());
 				ligne.add(alPeriodique.get(i).getDate());
-				ligne.add("Oui");
+				ligne.add(alPeriodique.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
 			
@@ -72,16 +79,23 @@ public class TableModelCollection extends AbstractTableModel {
 			}
 		}
 		
-		/*else if(strColl.equals("Recherche"))
+		/*
+		else if(strColl.equals("Recherche"))
 		{
-			for(int i =0; i<alRecherche.size();i++)
+			for(int i =0; i<alCollection.size();i++)
 			{
-				//if()
+				if(Interface.jtAuteur.equals(alDVD.get(i).getStrNomRealisateur()))
 				{
-					
+					ArrayList<Object> ligne = new ArrayList<Object>();
+					ligne.add(alCollection.get(i).getStrNumeroDocument());
+					ligne.add(alCollection.get(i).getStrTitre());
+					ligne.add(alCollection.get(i).getDate());
+					ligne.add("Oui");
+					alDonnees.add(ligne);
 				}
 			}
-		}*/
+		}
+		*/
 	}
 
 	public String getColumnName(int col) {

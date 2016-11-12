@@ -10,4 +10,9 @@ public class Prepose extends Personne
 		this.noEmployé = noEmployé;
 		this.motpasse = motpasse;
 	}
+	
+	public void seConnecter()
+	{
+		
+	}
 }

@@ -2,32 +2,80 @@ package données;
 
 import java.util.Date;
 
-public class Document {
-	String strNumeroDocument;
+import javax.swing.JOptionPane;
 
-	public String getStrNumeroDocument() {
-		return strNumeroDocument;
-	}
+import interfaces.Interface;
 
-	public String getStrTitre() {
-		return strTitre;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	String strTitre;
-	Date date;
-
-	static boolean boolRetourner;
-
-	public Document(String strNumeroDocument, String strTitre, Date date, boolean boolRetourner) {
+public class Document 
+{
+	private String strNumeroDocument;
+	private String strTitre;
+	private Date dateParution;
+	static boolean boolRetourner = true;
+	
+	public Document(String strNumeroDocument, String strTitre, Date dateParution, boolean boolRetourner) 
+	{
 		this.strTitre = strTitre;
 		this.strNumeroDocument = strNumeroDocument;
-		this.date = date;
+		this.dateParution = dateParution;
 		Document.boolRetourner = boolRetourner;
 	}
 	
+	public String getStrNumeroDocument() 
+	{
+		return strNumeroDocument;
+	}
 
+	public String getStrTitre() 
+	{
+		return strTitre;
+	}
+
+	public Date getDate() 
+	{
+		return dateParution;
+	}
+	
+	public Boolean getBoolRetourner()
+	{
+		return boolRetourner;
+	}
+
+	public void modifierDocument()
+	{
+		
+	}
+	
+	public void listerDocument()
+	{
+		
+	}
+	
+	public void ajouterDocument()
+	{
+		
+	}
+	
+	public void emprunterDocument()
+	{
+		
+	}
+	
+	public void changerEtat()
+	{
+		//	this.boolRetourner = !boolRetourner;
+	}
+	
+	public void verifierDisponibiliteDocument()
+	{
+		if(boolRetourner)
+		{
+			System.out.println("Le document est disponible");
+		}
+		
+		else
+		{
+			System.out.println("Le document n'est pas disponible");
+		}
+	}
 }

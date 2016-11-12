@@ -1,4 +1,5 @@
 package interfaces;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,233 +21,246 @@ import javax.swing.table.TableRowSorter;
 
 import données.LectureFichier;
 import données.TableModelCollection;
- 
-public class Interface extends JFrame
-{
+
+public class Interface extends JFrame {
+	LectureFichier lf = new LectureFichier();
+
 	JFrame jframe = new JFrame();
 	JTabbedPane jtab = new JTabbedPane();
-	
-	JButton jbtnQuitter = new JButton("Quitter");
-	JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
-	JButton jbtnRecherche = new JButton("Recherche de la requete: ");
-	
-	JLabel jlabelParAuteur = new JLabel("Par Auteur");
-	JLabel jlabelParMotCles = new JLabel("Par Mot cles");
-	
-	JPanel jpanelSousRecherche1 = new JPanel();
-	JPanel jpanelSousRecherche2 = new JPanel();
-	JPanel jpanelSousRecherche3 = new JPanel();
-	
-	JPanel jpanelSousRechercheParAuteur = new JPanel();
-	JPanel jpanelSousRechercheResultat = new JPanel();
-	JPanel jpanelSousRechercheInformation = new JPanel();
-	
-	JPanel jpanelCollection = new JPanel();
-	JPanel jpanelLivres = new JPanel();
-	JPanel jpanelPeriodiques = new JPanel();
-	JPanel jpanelDVDs = new JPanel();
-	
-	JPanel jpanelRecherche = new JPanel();
-	JPanel jpanelOptions = new JPanel();
-	
-	TitledBorder tbRecherche = new TitledBorder("Recherche");
-	TitledBorder tbResultat = new TitledBorder("Résultats");
-	TitledBorder tbInformation = new TitledBorder("Information");
-	TitledBorder tbRechercheParAuteur = new TitledBorder("Recherche par auteur ou mot clé");
-	TitledBorder tbSousResultat = new TitledBorder("Résultats");
-	TitledBorder tbSousInformation = new TitledBorder("Information");
-	
+
 	public static JTextField jtAuteur = new JTextField();
-	JTextField jtMotDePasse = new JTextField();
-	
-	JLabel jlabelmario = new JLabel( new ImageIcon("mario.png"));
-	JLabel jlabelboo = new JLabel( new ImageIcon("boo.png"));
-	JLabel jlabelluigi = new JLabel( new ImageIcon("luigi.png"));
-	
-	String[] strTable ={"Numéro de document","Titre","Date de parution","Disponibilité"};
-	String[] strAdmin= {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
-	String[] strAdherent = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
-	String[] strPrepose = {"Collection","Livres","Periodiques","DVDs","Recherche","Options"};
-	
-	JPanel[] jpanelAdmin ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
-	JPanel[] jpanelAdherent ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
-	JPanel[] jpanelPrepose ={jpanelCollection,jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche, jpanelOptions};
-	
-	LectureFichier lf = new LectureFichier();
-	
-	TableModelCollection tmLivre = new TableModelCollection(lf, "Livre");
-	TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
-	TableModelCollection tmPer = new TableModelCollection(lf, "Periodique");
-	TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
+	public static JTextField jtMotDePasse = new JTextField();
 
-	JTable jtLiv = new JTable(tmLivre);
-	JTable jtDVD = new JTable(tmDVD);
-	JTable jtPer = new JTable(tmPer);
-	JTable jtColl = new JTable(tmColl);
+	private JButton jbtnQuitter = new JButton("Quitter");
+	private JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
+	private JButton jbtnRecherche = new JButton("Recherche de la requete: ");
+	private JButton jbtnModifierDocument = new JButton("Modifier document");
+	private JButton jbtnListerDocument = new JButton("Lister document");
+	private JButton jbtnAjouterDocument = new JButton("Ajouter document");
+	private JButton jbtnEmprunterDocument = new JButton("Emprunter document");
+	private JButton jbtnRetournerDocument = new JButton("Retourner document");
+	private JButton jbtnChangerEtat = new JButton("Changer etat");
+	private JButton jbtnVerifierDispo = new JButton("Verifier disponibilite");
 
-	JScrollPane jspLiv = new JScrollPane(jtLiv);
-	JScrollPane jspDVD = new JScrollPane(jtDVD);
-	JScrollPane jspPer = new JScrollPane(jtPer);
-	JScrollPane jspColl = new JScrollPane(jtColl);
-	
-	TableRowSorter<TableModel> sorterLiv = new TableRowSorter<TableModel>(jtLiv.getModel());
-	TableRowSorter<TableModel> sorterDVD = new TableRowSorter<TableModel>(jtDVD.getModel());
-	TableRowSorter<TableModel> sorterPer = new TableRowSorter<TableModel>(jtPer.getModel());
-	TableRowSorter<TableModel> sorterColl = new TableRowSorter<TableModel>(jtColl.getModel());
-	
-	Interface(String strUsager)
-	{
+	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
+	private JLabel jlabelParMotCles = new JLabel("Par Mot cles: ");
+
+	private JPanel jpanelSousRecherche1 = new JPanel();
+	private JPanel jpanelSousRecherche2 = new JPanel();
+	private JPanel jpanelSousRecherche3 = new JPanel();
+	private JPanel jpanelSousRechercheParAuteur = new JPanel();
+	private JPanel jpanelSousRechercheResultat = new JPanel();
+	private JPanel jpanelSousRechercheInformation = new JPanel();
+
+	private JPanel jpanela = new JPanel();
+	private JPanel jpanelb = new JPanel();
+	private JPanel jpanelc = new JPanel();
+
+	private JPanel jpanelCollection = new JPanel();
+	private JPanel jpanelLivres = new JPanel();
+	private JPanel jpanelPeriodiques = new JPanel();
+	private JPanel jpanelDVDs = new JPanel();
+	private JPanel jpanelRecherche = new JPanel();
+	private JPanel jpanelOptions = new JPanel();
+
+	private JLabel jlabelmario = new JLabel(new ImageIcon("mario.png"));
+	private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
+	private JLabel jlabelluigi = new JLabel(new ImageIcon("luigi.png"));
+
+	private JPanel[] jpanelAdmin = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
+			jpanelOptions };
+	private JPanel[] jpanelAdherent = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
+			jpanelOptions };
+	private JPanel[] jpanelPrepose = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
+			jpanelOptions };
+
+	private String[] strAdmin = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche", "Options" };
+	private String[] strAdherent = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche", "Options" };
+	private String[] strPrepose = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche", "Options" };
+
+	private TitledBorder tbRecherche = new TitledBorder("Recherche");
+	private TitledBorder tbResultat = new TitledBorder("Résultats");
+	private TitledBorder tbInformation = new TitledBorder("Information");
+	private TitledBorder tbRechercheParAuteur = new TitledBorder("Recherche par auteur ou mot clé");
+	private TitledBorder tbSousResultat = new TitledBorder("Résultats");
+	private TitledBorder tbSousInformation = new TitledBorder("Information");
+
+	private TableModelCollection tmLivre = new TableModelCollection(lf, "Livre");
+	private TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
+	private TableModelCollection tmPer = new TableModelCollection(lf, "Periodique");
+	private TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
+	private TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
+
+	private JTable jtLiv = new JTable(tmLivre);
+	private JTable jtDVD = new JTable(tmDVD);
+	private JTable jtPer = new JTable(tmPer);
+	private JTable jtColl = new JTable(tmColl);
+	private JTable jtRecherche = new JTable(tmRecherche);
+
+	private JScrollPane jspLiv = new JScrollPane(jtLiv);
+	private JScrollPane jspDVD = new JScrollPane(jtDVD);
+	private JScrollPane jspPer = new JScrollPane(jtPer);
+	private JScrollPane jspColl = new JScrollPane(jtColl);
+	private JScrollPane jspRecherche = new JScrollPane(jtRecherche);
+
+	private TableRowSorter<TableModel> sorterLiv = new TableRowSorter<TableModel>(jtLiv.getModel());
+	private TableRowSorter<TableModel> sorterDVD = new TableRowSorter<TableModel>(jtDVD.getModel());
+	private TableRowSorter<TableModel> sorterPer = new TableRowSorter<TableModel>(jtPer.getModel());
+	private TableRowSorter<TableModel> sorterColl = new TableRowSorter<TableModel>(jtColl.getModel());
+	private TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
+
+	Interface(String strUsager) {
 		super("La mediatheque de GG");
-		
+
+		CreeFunctionsButtons();
 		CreeTabRecherche(strUsager);
 		CreeTabOption(strUsager);
-		
+
 		setVisible(true);
-		setSize(1000,700);
+		setSize(1000, 700);
 		setLocationRelativeTo(null);
-		
+
+		jpanelCollection.setLayout(new GridLayout(1, 1));
+		jpanelLivres.setLayout(new GridLayout(1, 1));
+		jpanelDVDs.setLayout(new GridLayout(1, 1));
+		jpanelPeriodiques.setLayout(new GridLayout(1, 1));
+
 		jtLiv.setOpaque(true);
 		jtDVD.setOpaque(true);
 		jtPer.setOpaque(true);
 		jtColl.setOpaque(true);
-		
+		jtRecherche.setOpaque(true);
+
 		jtLiv.setRowSorter(sorterLiv);
 		jtDVD.setRowSorter(sorterDVD);
 		jtPer.setRowSorter(sorterPer);
 		jtColl.setRowSorter(sorterColl);
-		
-		jpanelCollection.setLayout(new GridLayout(1,1));
-		jpanelLivres.setLayout(new GridLayout(1,1));
-		jpanelDVDs.setLayout(new GridLayout(1,1));
-		jpanelPeriodiques.setLayout(new GridLayout(1,1));
-		
+		jtRecherche.setRowSorter(sorterRecherche);
+
 		jpanelLivres.add(jspLiv);
 		jpanelDVDs.add(jspDVD);
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
 
 		add(jtab);
-		
-		jbtnQuitter.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						if(e.getSource() == jbtnQuitter)
-						{
-							System.exit(0);
-						}
-					}
-				});
-		
-		jbtnAjouterPrepose.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				if(e.getSource() == jbtnAjouterPrepose)
-				{
-					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
-					System.out.println(strNomEntree);
-					
-					String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
-					System.out.println(strMotDePasseEntree);
-					
-					/*
-					try
-					{
-						FileWriter file = new FileWriter("Usagers.txt",false);
-						file.write("123");
-						file.close();
-						
-					}
-					
-					catch(IOException o)
-					{
-						
-					}
-					*/
-				}
-			}
-		});
 	}
-	
-	public void CreeTabRecherche(String strUsager)
-	{
-		if(strUsager == "Administration")
-		{
-			for(int i =0; i<strAdmin.length; i++)
-			{
-				jtab.addTab(strAdmin[i],jpanelAdmin[i]);
-			}
-			
-			jpanelSousRecherche1.setLayout( new GridLayout(1,2));
-			jpanelSousRecherche2.setLayout( new GridLayout(1,2));
-			jpanelSousRecherche3.setLayout( new GridLayout(1,2));
-			jpanelRecherche.setLayout(new GridLayout(3,1));
-			jpanelSousRechercheParAuteur.setLayout(new FlowLayout());
-			
-			jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
-			jpanelSousRechercheResultat.setBorder(tbSousResultat);
-			jpanelSousRechercheInformation.setBorder(tbSousInformation);
-			
-			jpanelSousRechercheParAuteur.add(jlabelParAuteur);
-			jpanelSousRechercheParAuteur.add(jlabelParMotCles);
-			jpanelSousRechercheParAuteur.add(jbtnRecherche);
-			jpanelSousRechercheParAuteur.add(jtAuteur);
-			
-			//jpanelSousRechercheParAuteur.add(jtMotDePasse);
-			
-			jpanelSousRecherche1.setBorder(tbRecherche);
-			jpanelSousRecherche2.setBorder(tbResultat);
-			jpanelSousRecherche3.setBorder(tbInformation);
-			
-			jpanelSousRecherche1.add(jlabelmario);
-			jpanelSousRecherche2.add(jlabelboo);
-			jpanelSousRecherche3.add(jlabelluigi);
-			
-			jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
-			jpanelSousRecherche2.add(jpanelSousRechercheResultat);
-			jpanelSousRecherche3.add(jpanelSousRechercheInformation);
-			
-			jpanelRecherche.add(jpanelSousRecherche1);
-			jpanelRecherche.add(jpanelSousRecherche2);
-			jpanelRecherche.add(jpanelSousRecherche3);
+
+	public void CreeTabRecherche(String strUsager) {
+		for (int i = 0; i < strAdmin.length; i++) {
+			jtab.addTab(strAdmin[i], jpanelAdmin[i]);
 		}
-		
-		else if(strUsager == "Adhérent")
-		{
-			for(int i =0; i<strAdherent.length; i++)
-			{
-				jtab.addTab(strAdherent[i],jpanelAdherent[i]);
-			}
-		}
-		
-		else
-		{
-			for(int i =0; i<strPrepose.length; i++)
-			{
-				jtab.addTab(strPrepose[i],jpanelPrepose[i]);
-			}
-		}
+
+		jpanelSousRecherche1.setLayout(new GridLayout(1, 2));
+		jpanelSousRecherche2.setLayout(new GridLayout(1, 2));
+		jpanelSousRecherche3.setLayout(new GridLayout(1, 2));
+		jpanelRecherche.setLayout(new GridLayout(3, 1));
+
+		jpanelSousRechercheParAuteur.setLayout(new GridLayout(3, 1));
+
+		jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
+		jpanelSousRechercheResultat.setBorder(tbSousResultat);
+		jpanelSousRechercheInformation.setBorder(tbSousInformation);
+
+		jpanela.add(jlabelParAuteur);
+		jpanela.add(jtAuteur);
+		jpanelSousRechercheParAuteur.add(jpanela);
+
+		jpanelb.add(jlabelParMotCles);
+		jpanelb.add(jtMotDePasse);
+		jpanelSousRechercheParAuteur.add(jpanelb);
+
+		jpanelc.add(jbtnRecherche);
+		jpanelSousRechercheParAuteur.add(jpanelc);
+
+		jpanelSousRecherche1.setBorder(tbRecherche);
+		jpanelSousRecherche2.setBorder(tbResultat);
+		jpanelSousRecherche3.setBorder(tbInformation);
+
+		jpanelSousRecherche1.add(jlabelmario);
+		jpanelSousRecherche2.add(jlabelboo);
+		jpanelSousRecherche3.add(jlabelluigi);
+
+		jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
+		jpanelSousRecherche2.add(jpanelSousRechercheResultat);
+		jpanelSousRecherche3.add(jpanelSousRechercheInformation);
+
+		jpanelRecherche.add(jpanelSousRecherche1);
+		jpanelRecherche.add(jpanelSousRecherche2);
+		jpanelRecherche.add(jpanelSousRecherche3);
 	}
-	
-	//cree les buttons dans le tab d'option
-	public void CreeTabOption(String strUsager)
-	{
-		if(strUsager == "Administration")
-		{
+
+	// ajouter les buttons dans le tab d'option
+	public void CreeTabOption(String strUsager) {
+		if (strUsager == "Administration") {
 			jpanelOptions.add(jbtnAjouterPrepose);
 		}
 
-		else if(strUsager == "Adhérent")
-		{
-			
+		else if (strUsager == "Adhérent") {
+			jpanelOptions.add(jbtnRetournerDocument);
+			jpanelOptions.add(jbtnListerDocument);
 		}
-		
-		else
-		{
-			
+
+		else {
+			jpanelOptions.add(jbtnModifierDocument);
+			jpanelOptions.add(jbtnAjouterDocument);
+			jpanelOptions.add(jbtnEmprunterDocument);
+			jpanelOptions.add(jbtnRetournerDocument);
+			jpanelOptions.add(jbtnChangerEtat);
+			jpanelOptions.add(jbtnVerifierDispo);
 		}
-		
+
 		jpanelOptions.add(jbtnQuitter);
+	}
+
+	// creer les fonctions des buttons
+	public void CreeFunctionsButtons() {
+		jbtnAjouterPrepose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == jbtnAjouterPrepose) {
+					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
+					System.out.println(strNomEntree);
+
+					String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
+					System.out.println(strMotDePasseEntree);
+
+					/*
+					 * try { FileWriter file = new
+					 * FileWriter("Usagers.txt",false); file.write("123");
+					 * file.close();
+					 * 
+					 * }
+					 * 
+					 * catch(IOException o) {
+					 * 
+					 * }
+					 */
+				}
+			}
+		});
+
+		jbtnRecherche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == jbtnRecherche) {
+					// jpanelSousRechercheResultat.add(jspRecherche);
+				}
+			}
+
+		});
+
+		jbtnVerifierDispo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+
+		});
+
+		// button Quitter
+		jbtnQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == jbtnQuitter) {
+					System.exit(0);
+				}
+			}
+		});
 	}
 }

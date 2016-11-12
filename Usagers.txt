@@ -1,1 +1,3 @@
 administration,a,a
+adhérent,a,a
+préposé,a,a

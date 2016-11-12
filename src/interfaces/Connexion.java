@@ -56,31 +56,46 @@ public class Connexion extends JFrame {
 	public Connexion() 
 	{
 		super("Connexion");
+		
+		CreeFunctionBouttons();
+		
 		setLayout(new GridLayout(2, 1));
-
+		jpanel.setLayout(new GridLayout(4, 2));
+		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
 		jUsager.setFont(new Font("Calibri", Font.BOLD, 23));
 		jNom.setFont(new Font("Calibri", Font.BOLD, 23));
 		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 23));
 
-		jMediatheque.setIcon(new ImageIcon("authentification.png"));
-
-		jpanelLogin.add(jMediatheque);
-
-		jpanel.setLayout(new GridLayout(4, 2));
-
 		jpanel.add(jUsager);
 		jpanel.add(jcBox);
-
 		jpanel.add(jNom);
 		jpanel.add(jtNom);
-
 		jpanel.add(jMotDePasse);
 		jpanel.add(jtMotDePasse);
-
 		jpanel.add(jbConnexion);
 		jpanel.add(jbEffacer);
 
+		jpanelLogin.add(jMediatheque);
+		
+		jMediatheque.setIcon(new ImageIcon("authentification.png"));
+		
+		add(jpanelLogin);
+		add(jpanel);
+
+		setSize(500, 500);
+		setVisible(true);
+		setLocationRelativeTo(null);
+	}
+
+	public String usager() 
+	{
+		return (String) jcBox.getSelectedItem();
+	}
+	
+	public void CreeFunctionBouttons()
+	{
+		//button connexion
 		jbConnexion.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -101,8 +116,6 @@ public class Connexion extends JFrame {
 							// verifie si l'usager est dans le bon compte
 							// verifie si l'usager existe
 							// verifie si c'est le meme mot de passe
-							//System.out.println(jtNom.getText());
-							//System.out.println(String.valueOf(jtMotDePasse.getPassword()));
 							
 							if (st.nextToken().compareToIgnoreCase((String) jcBox.getSelectedItem()) == 0
 									&& st.nextToken().compareTo(jtNom.getText()) == 0
@@ -110,6 +123,7 @@ public class Connexion extends JFrame {
 							{
 								dispose();
 								Interface demarrage = new Interface(usager());
+								demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 							}
 
 							else 
@@ -126,7 +140,8 @@ public class Connexion extends JFrame {
 				}
 			}
 		});
-
+		
+		//button effacer
 		jbEffacer.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -135,17 +150,5 @@ public class Connexion extends JFrame {
 				jtMotDePasse.setText("");
 			}
 		});
-
-		add(jpanelLogin);
-		add(jpanel);
-
-		setSize(500, 500);
-		setVisible(true);
-		setLocationRelativeTo(null);
-	}
-
-	public String usager() 
-	{
-		return (String) jcBox.getSelectedItem();
 	}
 }
