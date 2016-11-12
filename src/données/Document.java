@@ -18,7 +18,7 @@ public class Document
 		this.strTitre = strTitre;
 		this.strNumeroDocument = strNumeroDocument;
 		this.dateParution = dateParution;
-		Document.boolRetourner = boolRetourner;
+		this.boolRetourner = boolRetourner;
 	}
 	
 	public String getStrNumeroDocument() 
@@ -34,6 +34,11 @@ public class Document
 	public Date getDate() 
 	{
 		return dateParution;
+	}
+	
+	public Boolean getBoolRetourner()
+	{
+		return boolRetourner;
 	}
 
 	public void modifierDocument()

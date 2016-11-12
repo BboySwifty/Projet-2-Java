@@ -36,7 +36,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alLivre.get(i).getStrNumeroDocument());
 				ligne.add(alLivre.get(i).getStrTitre());
 				ligne.add(alLivre.get(i).getDate());
-				ligne.add("Oui");
+				ligne.add(alLivre.get(i).getBoolRetourner());
 				alDonnees.add(ligne);
 			}
 		} 
@@ -73,6 +73,7 @@ public class TableModelCollection extends AbstractTableModel {
 				alDonnees.add(ligne);
 			}
 		}
+		
 		/*
 		else if(strColl.equals("Recherche"))
 		{

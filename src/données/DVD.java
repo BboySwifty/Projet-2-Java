@@ -8,7 +8,8 @@ public class DVD extends Document
 	private String strNomRealisateur;
 
 	public DVD(String strIntDocument, String strTitre, Date date, int intNombreDisques,
-			String strNomRealisateur) {
+			String strNomRealisateur) 
+	{
 		super(strIntDocument, strTitre, date, boolRetourner);
 
 		this.strNomRealisateur = strNomRealisateur;

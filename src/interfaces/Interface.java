@@ -139,74 +139,55 @@ public class Interface extends JFrame
 		jpanelDVDs.add(jspDVD);
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
-		jpanelSousRechercheResultat.add(jspRecherche);
+	
 		
 		add(jtab);
 	}
 	
 	public void CreeTabRecherche(String strUsager)
 	{
-		if(strUsager == "Administration")
+		for(int i =0; i<strAdmin.length; i++)
 		{
-			for(int i =0; i<strAdmin.length; i++)
-			{
-				jtab.addTab(strAdmin[i],jpanelAdmin[i]);
-			}
-			
-			jpanelSousRecherche1.setLayout( new GridLayout(1,2));
-			jpanelSousRecherche2.setLayout( new GridLayout(1,2));
-			jpanelSousRecherche3.setLayout( new GridLayout(1,2));
-			jpanelRecherche.setLayout(new GridLayout(3,1));
-			
-			jpanelSousRechercheParAuteur.setLayout(new GridLayout(3,1));
-			
-			jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
-			jpanelSousRechercheResultat.setBorder(tbSousResultat);
-			jpanelSousRechercheInformation.setBorder(tbSousInformation);
-			
-			jpanela.add(jlabelParAuteur);
-			jpanela.add(jtAuteur);
-			jpanelSousRechercheParAuteur.add(jpanela);
+			jtab.addTab(strAdmin[i],jpanelAdmin[i]);
+		}
+		
+		jpanelSousRecherche1.setLayout( new GridLayout(1,2));
+		jpanelSousRecherche2.setLayout( new GridLayout(1,2));
+		jpanelSousRecherche3.setLayout( new GridLayout(1,2));
+		jpanelRecherche.setLayout(new GridLayout(3,1));
+		
+		jpanelSousRechercheParAuteur.setLayout(new GridLayout(3,1));
+		
+		jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
+		jpanelSousRechercheResultat.setBorder(tbSousResultat);
+		jpanelSousRechercheInformation.setBorder(tbSousInformation);
+		
+		jpanela.add(jlabelParAuteur);
+		jpanela.add(jtAuteur);
+		jpanelSousRechercheParAuteur.add(jpanela);
 
-			jpanelb.add(jlabelParMotCles);
-			jpanelb.add(jtMotDePasse);
-			jpanelSousRechercheParAuteur.add(jpanelb);
-			
-			jpanelc.add(jbtnRecherche);
-			jpanelSousRechercheParAuteur.add(jpanelc);
-			
-			jpanelSousRecherche1.setBorder(tbRecherche);
-			jpanelSousRecherche2.setBorder(tbResultat);
-			jpanelSousRecherche3.setBorder(tbInformation);
-			
-			jpanelSousRecherche1.add(jlabelmario);
-			jpanelSousRecherche2.add(jlabelboo);
-			jpanelSousRecherche3.add(jlabelluigi);
-			
-			jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
-			jpanelSousRecherche2.add(jpanelSousRechercheResultat);
-			jpanelSousRecherche3.add(jpanelSousRechercheInformation);
-			
-			jpanelRecherche.add(jpanelSousRecherche1);
-			jpanelRecherche.add(jpanelSousRecherche2);
-			jpanelRecherche.add(jpanelSousRecherche3);
-		}
+		jpanelb.add(jlabelParMotCles);
+		jpanelb.add(jtMotDePasse);
+		jpanelSousRechercheParAuteur.add(jpanelb);
 		
-		else if(strUsager == "Adhérent")
-		{
-			for(int i =0; i<strAdherent.length; i++)
-			{
-				jtab.addTab(strAdherent[i],jpanelAdherent[i]);
-			}
-		}
+		jpanelc.add(jbtnRecherche);
+		jpanelSousRechercheParAuteur.add(jpanelc);
 		
-		else
-		{
-			for(int i =0; i<strPrepose.length; i++)
-			{
-				jtab.addTab(strPrepose[i],jpanelPrepose[i]);
-			}
-		}
+		jpanelSousRecherche1.setBorder(tbRecherche);
+		jpanelSousRecherche2.setBorder(tbResultat);
+		jpanelSousRecherche3.setBorder(tbInformation);
+		
+		jpanelSousRecherche1.add(jlabelmario);
+		jpanelSousRecherche2.add(jlabelboo);
+		jpanelSousRecherche3.add(jlabelluigi);
+		
+		jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
+		jpanelSousRecherche2.add(jpanelSousRechercheResultat);
+		jpanelSousRecherche3.add(jpanelSousRechercheInformation);
+		
+		jpanelRecherche.add(jpanelSousRecherche1);
+		jpanelRecherche.add(jpanelSousRecherche2);
+		jpanelRecherche.add(jpanelSousRecherche3);	
 	}
 	
 	//ajouter les buttons dans le tab d'option
@@ -275,7 +256,7 @@ public class Interface extends JFrame
 					{
 						if(e.getSource() == jbtnRecherche)
 						{
-							//jpanelSousRechercheResultat.add();
+							//jpanelSousRechercheResultat.add(jspRecherche);
 						}
 					}
 			
