@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -89,25 +90,21 @@ public class Interface extends JFrame {
 	private TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
 	private TableModelCollection tmPer = new TableModelCollection(lf, "Periodique");
 	private TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
-	private TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
 
 	private JTable jtLiv = new JTable(tmLivre);
 	private JTable jtDVD = new JTable(tmDVD);
 	private JTable jtPer = new JTable(tmPer);
 	private JTable jtColl = new JTable(tmColl);
-	private JTable jtRecherche = new JTable(tmRecherche);
 
 	private JScrollPane jspLiv = new JScrollPane(jtLiv);
 	private JScrollPane jspDVD = new JScrollPane(jtDVD);
 	private JScrollPane jspPer = new JScrollPane(jtPer);
 	private JScrollPane jspColl = new JScrollPane(jtColl);
-	private JScrollPane jspRecherche = new JScrollPane(jtRecherche);
 
 	private TableRowSorter<TableModel> sorterLiv = new TableRowSorter<TableModel>(jtLiv.getModel());
 	private TableRowSorter<TableModel> sorterDVD = new TableRowSorter<TableModel>(jtDVD.getModel());
 	private TableRowSorter<TableModel> sorterPer = new TableRowSorter<TableModel>(jtPer.getModel());
 	private TableRowSorter<TableModel> sorterColl = new TableRowSorter<TableModel>(jtColl.getModel());
-	private TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
 
 	Interface(String strUsager) {
 		super("La mediatheque de GG");
@@ -129,13 +126,11 @@ public class Interface extends JFrame {
 		jtDVD.setOpaque(true);
 		jtPer.setOpaque(true);
 		jtColl.setOpaque(true);
-		jtRecherche.setOpaque(true);
 
 		jtLiv.setRowSorter(sorterLiv);
 		jtDVD.setRowSorter(sorterDVD);
 		jtPer.setRowSorter(sorterPer);
 		jtColl.setRowSorter(sorterColl);
-		jtRecherche.setRowSorter(sorterRecherche);
 
 		jpanelLivres.add(jspLiv);
 		jpanelDVDs.add(jspDVD);
@@ -154,6 +149,8 @@ public class Interface extends JFrame {
 		jpanelSousRecherche2.setLayout(new GridLayout(1, 2));
 		jpanelSousRecherche3.setLayout(new GridLayout(1, 2));
 		jpanelRecherche.setLayout(new GridLayout(3, 1));
+		
+		jtAuteur.setPreferredSize(new Dimension(200, 25));
 
 		jpanelSousRechercheParAuteur.setLayout(new GridLayout(3, 1));
 
@@ -244,7 +241,17 @@ public class Interface extends JFrame {
 					{
 						if(e.getSource() == jbtnRecherche)
 						{
-							//jpanelSousRechercheResultat.add(jspRecherche);
+							TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
+							JTable jtRecherche = new JTable(tmRecherche);
+							JScrollPane jspRecherche = new JScrollPane(jtRecherche);
+							TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
+
+							jtRecherche.setOpaque(true);
+							jtRecherche.setRowSorter(sorterRecherche);
+							jpanelSousRechercheResultat.removeAll();
+							jpanelSousRechercheResultat.add(jspRecherche);
+							jpanelSousRechercheResultat.validate();
+							jpanelSousRechercheResultat.repaint();
 						}
 					}
 			
