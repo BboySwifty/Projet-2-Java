@@ -78,25 +78,21 @@ public class Interface extends JFrame
 	TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
 	TableModelCollection tmPer = new TableModelCollection(lf, "Periodique");
 	TableModelCollection tmColl = new TableModelCollection(lf, "Collection");
-	TableModelCollection tmRecherche = new TableModelCollection(lf,"Recherche");
-	
+
 	JTable jtLiv = new JTable(tmLivre);
 	JTable jtDVD = new JTable(tmDVD);
 	JTable jtPer = new JTable(tmPer);
 	JTable jtColl = new JTable(tmColl);
-	JTable jtRecherche = new JTable(tmRecherche);
 
 	JScrollPane jspLiv = new JScrollPane(jtLiv);
 	JScrollPane jspDVD = new JScrollPane(jtDVD);
 	JScrollPane jspPer = new JScrollPane(jtPer);
 	JScrollPane jspColl = new JScrollPane(jtColl);
-	JScrollPane jspRecherche = new JScrollPane(jtRecherche);
 	
 	TableRowSorter<TableModel> sorterLiv = new TableRowSorter<TableModel>(jtLiv.getModel());
 	TableRowSorter<TableModel> sorterDVD = new TableRowSorter<TableModel>(jtDVD.getModel());
 	TableRowSorter<TableModel> sorterPer = new TableRowSorter<TableModel>(jtPer.getModel());
 	TableRowSorter<TableModel> sorterColl = new TableRowSorter<TableModel>(jtColl.getModel());
-	TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
 	
 	Interface(String strUsager)
 	{
@@ -113,13 +109,11 @@ public class Interface extends JFrame
 		jtDVD.setOpaque(true);
 		jtPer.setOpaque(true);
 		jtColl.setOpaque(true);
-		jtRecherche.setOpaque(true);
 		
 		jtLiv.setRowSorter(sorterLiv);
 		jtDVD.setRowSorter(sorterDVD);
 		jtPer.setRowSorter(sorterPer);
 		jtColl.setRowSorter(sorterColl);
-		jtRecherche.setRowSorter(sorterRecherche);
 		
 		jpanelCollection.setLayout(new GridLayout(1,1));
 		jpanelLivres.setLayout(new GridLayout(1,1));
@@ -132,17 +126,6 @@ public class Interface extends JFrame
 		jpanelCollection.add(jspColl);
 
 		add(jtab);
-		
-		jbtnRecherche.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						if(e.getSource() == jbtnRecherche)
-						{
-							
-						}
-					}
-				});
 		
 		jbtnQuitter.addActionListener(new ActionListener()
 				{
