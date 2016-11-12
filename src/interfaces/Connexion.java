@@ -14,8 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -108,7 +114,8 @@ public class Connexion extends JFrame {
 
 					br = new BufferedReader(new FileReader("Usagers.txt"));
 
-					while ((strLigne = br.readLine()) != null) {
+					while ((strLigne = br.readLine()) != null) 
+					{
 						st = new StringTokenizer(strLigne, ",");
 
 						while (st.hasMoreTokens()) 
@@ -124,7 +131,52 @@ public class Connexion extends JFrame {
 								dispose();
 								Interface demarrage = new Interface(usager());
 								demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								
+								ArrayList<Serializable> alObjectSerialize = new ArrayList<Serializable>();
 							}
+								/*
+								try
+								{
+									FileOutputStream fichier = new FileOutputStream("Usagers.ser"); 
+								    
+									alObjectSerialize.add(fichier);
+									
+									ObjectOutputStream os = new ObjectOutputStream(fichier); 
+									     
+									os.writeObject("12"); 
+									os.flush(); 
+									os.writeObject("23"); 
+									os.flush();
+									os.writeObject("23"); 
+									
+									     
+									os.close(); 
+								   
+								}
+								
+								catch(IOException o)
+								{
+									o.printStackTrace();	
+								}
+								
+								try
+								{
+									 FileInputStream fichier = new FileInputStream("Usagers.ser"); 
+									 ObjectInputStream is = new ObjectInputStream(fichier); 
+									 
+									 while()
+									 {
+										 
+									 }
+								}
+								
+								catch(IOException a)
+								{
+									a.printStackTrace();
+								}
+								
+							}
+							*/
 
 							else 
 							{
