@@ -1,3 +1,4 @@
+package données;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -13,29 +14,17 @@ public class Serialization
 		
 		try
 		{
-			
 			br = new BufferedReader(new FileReader("Usagers.txt"));
+			FileOutputStream fichier = new FileOutputStream("Usagers.ser"); 
+			ObjectOutputStream os = new ObjectOutputStream(fichier); 
 			
 			while((strLigne = br.readLine()) !=null)
 			{
-				
+				os.writeObject(br.readLine()); 
+				os.flush(); 
 			}
 			
-			
-			
-			FileOutputStream fichier = new FileOutputStream("Usagers.ser"); 
-		    
-			ObjectOutputStream os = new ObjectOutputStream(fichier); 
-			     
-			os.writeObject("12"); 
-			os.flush(); 
-			os.writeObject("23"); 
-			os.flush();
-			os.writeObject("23"); 
-			
-			     
 			os.close(); 
-		   
 		}
 		
 		catch(IOException o)
