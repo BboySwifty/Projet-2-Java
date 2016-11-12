@@ -3,6 +3,8 @@ package données;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
+import interfaces.Interface;
+
 public class TableModelCollection extends AbstractTableModel {
 
 	ArrayList<ArrayList> alDonnees = new ArrayList<ArrayList>();
@@ -73,7 +75,7 @@ public class TableModelCollection extends AbstractTableModel {
 			}
 		}
 		
-		else if(strColl.equals("Recherche"))
+		/*else if(strColl.equals("Recherche"))
 		{
 			for(int i =0; i<alRecherche.size();i++)
 			{
@@ -82,7 +84,7 @@ public class TableModelCollection extends AbstractTableModel {
 					
 				}
 			}
-		}
+		}*/
 	}
 
 	public String getColumnName(int col) {
