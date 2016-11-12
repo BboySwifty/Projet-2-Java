@@ -262,6 +262,10 @@ public class Interface extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
+					//	if()
+						{
+							
+						}
 						//JOptionPane.showMessageDialog(null, "", "Disponibilite du document", JOptionPane.INFORMATION_MESSAGE);
 					}
 			
