@@ -64,6 +64,11 @@ public class Interface extends JFrame {
 	private JPanel jpanelRecherche = new JPanel();
 	private JPanel jpanelOptions = new JPanel();
 
+	private JPanel jpanelSousCollection = new JPanel();
+	private JPanel jpanelSousLivres = new JPanel();
+	private JPanel jpanelSousPeriodiques = new JPanel();
+	private JPanel jpanelSousDVDs = new JPanel();
+	
 	private JLabel jlabelmario = new JLabel(new ImageIcon("mario.png"));
 	private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
 	private JLabel jlabelluigi = new JLabel(new ImageIcon("luigi.png"));
@@ -110,18 +115,20 @@ public class Interface extends JFrame {
 		super("La mediatheque de GG");
 
 		CreeFunctionsButtons();
-		CreeTabRecherche(strUsager);
+		CreeTabRecherche();
 		CreeTabOption(strUsager);
 
+		//jpanelCollection.setLayout(new GridLayout(2,1));
 		setVisible(true);
 		setSize(1000, 700);
 		setLocationRelativeTo(null);
 
-		jpanelCollection.setLayout(new GridLayout(1, 1));
-		jpanelLivres.setLayout(new GridLayout(1, 1));
-		jpanelDVDs.setLayout(new GridLayout(1, 1));
-		jpanelPeriodiques.setLayout(new GridLayout(1, 1));
+		jpanelCollection.setLayout(new GridLayout());
+		jpanelLivres.setLayout(new GridLayout());
+		jpanelDVDs.setLayout(new GridLayout());
+		jpanelPeriodiques.setLayout(new GridLayout());
 
+		
 		jtLiv.setOpaque(true);
 		jtDVD.setOpaque(true);
 		jtPer.setOpaque(true);
@@ -136,11 +143,12 @@ public class Interface extends JFrame {
 		jpanelDVDs.add(jspDVD);
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
-
+		
+		
 		add(jtab);
 	}
 
-	public void CreeTabRecherche(String strUsager) {
+	public void CreeTabRecherche() {
 		for (int i = 0; i < strAdmin.length; i++) {
 			jtab.addTab(strAdmin[i], jpanelAdmin[i]);
 		}
@@ -189,7 +197,9 @@ public class Interface extends JFrame {
 
 	// ajouter les buttons dans le tab d'option
 	public void CreeTabOption(String strUsager) {
-		if (strUsager == "Administration") {
+		
+		if (strUsager == "Administration") 
+		{
 			jpanelOptions.add(jbtnAjouterPrepose);
 		}
 
@@ -212,6 +222,7 @@ public class Interface extends JFrame {
 
 	// creer les fonctions des buttons
 	public void CreeFunctionsButtons() {
+		
 		jbtnAjouterPrepose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == jbtnAjouterPrepose) {
@@ -249,6 +260,7 @@ public class Interface extends JFrame {
 
 							jtRecherche.setOpaque(true);
 							jtRecherche.setRowSorter(sorterRecherche);
+							
 							jpanelSousRechercheResultat.removeAll();
 							jpanelSousRechercheResultat.add(jspRecherche);
 							jpanelSousRechercheResultat.validate();
@@ -258,15 +270,28 @@ public class Interface extends JFrame {
 			
 				});
 		
+		
+		jbtnChangerEtat.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						//if(e.getSource().)
+						{
+							
+						}
+					}
+				});
+		
 		jbtnVerifierDispo.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
-					//	if()
+						//if()
 						{
 							
 						}
-						//JOptionPane.showMessageDialog(null, "", "Disponibilite du document", JOptionPane.INFORMATION_MESSAGE);
+						
+						JOptionPane.showMessageDialog(null, "", "Disponibilite du document", JOptionPane.INFORMATION_MESSAGE);
 					}
 			
 				});
