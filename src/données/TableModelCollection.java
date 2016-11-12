@@ -71,6 +71,17 @@ public class TableModelCollection extends AbstractTableModel {
 				alDonnees.add(ligne);
 			}
 		}
+		
+		/*else if(strColl.equals("Recherche"))
+		{
+			for(int i =0; i<alRecherche.size();i++)
+			{
+				//if()
+				{
+					
+				}
+			}
+		}*/
 	}
 
 	public String getColumnName(int col) {
