@@ -110,6 +110,7 @@ public class Connexion extends JFrame {
 				StringTokenizer st = null;
 
 				try {
+					
 					String strLigne;
 
 					br = new BufferedReader(new FileReader("Usagers.txt"));
@@ -128,55 +129,12 @@ public class Connexion extends JFrame {
 									&& st.nextToken().compareTo(jtNom.getText()) == 0
 									&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) 
 							{
+								
 								dispose();
 								Interface demarrage = new Interface(usager());
 								demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 								
-								ArrayList<Serializable> alObjectSerialize = new ArrayList<Serializable>();
 							}
-								/*
-								try
-								{
-									FileOutputStream fichier = new FileOutputStream("Usagers.ser"); 
-								    
-									alObjectSerialize.add(fichier);
-									
-									ObjectOutputStream os = new ObjectOutputStream(fichier); 
-									     
-									os.writeObject("12"); 
-									os.flush(); 
-									os.writeObject("23"); 
-									os.flush();
-									os.writeObject("23"); 
-									
-									     
-									os.close(); 
-								   
-								}
-								
-								catch(IOException o)
-								{
-									o.printStackTrace();	
-								}
-								
-								try
-								{
-									 FileInputStream fichier = new FileInputStream("Usagers.ser"); 
-									 ObjectInputStream is = new ObjectInputStream(fichier); 
-									 
-									 while()
-									 {
-										 
-									 }
-								}
-								
-								catch(IOException a)
-								{
-									a.printStackTrace();
-								}
-								
-							}
-							*/
 
 							else 
 							{
