@@ -11,14 +11,14 @@ public class Document
 	private String strNumeroDocument;
 	private String strTitre;
 	private Date dateParution;
-	static boolean boolRetourner;
+	static boolean boolRetourner = true;
 	
 	public Document(String strNumeroDocument, String strTitre, Date dateParution, boolean boolRetourner) 
 	{
 		this.strTitre = strTitre;
 		this.strNumeroDocument = strNumeroDocument;
 		this.dateParution = dateParution;
-		this.boolRetourner = boolRetourner;
+		Document.boolRetourner = boolRetourner;
 	}
 	
 	public String getStrNumeroDocument() 

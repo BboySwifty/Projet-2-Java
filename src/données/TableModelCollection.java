@@ -15,9 +15,9 @@ public class TableModelCollection extends AbstractTableModel {
 
 	String strColl;
 
-	String[] tabLivre = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-	String[] tabDVD = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
-	String[] tabPeriodique = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
+	String[] tabLivre = { "Numéro de document", "Titre", "Auteur", "Date de parution", "Disponible" };
+	String[] tabDVD = { "Numéro de document", "Titre", "Nom du réalisateur", "Nombre de disques", "Date de parution", "Disponible" };
+	String[] tabPeriodique = { "Numéro de document", "Titre", "Numéro de Périodique", "Numéro de Volume", "Date de Parution", "Disponible"};
 	String[] tabCollection = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
 
 	boolean editable = true;
@@ -35,8 +35,9 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alLivre.get(i).getStrNumeroDocument());
 				ligne.add(alLivre.get(i).getStrTitre());
+				ligne.add(alLivre.get(i).getStrNomAuteur());
 				ligne.add(alLivre.get(i).getDate());
-				ligne.add(alLivre.get(i).getBoolRetourner());
+				ligne.add(alLivre.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
 		} 
@@ -46,8 +47,10 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alDVD.get(i).getStrNumeroDocument());
 				ligne.add(alDVD.get(i).getStrTitre());
+				ligne.add(alDVD.get(i).getStrNomRealisateur());
+				ligne.add(alDVD.get(i).getIntNombreDisques());
 				ligne.add(alDVD.get(i).getDate());
-				ligne.add("Oui");
+				ligne.add(alDVD.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
 			
@@ -57,8 +60,10 @@ public class TableModelCollection extends AbstractTableModel {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alPeriodique.get(i).getStrNumeroDocument());
 				ligne.add(alPeriodique.get(i).getStrTitre());
+				ligne.add(alPeriodique.get(i).getIntNumeroPeriodique());
+				ligne.add(alPeriodique.get(i).getIntNumeroVolume());
 				ligne.add(alPeriodique.get(i).getDate());
-				ligne.add("Oui");
+				ligne.add(alPeriodique.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
 			
