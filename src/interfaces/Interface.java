@@ -193,9 +193,6 @@ public class Interface extends JFrame
 			jpanelSousRechercheParAuteur.add(jbtnRecherche);
 			jpanelSousRechercheParAuteur.add(jtAuteur);
 			
-			
-			
-			
 			//jpanelSousRechercheParAuteur.add(jtMotDePasse);
 			
 			jpanelSousRecherche1.setBorder(tbRecherche);
