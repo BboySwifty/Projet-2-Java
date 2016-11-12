@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -160,7 +161,10 @@ public class Interface extends JFrame {
 		jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
 		jpanelSousRechercheResultat.setBorder(tbSousResultat);
 		jpanelSousRechercheInformation.setBorder(tbSousInformation);
-
+		
+		jtAuteur.setPreferredSize(new Dimension(100,20));
+		jtMotDePasse.setPreferredSize(new Dimension(100,20));
+		
 		jpanela.add(jlabelParAuteur);
 		jpanela.add(jtAuteur);
 		jpanelSousRechercheParAuteur.add(jpanela);
