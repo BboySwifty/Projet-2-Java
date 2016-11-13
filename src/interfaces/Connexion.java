@@ -42,22 +42,27 @@ import javax.swing.JTextField;
 public class Connexion extends JFrame {
 	Container c = getContentPane();
 
-	JPanel jpanelLogin = new JPanel();
-	JPanel jpanel = new JPanel();
+	private JPanel jpanelLogin = new JPanel();
+	private JPanel jpanel = new JPanel();
 
-	JLabel jMediatheque = new JLabel("Mediatheque");
-	JLabel jUsager = new JLabel("Type de connexion: ");
-	JLabel jNom = new JLabel("Nom d'utilisateur: ");
-	JLabel jMotDePasse = new JLabel("Mot de passe: ");
+	private JLabel jMediatheque = new JLabel("Mediatheque");
+	private JLabel jUsager = new JLabel("Type de connexion: ");
+	private JLabel jNom = new JLabel("Nom d'utilisateur: ");
+	private JLabel jMotDePasse = new JLabel("Mot de passe: ");
+	private JLabel jTelephone = new JLabel("Telephone: ");
+	private JLabel jNomEtNomFamille = new JLabel("Nom et nom de famille");
 	
-	JTextField jtNom = new JTextField();
-	JPasswordField jtMotDePasse = new JPasswordField();
+	private JTextField jtTelephone = new JTextField();
+	private JTextField jtNomEtNomFamille = new JTextField();
+	
+	private JTextField jtNom = new JTextField();
+	private JPasswordField jtMotDePasse = new JPasswordField();
 
-	JButton jbConnexion = new JButton("Connexion");
-	JButton jbEffacer = new JButton("Effacer");
+	private JButton jbConnexion = new JButton("Connexion");
+	private JButton jbEffacer = new JButton("Effacer");
 
-	String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
-	JComboBox jcBox = new JComboBox(strComboBox);
+	private String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
+	private JComboBox jcBox = new JComboBox(strComboBox);
 
 	public Connexion() 
 	{
@@ -83,9 +88,15 @@ public class Connexion extends JFrame {
 		jpanel.add(jbEffacer);
 
 		jpanelLogin.add(jMediatheque);
+		jpanelLogin.add(jtTelephone);
 		
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
 		
+		jtNomEtNomFamille.setPreferredSize(new Dimension(200,60));
+		jtTelephone.setPreferredSize(new Dimension(200,60));
+		
+		jMediatheque.add(jNomEtNomFamille);
+	//	jMediatheque.add(jtNomEtNomFamille);
 		add(jpanelLogin);
 		add(jpanel);
 

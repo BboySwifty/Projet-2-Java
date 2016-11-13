@@ -247,6 +247,16 @@ public class Interface extends JFrame {
 			}
 		});
 		
+		jbtnModifierDocument.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						{
+							
+						}
+					}
+				});
+		
 		jbtnRecherche.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 
@@ -257,7 +267,7 @@ public class Interface extends JFrame {
 							JTable jtRecherche = new JTable(tmRecherche);
 							JScrollPane jspRecherche = new JScrollPane(jtRecherche);
 							TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
-
+							
 							jtRecherche.setOpaque(true);
 							jtRecherche.setRowSorter(sorterRecherche);
 							
