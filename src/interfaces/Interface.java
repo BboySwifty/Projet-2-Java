@@ -17,13 +17,15 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import données.LectureFichier;
 import données.TableModelCollection;
 
-public class Interface extends JFrame {
+public class Interface extends JFrame implements TableModelListener {
 	LectureFichier lf = new LectureFichier();
 
 	JFrame jframe = new JFrame();
@@ -138,6 +140,9 @@ public class Interface extends JFrame {
 		jtDVD.setRowSorter(sorterDVD);
 		jtPer.setRowSorter(sorterPer);
 		jtColl.setRowSorter(sorterColl);
+		
+		tmColl.addTableModelListener(this);
+		tmLivre.addTableModelListener(this);
 
 		jpanelLivres.add(jspLiv);
 		jpanelDVDs.add(jspDVD);
@@ -319,5 +324,11 @@ public class Interface extends JFrame {
 						}
 					}
 				});
+	}
+	
+	@Override
+	public void tableChanged(TableModelEvent e) {
+		System.out.println(jtColl.getSelectedRow());
+		
 	}
 }
