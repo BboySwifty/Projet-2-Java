@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -45,6 +48,7 @@ public class Interface extends JFrame implements TableModelListener {
 
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
 	private JLabel jlabelParMotCles = new JLabel("Par Mot cles: ");
+	private JLabel jlabelInformation = new JLabel("Numéro du document : ");
 
 	private JPanel jpanelSousRecherche1 = new JPanel();
 	private JPanel jpanelSousRecherche2 = new JPanel();
@@ -141,6 +145,13 @@ public class Interface extends JFrame implements TableModelListener {
 		
 		tmColl.addTableModelListener(this);
 		tmLivre.addTableModelListener(this);
+		
+		jtColl.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				jlabelInformation.setText("Numéro du document : " + jtColl.getValueAt(jtColl.getSelectedRow(), 0).toString());
+			}
+		});
 
 		jpanelLivres.add(jspLiv);
 		jpanelDVDs.add(jspDVD);
@@ -155,7 +166,13 @@ public class Interface extends JFrame implements TableModelListener {
 		jpanelSousLivres.add(jlabeletoile);
 		jpanelSousDVDs.add(jlabeletoile);
 		jpanelSousPeriodiques.add(jlabeletoile);
+		
+		JPanel jp = new JPanel();
+		jp.add(jlabelInformation);
+		jpanelSousCollection.setLayout(new GridLayout(1,2));
 		jpanelSousCollection.add(jlabeletoile);
+		jpanelSousCollection.add(jp);
+		jp.setBorder(tbInformation);
 		
 		
 		add(jtab);
@@ -320,7 +337,6 @@ public class Interface extends JFrame implements TableModelListener {
 	
 	@Override
 	public void tableChanged(TableModelEvent e) {
-		System.out.println(jtColl.getSelectedRow());
 		
 	}
 }
