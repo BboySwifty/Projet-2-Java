@@ -41,7 +41,6 @@ public class Interface extends JFrame implements TableModelListener {
 	private JButton jbtnAjouterDocument = new JButton("Ajouter document");
 	private JButton jbtnEmprunterDocument = new JButton("Emprunter document");
 	private JButton jbtnRetournerDocument = new JButton("Retourner document");
-	private JButton jbtnChangerEtat = new JButton("Changer etat");
 	private JButton jbtnVerifierDispo = new JButton("Verifier disponibilite");
 
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
@@ -227,7 +226,6 @@ public class Interface extends JFrame implements TableModelListener {
 			jpanelOptions.add(jbtnAjouterDocument);
 			jpanelOptions.add(jbtnEmprunterDocument);
 			jpanelOptions.add(jbtnRetournerDocument);
-			jpanelOptions.add(jbtnChangerEtat);
 			jpanelOptions.add(jbtnVerifierDispo);
 		}
 
@@ -237,9 +235,13 @@ public class Interface extends JFrame implements TableModelListener {
 	// creer les fonctions des buttons
 	public void CreeFunctionsButtons() {
 		
-		jbtnAjouterPrepose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == jbtnAjouterPrepose) {
+		//ajouter prepose
+		jbtnAjouterPrepose.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (e.getSource() == jbtnAjouterPrepose) 
+				{
 					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
 					System.out.println(strNomEntree);
 
@@ -269,7 +271,9 @@ public class Interface extends JFrame implements TableModelListener {
 						{
 							TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
 							JTable jtRecherche = new JTable(tmRecherche);
-							if(tmRecherche.getRowCount() != 0){
+							
+							//if(tmRecherche.getRowCount() != 0)
+							{
 								JScrollPane jspRecherche = new JScrollPane(jtRecherche);
 								TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
 								jspRecherche.setPreferredSize(new Dimension(465, 155));
@@ -286,17 +290,6 @@ public class Interface extends JFrame implements TableModelListener {
 			
 				});
 		
-		
-		jbtnChangerEtat.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						//if(e.getSource().)
-						{
-							
-						}
-					}
-				});
 		
 		jbtnVerifierDispo.addActionListener(new ActionListener()
 				{

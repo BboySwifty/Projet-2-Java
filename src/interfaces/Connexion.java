@@ -39,26 +39,40 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import données.Personne;
+import données.Utilisateur;
+
 public class Connexion extends JFrame {
 	Container c = getContentPane();
 
-	JPanel jpanelLogin = new JPanel();
-	JPanel jpanel = new JPanel();
-
-	JLabel jMediatheque = new JLabel("Mediatheque");
-	JLabel jUsager = new JLabel("Type de connexion: ");
-	JLabel jNom = new JLabel("Nom d'utilisateur: ");
-	JLabel jMotDePasse = new JLabel("Mot de passe: ");
+	private JPanel jpanelLogin = new JPanel();
+	private JPanel jpanel = new JPanel();
 	
-	JTextField jtNom = new JTextField();
-	JPasswordField jtMotDePasse = new JPasswordField();
+	private JPanel jpanel1 = new JPanel();
+	private JPanel jpanel2 = new JPanel();
+	private JPanel jpanel3 = new JPanel();
+	
+	private JLabel jMediatheque = new JLabel("Mediatheque");
+	private JLabel jUsager = new JLabel("Type de connexion: ");
+	private JLabel jNom = new JLabel("Nom d'utilisateur: ");
+	private JLabel jMotDePasse = new JLabel("Mot de passe: ");
+	private JLabel jTelephone = new JLabel("Telephone: (Compte existante)");
+	private JLabel jNomEtNomFamille = new JLabel("Nom et nom de famille: (Compte existante)");
+	
+	private JTextField jtTelephone = new JTextField();
+	private JTextField jtNomEtNomFamille = new JTextField();
+	
+	private JTextField jtNom = new JTextField();
+	private JPasswordField jtMotDePasse = new JPasswordField();
 
-	JButton jbConnexion = new JButton("Connexion");
-	JButton jbEffacer = new JButton("Effacer");
+	private JButton jbConnexion = new JButton("Connexion");
+	private JButton jbEffacer = new JButton("Effacer");
 
-	String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
-	JComboBox jcBox = new JComboBox(strComboBox);
+	private String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
+	private JComboBox jcBox = new JComboBox(strComboBox);
 
+	private ArrayList<Personne> alPersonne = new ArrayList<Personne>();
+	
 	public Connexion() 
 	{
 		super("Connexion");
@@ -66,13 +80,19 @@ public class Connexion extends JFrame {
 		CreeFunctionBouttons();
 		
 		setLayout(new GridLayout(2, 1));
-		jpanel.setLayout(new GridLayout(4, 2));
+		jpanel.setLayout(new GridLayout(6, 2));
 		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
+		jTelephone.setFont(new Font("Calibri", Font.BOLD, 15));
+		jNomEtNomFamille.setFont(new Font("Calibri", Font.BOLD, 15));
 		jUsager.setFont(new Font("Calibri", Font.BOLD, 23));
 		jNom.setFont(new Font("Calibri", Font.BOLD, 23));
 		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 23));
 
+		jpanel.add(jTelephone);
+		jpanel.add(jtTelephone);
+		jpanel.add(jNomEtNomFamille);
+		jpanel.add(jtNomEtNomFamille);
 		jpanel.add(jUsager);
 		jpanel.add(jcBox);
 		jpanel.add(jNom);
@@ -82,9 +102,13 @@ public class Connexion extends JFrame {
 		jpanel.add(jbConnexion);
 		jpanel.add(jbEffacer);
 
+		jtTelephone.setPreferredSize(new Dimension(200,50));
+		
 		jpanelLogin.add(jMediatheque);
 		
+		
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
+		
 		
 		add(jpanelLogin);
 		add(jpanel);
@@ -112,36 +136,50 @@ public class Connexion extends JFrame {
 				try {
 					
 					String strLigne;
-
-					br = new BufferedReader(new FileReader("Usagers.txt"));
-
-					while ((strLigne = br.readLine()) != null) 
+					
+					if(jtNom.getText().equals("") && jtMotDePasse.getText().equals(""))
 					{
-						st = new StringTokenizer(strLigne, ",");
-
-						while (st.hasMoreTokens()) 
+						if(jtNomEtNomFamille.getText().equals("") && jtTelephone.getText().equals(""))
 						{
-							// verifie si l'usager est dans le bon compte
-							// verifie si l'usager existe
-							// verifie si c'est le meme mot de passe
+						   JOptionPane.showMessageDialog(null,"Veuillez-entree vos donnees","Erreur", JOptionPane.INFORMATION_MESSAGE);
+						}
+						
+						else
+						{
+							Utilisateur utilisateur = new Utilisateur();
 							
-							if (st.nextToken().compareToIgnoreCase((String) jcBox.getSelectedItem()) == 0
-									&& st.nextToken().compareTo(jtNom.getText()) == 0
-									&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) 
-							{
-								
-								dispose();
-								Interface demarrage = new Interface(usager());
-								demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-								
-							}
+						}
+					}
+					
+					else
+					{
+						br = new BufferedReader(new FileReader("Usagers.txt"));
 
-							else 
+						while ((strLigne = br.readLine()) != null) 
+						{
+							st = new StringTokenizer(strLigne, ",");
+
+							while (st.hasMoreTokens()) 
 							{
+								// verifie si l'usager est dans le bon compte
+								// verifie si l'usager existe
+								// verifie si c'est le meme mot de passe
 								
+								if (st.nextToken().compareToIgnoreCase((String) jcBox.getSelectedItem()) == 0
+										&& st.nextToken().compareTo(jtNom.getText()) == 0
+										&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) 
+								{
+									
+									dispose();
+									Interface demarrage = new Interface(usager());
+									demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+									
+								}
+
 							}
 						}
 					}
+					
 				}
 
 				catch (IOException o) 
