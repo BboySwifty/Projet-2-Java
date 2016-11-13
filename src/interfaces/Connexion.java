@@ -40,6 +40,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import données.Personne;
+import données.Utilisateur;
 
 public class Connexion extends JFrame {
 	Container c = getContentPane();
@@ -136,8 +137,21 @@ public class Connexion extends JFrame {
 					
 					String strLigne;
 					
+					if(jtNom.getText().equals("") && jtMotDePasse.getText().equals(""))
+					{
+						if(jtNomEtNomFamille.getText().equals("") && jtTelephone.getText().equals(""))
+						{
+						   JOptionPane.showMessageDialog(null,"Veuillez-entree vos donnees","Erreur", JOptionPane.INFORMATION_MESSAGE);
+						}
+						
+						else
+						{
+							Utilisateur utilisateur = new Utilisateur();
+							
+						}
+					}
 					
-					
+					else
 					{
 						br = new BufferedReader(new FileReader("Usagers.txt"));
 
