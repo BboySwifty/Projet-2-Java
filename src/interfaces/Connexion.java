@@ -50,15 +50,13 @@ public class Connexion extends JFrame {
 	private JPanel jpanel = new JPanel();
 	
 	private JPanel jpanel1 = new JPanel();
-	private JPanel jpanel2 = new JPanel();
-	private JPanel jpanel3 = new JPanel();
 	
 	private JLabel jMediatheque = new JLabel("Mediatheque");
 	private JLabel jUsager = new JLabel("Type de connexion: ");
 	private JLabel jNom = new JLabel("Nom d'utilisateur: ");
 	private JLabel jMotDePasse = new JLabel("Mot de passe: ");
-	private JLabel jTelephone = new JLabel("Telephone: (Compte existante)");
-	private JLabel jNomEtNomFamille = new JLabel("Nom et nom de famille: (Compte existante)");
+	private JLabel jTelephone = new JLabel("Telephone: ");
+	private JLabel jNomEtNomFamille = new JLabel("Nom et nom de famille: ");
 	
 	private JTextField jtTelephone = new JTextField();
 	private JTextField jtNomEtNomFamille = new JTextField();
@@ -69,7 +67,8 @@ public class Connexion extends JFrame {
 	private JButton jbConnexion = new JButton("Connexion");
 	private JButton jbEffacer = new JButton("Effacer");
 
-	private String[] strComboBox = {"Adhérent", "Préposé" };
+	private String[] strComboBox = { "Préposé","Adhérent"};
+	
 	private JComboBox jcBox = new JComboBox(strComboBox);
 
 	private ArrayList<Personne> alPersonne = new ArrayList<Personne>();
@@ -87,18 +86,23 @@ public class Connexion extends JFrame {
 		jpanel.setLayout(new GridLayout(6, 2));
 		
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
-		jTelephone.setFont(new Font("Calibri", Font.BOLD, 15));
-		jNomEtNomFamille.setFont(new Font("Calibri", Font.BOLD, 15));
+		jTelephone.setFont(new Font("Calibri", Font.BOLD, 23));
+		jNomEtNomFamille.setFont(new Font("Calibri", Font.BOLD, 23));
 		jUsager.setFont(new Font("Calibri", Font.BOLD, 23));
 		jNom.setFont(new Font("Calibri", Font.BOLD, 23));
 		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 23));
 
+		jtTelephone.setEnabled(false);
+		jtNomEtNomFamille.setEnabled(false);
+		jtTelephone.setBackground(Color.gray.brighter());
+		jtNomEtNomFamille.setBackground(Color.gray.brighter());
+		
+		jpanel.add(jUsager);
+		jpanel.add(jcBox);
 		jpanel.add(jTelephone);
 		jpanel.add(jtTelephone);
 		jpanel.add(jNomEtNomFamille);
 		jpanel.add(jtNomEtNomFamille);
-		jpanel.add(jUsager);
-		jpanel.add(jcBox);
 		jpanel.add(jNom);
 		jpanel.add(jtNom);
 		jpanel.add(jMotDePasse);
@@ -151,7 +155,9 @@ public class Connexion extends JFrame {
 						else
 						{
 							Utilisateur utilisateur = new Utilisateur();
-							
+							dispose();
+							Interface demarrage = new Interface(usager());
+							demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						}
 					}
 					
@@ -202,5 +208,42 @@ public class Connexion extends JFrame {
 				jtMotDePasse.setText("");
 			}
 		});
+		
+		jcBox.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						if(jcBox.getSelectedItem().equals("Préposé"))
+						{
+							
+							jtTelephone.setEnabled(false);
+							jtNomEtNomFamille.setEnabled(false);
+							jtTelephone.setBackground(Color.gray.brighter());
+							jtNomEtNomFamille.setBackground(Color.gray.brighter());
+							
+							jtNom.setEnabled(true);
+							jtMotDePasse.setEnabled(true);
+							jtNom.setBackground(Color.white);
+							jtMotDePasse.setBackground(Color.white);
+						}
+						
+						else
+						{
+							
+							
+							jtTelephone.setEnabled(true);
+							jtNomEtNomFamille.setEnabled(true);
+							jtTelephone.setBackground(Color.white);
+							jtNomEtNomFamille.setBackground(Color.white);
+							
+							jtNom.setEnabled(false);
+							jtMotDePasse.setEnabled(false);
+							jtNom.setBackground(Color.gray.brighter());
+							jtMotDePasse.setBackground(Color.gray.brighter());
+							
+						}
+					}
+			
+				});
 	}
 }
