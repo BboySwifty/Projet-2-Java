@@ -36,23 +36,23 @@ public class Interface extends JFrame implements TableModelListener {
 
 	private JButton jbtnQuitter = new JButton("Quitter");
 	private JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
-	private JButton jbtnRecherche = new JButton("Recherche de la requete: ");
+	private JButton jbtnRecherche = new JButton("Recherche de la requete");
 	private JButton jbtnModifierDocument = new JButton("Modifier document");
 	private JButton jbtnListerDocument = new JButton("Lister document");
 	private JButton jbtnAjouterDocument = new JButton("Ajouter document");
 	private JButton jbtnEmprunterDocument = new JButton("Emprunter document");
 	private JButton jbtnRetournerDocument = new JButton("Retourner document");
-	private JButton jbtnVerifierDispo = new JButton("Verifier disponibilite");
+	private JButton jbtnGestionUsagers = new JButton("Gérer les usagers");
 
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
 	private JLabel jlabelParMotCles = new JLabel("Par Mot cles: ");
 
 	private JPanel jpanelSousRecherche1 = new JPanel();
 	private JPanel jpanelSousRecherche2 = new JPanel();
-	private JPanel jpanelSousRecherche3 = new JPanel();
 	private JPanel jpanelSousRechercheParAuteur = new JPanel();
 	private JPanel jpanelSousRechercheResultat = new JPanel();
-	private JPanel jpanelSousRechercheInformation = new JPanel();
+	private JPanel jpanelImageMario = new JPanel();
+	private JPanel jpanelImageLuigi = new JPanel();
 
 	private JPanel jpanela = new JPanel();
 	private JPanel jpanelb = new JPanel();
@@ -65,13 +65,13 @@ public class Interface extends JFrame implements TableModelListener {
 	private JPanel jpanelRecherche = new JPanel();
 	private JPanel jpanelOptions = new JPanel();
 
-	private JPanel jpanelSousCollection = new JPanel();
+	private JPanel jpanelActions = new JPanel();
 	private JPanel jpanelSousLivres = new JPanel();
 	private JPanel jpanelSousPeriodiques = new JPanel();
 	private JPanel jpanelSousDVDs = new JPanel();
-	
+
 	private JLabel jlabelmario = new JLabel(new ImageIcon("mario.png"));
-	private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
+	//private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
 	private JLabel jlabelluigi = new JLabel(new ImageIcon("luigi.png"));
 
 	private JPanel[] jpanelAdmin = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
@@ -87,7 +87,7 @@ public class Interface extends JFrame implements TableModelListener {
 
 	private TitledBorder tbRecherche = new TitledBorder("Recherche");
 	private TitledBorder tbResultat = new TitledBorder("Résultats");
-	private TitledBorder tbInformation = new TitledBorder("Information");
+	private TitledBorder tbActions = new TitledBorder("Actions");
 	private TitledBorder tbRechercheParAuteur = new TitledBorder("Recherche par auteur ou mot clé");
 	private TitledBorder tbSousResultat = new TitledBorder("Résultats");
 
@@ -121,8 +121,8 @@ public class Interface extends JFrame implements TableModelListener {
 		setVisible(true);
 		setSize(1000, 700);
 		setLocationRelativeTo(null);
-		
-		jtab.setPreferredSize(new Dimension(980, 600));
+
+		jtab.setPreferredSize(new Dimension(980, 435));
 
 		jspLiv.setPreferredSize(new Dimension(975, 400));
 		jspDVD.setPreferredSize(new Dimension(975, 400));
@@ -143,10 +143,16 @@ public class Interface extends JFrame implements TableModelListener {
 		jpanelDVDs.add(jspDVD);
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
-		
-		jpanelSousCollection.add(jbtnAjouterDocument);
-		add(jtab,BorderLayout.NORTH);
-		add(jpanelSousCollection);
+
+		jpanelActions.add(jbtnAjouterDocument);
+		jpanelActions.add(jbtnModifierDocument);
+		jpanelActions.add(jbtnEmprunterDocument);
+		jpanelActions.add(jbtnRetournerDocument);
+		jpanelActions.add(jbtnGestionUsagers);
+		jpanelActions.add(jbtnQuitter);
+		jpanelActions.setBorder(tbActions);
+		add(jtab, BorderLayout.NORTH);
+		add(jpanelActions, BorderLayout.SOUTH);
 	}
 
 	public void CreeTabRecherche() {
@@ -154,19 +160,19 @@ public class Interface extends JFrame implements TableModelListener {
 			jtab.addTab(strAdmin[i], jpanelAdmin[i]);
 		}
 
-		jpanelSousRecherche1.setLayout(new GridLayout(1, 2));
-		jpanelSousRecherche2.setLayout(new GridLayout(1, 2));
-		jpanelSousRecherche3.setLayout(new GridLayout(1, 2));
-		jpanelRecherche.setLayout(new GridLayout(3, 1));
-		
+		jpanelRecherche.setLayout(new GridLayout(2, 1));
+
 		jtAuteur.setPreferredSize(new Dimension(200, 25));
-		jtMotDePasse.setPreferredSize(new Dimension(200,25));
+		jtMotDePasse.setPreferredSize(new Dimension(200, 25));
 
 		jpanelSousRechercheParAuteur.setLayout(new GridLayout(3, 1));
 
 		jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
 		jpanelSousRechercheResultat.setBorder(tbSousResultat);
 		
+		jpanelSousRechercheParAuteur.setPreferredSize(new Dimension(600, 155));
+		jpanelSousRechercheResultat.setPreferredSize(new Dimension(600, 155));
+
 		jpanela.add(jlabelParAuteur);
 		jpanela.add(jtAuteur);
 		jpanelSousRechercheParAuteur.add(jpanela);
@@ -180,26 +186,29 @@ public class Interface extends JFrame implements TableModelListener {
 
 		jpanelSousRecherche1.setBorder(tbRecherche);
 		jpanelSousRecherche2.setBorder(tbResultat);
-		jpanelSousRecherche3.setBorder(tbInformation);
-
-		jpanelSousRecherche1.add(jlabelmario);
-		jpanelSousRecherche2.add(jlabelboo);
-		jpanelSousRecherche3.add(jlabelluigi);
+		
+		jpanelImageMario.add(jlabelmario);
+		jpanelImageLuigi.add(jlabelluigi);
+		
+		jpanelImageMario.setPreferredSize(new Dimension(300, 155));
+		jpanelImageLuigi.setPreferredSize(new Dimension(300, 155));
+		
+		jpanelSousRecherche1.add(jpanelImageMario);
+		jpanelSousRecherche2.add(jpanelImageLuigi);
 
 		jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
 		jpanelSousRecherche2.add(jpanelSousRechercheResultat);
-		jpanelSousRecherche3.add(jpanelSousRechercheInformation);
+		//jpanelSousRecherche3.add(jpanelSousRechercheInformation);
 
 		jpanelRecherche.add(jpanelSousRecherche1);
 		jpanelRecherche.add(jpanelSousRecherche2);
-		jpanelRecherche.add(jpanelSousRecherche3);
+		//jpanelRecherche.add(jpanelSousRecherche3);
 	}
 
 	// ajouter les buttons dans le tab d'option
 	public void CreeTabOption(String strUsager) {
-		
-		if (strUsager == "Administration") 
-		{
+
+		if (strUsager == "Administration") {
 			jpanelOptions.add(jbtnAjouterPrepose);
 		}
 
@@ -213,7 +222,6 @@ public class Interface extends JFrame implements TableModelListener {
 			jpanelOptions.add(jbtnAjouterDocument);
 			jpanelOptions.add(jbtnEmprunterDocument);
 			jpanelOptions.add(jbtnRetournerDocument);
-			jpanelOptions.add(jbtnVerifierDispo);
 		}
 
 		jpanelOptions.add(jbtnQuitter);
@@ -221,14 +229,11 @@ public class Interface extends JFrame implements TableModelListener {
 
 	// creer les fonctions des buttons
 	public void CreeFunctionsButtons() {
-		
-		//ajouter prepose
-		jbtnAjouterPrepose.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				if (e.getSource() == jbtnAjouterPrepose) 
-				{
+
+		// ajouter prepose
+		jbtnAjouterPrepose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == jbtnAjouterPrepose) {
 					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
 					System.out.println(strNomEntree);
 
@@ -249,64 +254,44 @@ public class Interface extends JFrame implements TableModelListener {
 				}
 			}
 		});
-		
-		jbtnRecherche.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						if(e.getSource() == jbtnRecherche)
-						{
-							TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
-							JTable jtRecherche = new JTable(tmRecherche);
-							
-							//if(tmRecherche.getRowCount() != 0)
-							{
-								JScrollPane jspRecherche = new JScrollPane(jtRecherche);
-								TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(jtRecherche.getModel());
-								jspRecherche.setPreferredSize(new Dimension(465, 155));
 
-								jtRecherche.setOpaque(true);
-								jtRecherche.setRowSorter(sorterRecherche);
-								jpanelSousRechercheResultat.removeAll();
-								jpanelSousRechercheResultat.add(jspRecherche);
-								jpanelSousRechercheResultat.validate();
-								jpanelSousRechercheResultat.repaint();
-							}
-						}
-					}
-			
-				});
-		
-		
-		jbtnVerifierDispo.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
+		jbtnRecherche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == jbtnRecherche) {
+					TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
+					JTable jtRecherche = new JTable(tmRecherche);
+
+					if(tmRecherche.getRowCount() != 0)
 					{
-						//if()
-						{
-							
-						}
-						
-						JOptionPane.showMessageDialog(null, "", "Disponibilite du document", JOptionPane.INFORMATION_MESSAGE);
+						JScrollPane jspRecherche = new JScrollPane(jtRecherche);
+						TableRowSorter<TableModel> sorterRecherche = new TableRowSorter<TableModel>(
+								jtRecherche.getModel());
+						jspRecherche.setPreferredSize(new Dimension(565, 120));
+
+						jtRecherche.setOpaque(true);
+						jtRecherche.setRowSorter(sorterRecherche);
+						jpanelSousRechercheResultat.removeAll();
+						jpanelSousRechercheResultat.add(jspRecherche);
+						jpanelSousRechercheResultat.validate();
+						jpanelSousRechercheResultat.repaint();
 					}
-			
-				});
-		
-		//button Quitter
-		jbtnQuitter.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						if(e.getSource() == jbtnQuitter)
-						{
-							System.exit(0);
-						}
-					}
-				});
+				}
+			}
+
+		});
+
+		// button Quitter
+		jbtnQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == jbtnQuitter) {
+					dispose();
+				}
+			}
+		});
 	}
-	
+
 	@Override
 	public void tableChanged(TableModelEvent e) {
-		
+
 	}
 }

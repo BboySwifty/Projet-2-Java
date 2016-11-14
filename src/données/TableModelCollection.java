@@ -16,20 +16,21 @@ public class TableModelCollection extends AbstractTableModel {
 	String strColl;
 
 	String[] tabLivre = { "Numéro de document", "Titre", "Auteur", "Date de parution", "Disponible" };
-	String[] tabDVD = { "Numéro de document", "Titre", "Nom du réalisateur", "Nombre de disques", "Date de parution", "Disponible" };
-	String[] tabPeriodique = { "Numéro de document", "Titre", "Numéro de Périodique", "Numéro de Volume", "Date de Parution", "Disponible"};
+	String[] tabDVD = { "Numéro de document", "Titre", "Nom du réalisateur", "Nombre de disques", "Date de parution",
+			"Disponible" };
+	String[] tabPeriodique = { "Numéro de document", "Titre", "Numéro de Périodique", "Numéro de Volume",
+			"Date de Parution", "Disponible" };
 	String[] tabCollection = { "Numéro de document", "Titre", "Date de parution", "Disponible" };
 
 	boolean editable = true;
 
-	public TableModelCollection(LectureFichier lf, String strColl) 
-	{
+	public TableModelCollection(LectureFichier lf, String strColl) {
 		this.strColl = strColl;
 		this.alCollection = lf.alCollection;
 		this.alLivre = lf.alLivres;
 		this.alDVD = lf.alDVDs;
 		this.alPeriodique = lf.alPeriodiques;
-		
+
 		if (strColl.equals("Livre")) {
 			for (int i = 0; i < alLivre.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
@@ -40,8 +41,8 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alLivre.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
-		} 
-		
+		}
+
 		else if (strColl.equals("DVD")) {
 			for (int i = 0; i < alDVD.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
@@ -53,9 +54,8 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alDVD.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
-			
-		} 
-		else if (strColl.equals("Periodique")) {
+
+		} else if (strColl.equals("Periodique")) {
 			for (int i = 0; i < alPeriodique.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alPeriodique.get(i).getStrNumeroDocument());
@@ -66,9 +66,8 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alPeriodique.get(i).getBoolRetourner().toString());
 				alDonnees.add(ligne);
 			}
-			
-		} 
-		else if (strColl.equals("Collection")) {
+
+		} else if (strColl.equals("Collection")) {
 			for (int i = 0; i < alCollection.size(); i++) {
 				ArrayList<Object> ligne = new ArrayList<Object>();
 				ligne.add(alCollection.get(i).getStrNumeroDocument());
@@ -78,26 +77,25 @@ public class TableModelCollection extends AbstractTableModel {
 				alDonnees.add(ligne);
 			}
 		}
-		
-		else if(strColl.equals("Recherche"))
-		{
-			for(int i = 0; i<alDVD.size();i++)
-			{
-				if(Interface.jtAuteur.getText().equals(alDVD.get(i).getStrNomRealisateur()))
-				{
+
+		else if (strColl.equals("Recherche")) {
+			for (int i = 0; i < alDVD.size(); i++) {
+				if (Interface.jtAuteur.getText().equals(alDVD.get(i).getStrNomRealisateur())) {
 					ArrayList<Object> ligne = new ArrayList<Object>();
 					ligne.add(alDVD.get(i).getStrNumeroDocument());
 					ligne.add(alDVD.get(i).getStrTitre());
+					ligne.add(alDVD.get(i).getStrNomRealisateur());
 					ligne.add(alDVD.get(i).getDate());
 					ligne.add(alDVD.get(i).getBoolRetourner().toString());
 					alDonnees.add(ligne);
 				}
 			}
-			for(int i = 0; i < alLivre.size(); i++){
-				if(Interface.jtAuteur.getText().equals(alLivre.get(i).getStrNomAuteur())){
+			for (int i = 0; i < alLivre.size(); i++) {
+				if (Interface.jtAuteur.getText().equals(alLivre.get(i).getStrNomAuteur())) {
 					ArrayList<Object> ligne = new ArrayList<Object>();
 					ligne.add(alLivre.get(i).getStrNumeroDocument());
 					ligne.add(alLivre.get(i).getStrTitre());
+					ligne.add(alLivre.get(i).getStrNomAuteur());
 					ligne.add(alLivre.get(i).getDate());
 					ligne.add(alLivre.get(i).getBoolRetourner().toString());
 					alDonnees.add(ligne);
@@ -108,55 +106,44 @@ public class TableModelCollection extends AbstractTableModel {
 
 	public String getColumnName(int col) {
 		switch (strColl) {
-			case "Livre":
-				return tabLivre[col];
-			case "DVD":
-				return tabDVD[col];
-			case "Periodique":
-				return tabPeriodique[col];
-			case "Collection":
-				return tabCollection[col];
-			default:
-				return tabCollection[col];
+		case "Livre":
+			return tabLivre[col];
+		case "DVD":
+			return tabDVD[col];
+		case "Periodique":
+			return tabPeriodique[col];
+		case "Collection":
+			return tabCollection[col];
+		default:
+			return tabLivre[col];
 		}
 	}
 
 	@Override
 	public int getColumnCount() {
 		switch (strColl) {
-			case "Livre":
-				return tabLivre.length;
-			case "DVD":
-				return tabDVD.length;
-			case "Periodique":
-				return tabPeriodique.length;
-			case "Collection":
-				return tabCollection.length;
-			default:
-				return tabCollection.length;
+		case "Livre":
+			return tabLivre.length;
+		case "DVD":
+			return tabDVD.length;
+		case "Periodique":
+			return tabPeriodique.length;
+		case "Collection":
+			return tabCollection.length;
+		default:
+			return tabLivre.length;
 		}
 	}
 
 	@Override
 	public int getRowCount() {
-		switch (strColl) {
-		case "Livre":
-			return alLivre.size();
-		case "DVD":
-			return alDVD.size();
-		case "Periodique":
-			return alPeriodique.size();
-		case "Collection":
-			return alCollection.size();
-		default:
-			return alDonnees.size();
-		}
+		return alDonnees.size();
 	}
-	
+
 	@Override
-    public Class<?> getColumnClass(int column) {
-        return getValueAt(0, column).getClass();
-    }
+	public Class<?> getColumnClass(int column) {
+		return getValueAt(0, column).getClass();
+	}
 
 	@Override
 	public Object getValueAt(int ligne, int colonne) {
@@ -166,7 +153,7 @@ public class TableModelCollection extends AbstractTableModel {
 
 	@SuppressWarnings("unchecked")
 	public void setValueAt(Object o, int ligne, int colonne) {
-		
+
 		alDonnees.get(ligne).set(colonne, o);
 		fireTableCellUpdated(ligne, colonne);
 	}
