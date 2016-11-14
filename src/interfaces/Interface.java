@@ -274,6 +274,7 @@ public class Interface extends JFrame implements TableModelListener {
 						jpanelSousRechercheResultat.add(jspRecherche);
 						jpanelSousRechercheResultat.validate();
 						jpanelSousRechercheResultat.repaint();
+						
 					}
 				}
 			}
