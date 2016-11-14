@@ -1,12 +1,15 @@
 package données;
+
+import java.sql.Date;
+
 public class Prêt {
 	
 	private int noPrêt;
-	private String dateDuJour;
-	private String dateRetourPrevue;
-	private String dateEffectiveRetour;
+	private Date dateDuJour;
+	private Date  dateRetourPrevue;
+	private Date  dateEffectiveRetour;
 	
-	Prêt(int noPrêt, String dateDuJour, String dateRetourPrevue, String dateEffectiveRetour)
+	Prêt(int noPrêt, Date dateDuJour, Date  dateRetourPrevue, Date  dateEffectiveRetour)
 	{
 		this.noPrêt = noPrêt;
 		this.dateDuJour = dateDuJour;
@@ -14,23 +17,22 @@ public class Prêt {
 		this.dateEffectiveRetour = dateEffectiveRetour;
 	}
 	
-	public void ajouterPret()
+	public void ajouterPret(Utilisateur utilisateur, Document document, int noPrêt)
 	{
-		
+		this.noPrêt = this.noPrêt + noPrêt;
 	}
 	
-	public void modifierPret()
+	public void modifierPret(int noPrêt)
 	{
-		
+		this.noPrêt = noPrêt;
 	}
 	
 	public void listerPret()
 	{
-		
+		System.out.println(noPrêt);
 	}
 	
 	private void calculerDateRetour()
 	{
-		
 	}
 }

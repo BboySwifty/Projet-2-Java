@@ -68,7 +68,7 @@ public class Connexion extends JFrame {
 	private JButton jbConnexion = new JButton("Connexion");
 	private JButton jbEffacer = new JButton("Effacer");
 
-	private String[] strComboBox = { "Administration", "Adhérent", "Préposé" };
+	private String[] strComboBox = {"Adhérent", "Préposé" };
 	private JComboBox jcBox = new JComboBox(strComboBox);
 
 	private ArrayList<Personne> alPersonne = new ArrayList<Personne>();
