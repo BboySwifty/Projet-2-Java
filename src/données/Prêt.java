@@ -2,7 +2,6 @@ package données;
 
 import java.sql.Date;
 
-import interfaces.Utilisateur;
 
 public class Prêt {
 	
@@ -19,7 +18,7 @@ public class Prêt {
 		this.dateEffectiveRetour = dateEffectiveRetour;
 	}
 	
-	public void ajouterPret(Utilisateur utilisateur, Document document, int noPrêt)
+	public void ajouterPret(Document document, int noPrêt)
 	{
 		this.noPrêt = this.noPrêt + noPrêt;
 	}

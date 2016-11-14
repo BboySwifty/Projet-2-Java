@@ -154,7 +154,6 @@ public class Connexion extends JFrame {
 						
 						else
 						{
-							Utilisateur utilisateur = new Utilisateur();
 							dispose();
 							Interface demarrage = new Interface(usager());
 							demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
