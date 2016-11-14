@@ -111,12 +111,9 @@ public class Connexion extends JFrame {
 		jpanel.add(jbEffacer);
 
 		jtTelephone.setPreferredSize(new Dimension(200,50));
-		
-		jpanelLogin.add(jMediatheque);
-		
-		
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
 		
+		jpanelLogin.add(jMediatheque);
 		
 		add(jpanelLogin);
 		add(jpanel);
@@ -154,9 +151,20 @@ public class Connexion extends JFrame {
 						
 						else
 						{
-							dispose();
-							Interface demarrage = new Interface(usager());
-							demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							if(!(jtTelephone.getText().matches(("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}"))))
+							{
+								JOptionPane.showMessageDialog(null,"Veuillez entree un telephone valide","Erreur", JOptionPane.INFORMATION_MESSAGE);
+							}
+							
+							else
+							{
+								String strNom = jtNomEtNomFamille.getText();
+								
+								dispose();
+								Interface demarrage = new Interface(usager());
+								demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								System.out.println(strNom);
+							}
 						}
 					}
 					
