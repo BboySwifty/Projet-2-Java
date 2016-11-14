@@ -1,15 +1,16 @@
 package données;
-public class Amende {
+public class Amende 
+{
 	
-	private int no;
-	private String état;
-	private int montant;
+	private int intNo;
+	private int intMontant;
+	private boolean boolPayer;
 	
-	Amende(int no, String état, int montant)
+	Amende(int intNo, int intMontant,boolean boolPayer)
 	{
-		this.no = no;
-		this.état = état;
-		this.montant = montant;
+		this.intNo = intNo;
+		this.intMontant = intMontant;
+		this.boolPayer = boolPayer;
 	}
 	
 	public void inscrireAmende()
