@@ -107,10 +107,18 @@ public class Interface extends JFrame implements TableModelListener {
 
 		CreeFunctionsButtons();
 		CreeTabRecherche();
+		GestionJPanels();
 
 		setSize(1000, 700);
 		setLocationRelativeTo(null);
+		
+		add(jtab, BorderLayout.NORTH);
+		add(jpanelActions, BorderLayout.SOUTH);
 
+		setVisible(true);
+	}
+
+	private void GestionJPanels() {
 		jtab.setPreferredSize(new Dimension(980, 435));
 
 		jspLiv.setPreferredSize(new Dimension(975, 400));
@@ -137,10 +145,6 @@ public class Interface extends JFrame implements TableModelListener {
 		jpanelActions.add(jbtnGestionUsagers);
 		jpanelActions.add(jbtnQuitter);
 		jpanelActions.setBorder(tbActions);
-		add(jtab, BorderLayout.NORTH);
-		add(jpanelActions, BorderLayout.SOUTH);
-
-		setVisible(true);
 	}
 
 	public void CreeTabRecherche() {
@@ -186,11 +190,9 @@ public class Interface extends JFrame implements TableModelListener {
 
 		jpanelSousRecherche1.add(jpanelSousRechercheParAuteur);
 		jpanelSousRecherche2.add(jpanelSousRechercheResultat);
-		//jpanelSousRecherche3.add(jpanelSousRechercheInformation);
 
 		jpanelRecherche.add(jpanelSousRecherche1);
 		jpanelRecherche.add(jpanelSousRecherche2);
-		//jpanelRecherche.add(jpanelSousRecherche3);
 	}
 
 	// creer les fonctions des buttons
