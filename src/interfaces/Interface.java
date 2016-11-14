@@ -35,13 +35,8 @@ public class Interface extends JFrame implements TableModelListener {
 	public static JTextField jtMotDePasse = new JTextField();
 
 	private JButton jbtnQuitter = new JButton("Quitter");
-	private JButton jbtnAjouterPrepose = new JButton("Ajouter Prepose");
 	private JButton jbtnRecherche = new JButton("Recherche de la requete");
-	private JButton jbtnModifierDocument = new JButton("Modifier document");
-	private JButton jbtnListerDocument = new JButton("Lister document");
-	private JButton jbtnAjouterDocument = new JButton("Ajouter document");
-	private JButton jbtnEmprunterDocument = new JButton("Emprunter document");
-	private JButton jbtnRetournerDocument = new JButton("Retourner document");
+	private JButton jbtnGestionDocuments = new JButton("Gérer les documents");
 	private JButton jbtnGestionUsagers = new JButton("Gérer les usagers");
 
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
@@ -64,12 +59,8 @@ public class Interface extends JFrame implements TableModelListener {
 	private JPanel jpanelDVDs = new JPanel();
 	private JPanel jpanelRecherche = new JPanel();
 	private JPanel jpanelOptions = new JPanel();
-
 	private JPanel jpanelActions = new JPanel();
-	private JPanel jpanelSousLivres = new JPanel();
-	private JPanel jpanelSousPeriodiques = new JPanel();
-	private JPanel jpanelSousDVDs = new JPanel();
-
+	
 	private JLabel jlabelmario = new JLabel(new ImageIcon("mario.png"));
 	//private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
 	private JLabel jlabelluigi = new JLabel(new ImageIcon("luigi.png"));
@@ -116,9 +107,7 @@ public class Interface extends JFrame implements TableModelListener {
 
 		CreeFunctionsButtons();
 		CreeTabRecherche();
-		CreeTabOption(strUsager);
 
-		setVisible(true);
 		setSize(1000, 700);
 		setLocationRelativeTo(null);
 
@@ -144,15 +133,14 @@ public class Interface extends JFrame implements TableModelListener {
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
 
-		jpanelActions.add(jbtnAjouterDocument);
-		jpanelActions.add(jbtnModifierDocument);
-		jpanelActions.add(jbtnEmprunterDocument);
-		jpanelActions.add(jbtnRetournerDocument);
+		jpanelActions.add(jbtnGestionDocuments);
 		jpanelActions.add(jbtnGestionUsagers);
 		jpanelActions.add(jbtnQuitter);
 		jpanelActions.setBorder(tbActions);
 		add(jtab, BorderLayout.NORTH);
 		add(jpanelActions, BorderLayout.SOUTH);
+
+		setVisible(true);
 	}
 
 	public void CreeTabRecherche() {
@@ -205,55 +193,23 @@ public class Interface extends JFrame implements TableModelListener {
 		//jpanelRecherche.add(jpanelSousRecherche3);
 	}
 
-	// ajouter les buttons dans le tab d'option
-	public void CreeTabOption(String strUsager) {
-
-		if (strUsager == "Administration") {
-			jpanelOptions.add(jbtnAjouterPrepose);
-		}
-
-		else if (strUsager == "Adhérent") {
-			jpanelOptions.add(jbtnRetournerDocument);
-			jpanelOptions.add(jbtnListerDocument);
-		}
-
-		else {
-			jpanelOptions.add(jbtnModifierDocument);
-			jpanelOptions.add(jbtnAjouterDocument);
-			jpanelOptions.add(jbtnEmprunterDocument);
-			jpanelOptions.add(jbtnRetournerDocument);
-		}
-
-		jpanelOptions.add(jbtnQuitter);
-	}
-
 	// creer les fonctions des buttons
 	public void CreeFunctionsButtons() {
-
-		// ajouter prepose
-		jbtnAjouterPrepose.addActionListener(new ActionListener() {
+		
+		jbtnGestionDocuments.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == jbtnAjouterPrepose) {
+				GestionDocuments gd = new GestionDocuments();
+			}
+		});
+				/*if (e.getSource() == jbtnAjouterPrepose) {
 					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
 					System.out.println(strNomEntree);
 
 					String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
 					System.out.println(strMotDePasseEntree);
-
-					/*
-					 * try { FileWriter file = new
-					 * FileWriter("Usagers.txt",false); file.write("123");
-					 * file.close();
-					 * 
-					 * }
-					 * 
-					 * catch(IOException o) {
-					 * 
-					 * }
-					 */
-				}
-			}
-		});
+				}*/
 
 		jbtnRecherche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
