@@ -39,8 +39,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import données.Adherent;
 import données.Personne;
-import données.Utilisateur;
+import données.Prepose;
 
 public class Connexion extends JFrame {
 	Container c = getContentPane();
@@ -72,6 +73,9 @@ public class Connexion extends JFrame {
 	private JComboBox jcBox = new JComboBox(strComboBox);
 
 	private ArrayList<Personne> alPersonne = new ArrayList<Personne>();
+	private ArrayList<Prepose> alPrepose = new ArrayList<Prepose>();
+	private ArrayList<Adherent> alAdherent = new ArrayList<Adherent>();
+	
 	
 	public Connexion() 
 	{

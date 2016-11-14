@@ -2,6 +2,8 @@ package données;
 
 import java.sql.Date;
 
+import interfaces.Utilisateur;
+
 public class Prêt {
 	
 	private int noPrêt;
