@@ -17,8 +17,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -48,7 +46,6 @@ public class Interface extends JFrame implements TableModelListener {
 
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
 	private JLabel jlabelParMotCles = new JLabel("Par Mot cles: ");
-	private JLabel jlabelInformation = new JLabel("Numéro du document : ");
 
 	private JPanel jpanelSousRecherche1 = new JPanel();
 	private JPanel jpanelSousRecherche2 = new JPanel();
@@ -76,7 +73,6 @@ public class Interface extends JFrame implements TableModelListener {
 	private JLabel jlabelmario = new JLabel(new ImageIcon("mario.png"));
 	private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
 	private JLabel jlabelluigi = new JLabel(new ImageIcon("luigi.png"));
-	private JLabel jlabeletoile = new JLabel(new ImageIcon("etoile.png"));
 
 	private JPanel[] jpanelAdmin = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
 			jpanelOptions };
@@ -94,7 +90,6 @@ public class Interface extends JFrame implements TableModelListener {
 	private TitledBorder tbInformation = new TitledBorder("Information");
 	private TitledBorder tbRechercheParAuteur = new TitledBorder("Recherche par auteur ou mot clé");
 	private TitledBorder tbSousResultat = new TitledBorder("Résultats");
-	private TitledBorder tbSousInformation = new TitledBorder("Information");
 
 	private TableModelCollection tmLivre = new TableModelCollection(lf, "Livre");
 	private TableModelCollection tmDVD = new TableModelCollection(lf, "DVD");
@@ -123,10 +118,11 @@ public class Interface extends JFrame implements TableModelListener {
 		CreeTabRecherche();
 		CreeTabOption(strUsager);
 
-		//jpanelCollection.setLayout(new GridLayout(2,1));
 		setVisible(true);
 		setSize(1000, 700);
 		setLocationRelativeTo(null);
+		
+		jtab.setPreferredSize(new Dimension(980, 600));
 
 		jspLiv.setPreferredSize(new Dimension(975, 400));
 		jspDVD.setPreferredSize(new Dimension(975, 400));
@@ -142,40 +138,15 @@ public class Interface extends JFrame implements TableModelListener {
 		jtDVD.setRowSorter(sorterDVD);
 		jtPer.setRowSorter(sorterPer);
 		jtColl.setRowSorter(sorterColl);
-		
-		tmColl.addTableModelListener(this);
-		tmLivre.addTableModelListener(this);
-		
-		jtColl.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				jlabelInformation.setText("Numéro du document : " + jtColl.getValueAt(jtColl.getSelectedRow(), 0).toString());
-			}
-		});
 
 		jpanelLivres.add(jspLiv);
 		jpanelDVDs.add(jspDVD);
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
 		
-		jpanelLivres.add(jpanelSousLivres);
-		jpanelDVDs.add(jpanelSousDVDs);
-		jpanelPeriodiques.add(jpanelSousPeriodiques);
-		jpanelCollection.add(jpanelSousCollection);
-		
-		jpanelSousLivres.add(jlabeletoile);
-		jpanelSousDVDs.add(jlabeletoile);
-		jpanelSousPeriodiques.add(jlabeletoile);
-		
-		JPanel jp = new JPanel();
-		jp.add(jlabelInformation);
-		jpanelSousCollection.setLayout(new GridLayout(1,2));
-		jpanelSousCollection.add(jlabeletoile);
-		jpanelSousCollection.add(jp);
-		jp.setBorder(tbInformation);
-		
-		
-		add(jtab);
+		jpanelSousCollection.add(jbtnAjouterDocument);
+		add(jtab,BorderLayout.NORTH);
+		add(jpanelSousCollection);
 	}
 
 	public void CreeTabRecherche() {
@@ -195,7 +166,6 @@ public class Interface extends JFrame implements TableModelListener {
 
 		jpanelSousRechercheParAuteur.setBorder(tbRechercheParAuteur);
 		jpanelSousRechercheResultat.setBorder(tbSousResultat);
-		jpanelSousRechercheInformation.setBorder(tbSousInformation);
 		
 		jpanela.add(jlabelParAuteur);
 		jpanela.add(jtAuteur);
