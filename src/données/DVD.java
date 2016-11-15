@@ -7,7 +7,7 @@ public class DVD extends Document
 	private int intNombreDisques;
 	private String strNomRealisateur;
 
-	public DVD(String strIntDocument, String strTitre, Date date, int intNombreDisques,
+	public DVD(String strIntDocument, String strTitre,Date date, int intNombreDisques,
 			String strNomRealisateur) 
 	{
 		super(strIntDocument, strTitre, date, boolRetourner);

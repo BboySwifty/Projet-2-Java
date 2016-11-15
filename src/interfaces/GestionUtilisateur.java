@@ -30,6 +30,7 @@ public class GestionUtilisateur extends JFrame
 {
 	Container c = getContentPane();
 	
+	//declarations d'instances
 	private int intCompteurInscription = 0;
 	private int intNumeroTelephone;
 	
@@ -110,6 +111,7 @@ public class GestionUtilisateur extends JFrame
 		setVisible(true);
 	}
 
+	//ajout des listeners
 	private void AjoutListeners() {
 		jcb.addActionListener(new ActionListener() {
 
@@ -185,6 +187,7 @@ public class GestionUtilisateur extends JFrame
 			}
 		});
 		
+		//supprimer lutilisateur
 		jBtnSupprimer.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 

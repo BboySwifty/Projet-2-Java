@@ -7,7 +7,7 @@ public class Periodique extends Document
 	private int intNumeroVolume;
 	private int intNumeroPeriodique;
 	
-	public Periodique(String strIntDocument, String strTitre, Date date, int intNumeroVolume, int intNumeroPeriodique) 
+	public Periodique(String strIntDocument, String strTitre, Date date ,int intNumeroVolume, int intNumeroPeriodique) 
 	{
 		super(strIntDocument, strTitre, date, boolRetourner);
 		

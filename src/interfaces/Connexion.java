@@ -27,6 +27,7 @@ import données.ListeUtilisateur;
 public class Connexion extends JFrame {
 	Container c = getContentPane();
 
+	//declaration d'instances
 	private JPanel jpanelLogin = new JPanel();
 	private JPanel jpanel = new JPanel();
 	
@@ -59,44 +60,9 @@ public class Connexion extends JFrame {
 	{
 		super("Connexion");
 		
-		CreeFunctionBouttons();
+		creerFunctionBouttons();
+		creerInterface();
 		
-		setLayout(new GridLayout(2, 1));
-		jpanel.setLayout(new GridLayout(6, 2));
-		
-		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
-		jTelephone.setFont(new Font("Calibri", Font.BOLD, 23));
-		jNomEtNomFamille.setFont(new Font("Calibri", Font.BOLD, 23));
-		jUsager.setFont(new Font("Calibri", Font.BOLD, 23));
-		jNom.setFont(new Font("Calibri", Font.BOLD, 23));
-		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 23));
-
-		jtTelephone.setEnabled(false);
-		jtNomEtNomFamille.setEnabled(false);
-		jtTelephone.setBackground(Color.gray.brighter());
-		jtNomEtNomFamille.setBackground(Color.gray.brighter());
-		
-		jpanel.add(jUsager);
-		jpanel.add(jcBox);
-		jpanel.add(jTelephone);
-		jpanel.add(jtTelephone);
-		jpanel.add(jNomEtNomFamille);
-		jpanel.add(jtNomEtNomFamille);
-		jpanel.add(jNom);
-		jpanel.add(jtNom);
-		jpanel.add(jMotDePasse);
-		jpanel.add(jtMotDePasse);
-		jpanel.add(jbConnexion);
-		jpanel.add(jbEffacer);
-
-		jtTelephone.setPreferredSize(new Dimension(200,50));
-		jMediatheque.setIcon(new ImageIcon("authentification.png"));
-		
-		jpanelLogin.add(jMediatheque);
-		
-		add(jpanelLogin);
-		add(jpanel);
-
 		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -108,7 +74,8 @@ public class Connexion extends JFrame {
 		return (String) jcBox.getSelectedItem();
 	}
 	
-	public void CreeFunctionBouttons()
+	//creer les bouttons
+	public void creerFunctionBouttons()
 	{
 		//button connexion
 		jbConnexion.addActionListener(new ActionListener() 
@@ -142,7 +109,7 @@ public class Connexion extends JFrame {
 								
 							}
 							
-							if((jtTelephone.getText().matches(("\\d{10}"))))
+						//	if((jtTelephone.getText().matches(("\\d{10}"))))
 							{
 								System.out.println(gsu.getAlAdherent().size());
 								
@@ -150,32 +117,29 @@ public class Connexion extends JFrame {
 								{
 									//compare numero de telephone
 									System.out.println("intNumeroTelephone :" + intNumeroTelephone);
-									if(intNumeroTelephone == gsu.getAlAdherent().get(i).getIntNumeroTelephone())
+									
+									//if(intNumeroTelephone == gsu.getAlAdherent().get(i).getIntNumeroTelephone())
+									{
+										
+									}
+									
+									//compare nom
+									if(strNomEtNomFamille.equalsIgnoreCase(gsu.getAlAdherent().get(i).getNomEtNomFamille()))
 									{
 										dispose();
 										Interface demarrage = new Interface(usager());
 										demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 									}
 									
-									else
-									{
-										System.out.println("nexiste pas");
-									}
-									
-									//compare nom
-									//if(strNomEtNomFamille.equalsIgnoreCase(gsu.getAlAdherent().get(i).getNomEtNomFamille()))
-									{
-										
-									}
-									
 								}
 							}
-							
+							/*
 							else
 							{
 								JOptionPane.showMessageDialog(null,"Le numero de telephone est invalide" + "\n                    "
 										+ "OU BIEN \nvous n'avez pas de compte existant.","Erreur", JOptionPane.INFORMATION_MESSAGE);
 							}
+							*/
 						}
 					}
 					
@@ -257,5 +221,44 @@ public class Connexion extends JFrame {
 						}
 					}
 				});
+	}
+	
+	//creer interface
+	public void creerInterface()
+	{
+		setLayout(new GridLayout(2, 1));
+		jpanel.setLayout(new GridLayout(6, 2));
+		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
+		jTelephone.setFont(new Font("Calibri", Font.BOLD, 23));
+		jNomEtNomFamille.setFont(new Font("Calibri", Font.BOLD, 23));
+		jUsager.setFont(new Font("Calibri", Font.BOLD, 23));
+		jNom.setFont(new Font("Calibri", Font.BOLD, 23));
+		jMotDePasse.setFont(new Font("Calibri", Font.BOLD, 23));
+
+		jtTelephone.setEnabled(false);
+		jtNomEtNomFamille.setEnabled(false);
+		jtTelephone.setBackground(Color.gray.brighter());
+		jtNomEtNomFamille.setBackground(Color.gray.brighter());
+		
+		jpanel.add(jUsager);
+		jpanel.add(jcBox);
+		jpanel.add(jTelephone);
+		jpanel.add(jtTelephone);
+		jpanel.add(jNomEtNomFamille);
+		jpanel.add(jtNomEtNomFamille);
+		jpanel.add(jNom);
+		jpanel.add(jtNom);
+		jpanel.add(jMotDePasse);
+		jpanel.add(jtMotDePasse);
+		jpanel.add(jbConnexion);
+		jpanel.add(jbEffacer);
+
+		jtTelephone.setPreferredSize(new Dimension(200,50));
+		jMediatheque.setIcon(new ImageIcon("authentification.png"));
+		
+		jpanelLogin.add(jMediatheque);
+		
+		add(jpanelLogin);
+		add(jpanel);
 	}
 }

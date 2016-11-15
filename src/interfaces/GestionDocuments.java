@@ -4,6 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,7 +18,10 @@ import javax.swing.JTextField;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
+import données.DVD;
 import données.LectureFichier;
+import données.Livre;
+import données.Periodique;
 
 public class GestionDocuments extends JFrame {
 	
@@ -60,38 +68,23 @@ public class GestionDocuments extends JFrame {
 	private JTextField[] tabTfPeriodique = { jtf1, jtf2, jtf3, jtf4, jtf5 };
 	private JTextField[] tabTfSupprimer = { jtf1 };
 
-	public GestionDocuments(LectureFichier lf) {
+	public GestionDocuments(LectureFichier lf) 
+	{
 		super("Gérer les documents");
-		setSize(350, 300);
-		setLocationRelativeTo(null);
 		
 		this.lf = lf;
-
+		
+		creerInterface();
 		AjoutListeners();
 		
-		hash1.put("Livre", tabLivre);
-		hash1.put("DVD", tabDVD);
-		hash1.put("Périodique", tabPeriodique);
-		hash1.put("Supprimer", tabSupprimer);
-
-		hash2.put("Livre", tabTfLivre);
-		hash2.put("DVD", tabTfDVD);
-		hash2.put("Périodique", tabTfPeriodique);
-		hash2.put("Supprimer", tabTfSupprimer);
-
-		jpTxt.setLayout(new GridLayout(4, 2));
-		jpMain.add(jcbType);
-		jpMain.add(jpTxt);
-		jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
-
-		GestionTextField("Livre");
-
-		add(jcb, BorderLayout.NORTH);
-		add(jpMain);
 		setVisible(true);
+		setSize(350, 300);
+		setLocationRelativeTo(null);
 	}
 
-	private void AjoutListeners() {
+	private void AjoutListeners() 
+	{
+		//lajout des actionlisteners
 		jcb.addActionListener(new ActionListener() {
 
 			@Override
@@ -132,13 +125,41 @@ public class GestionDocuments extends JFrame {
 		
 		jBtnAjouter.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
-				/*if(jcbType.getSelectedItem().equals("Livre")){
-					Date date = new Date();
-					Livre l = new Livre(jtf1.getText(), jtf2.getText(),  date Date.valueOf(jtf3.getText()), jtf4.getText());
-					lf.alLivres.add(l);
-					lf.alCollection.add(l);
-				}*/
+			public void actionPerformed(ActionEvent e)
+			{
+				DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+				
+				Date date;
+				try {
+					date = df.parse(jtf3.getText());
+					
+					if(jcbType.getSelectedItem().equals("Livre"))
+					{
+						Livre l = new Livre(jtf1.getText(), jtf2.getText(),  date, jtf4.getText());
+						lf.alLivres.add(l);
+						lf.alCollection.add(l);
+						
+					}
+					
+					else if(jcbType.getSelectedItem().equals("DVD"))
+					{
+						
+						DVD d = new DVD(jtf1.getText(),jtf2.getText(),date,Integer.parseInt(jtf4.getText()),jtf3.getText());
+						
+					}
+					
+					else
+					{
+						Periodique p = new Periodique(jtf1.getText(),jtf2.getText(),date, Integer.parseInt(jtf3.getText()),Integer.parseInt(jtf4.getText()));
+					}
+				} 
+				
+				catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+					
 			}
 		});
 	}
@@ -161,5 +182,28 @@ public class GestionDocuments extends JFrame {
 
 		jpMain.validate();
 		jpMain.repaint();
+	}
+	
+	public void creerInterface()
+	{
+		hash1.put("Livre", tabLivre);
+		hash1.put("DVD", tabDVD);
+		hash1.put("Périodique", tabPeriodique);
+		hash1.put("Supprimer", tabSupprimer);
+
+		hash2.put("Livre", tabTfLivre);
+		hash2.put("DVD", tabTfDVD);
+		hash2.put("Périodique", tabTfPeriodique);
+		hash2.put("Supprimer", tabTfSupprimer);
+
+		jpTxt.setLayout(new GridLayout(4, 2));
+		jpMain.add(jcbType);
+		jpMain.add(jpTxt);
+		jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
+
+		GestionTextField("Livre");
+
+		add(jcb, BorderLayout.NORTH);
+		add(jpMain);
 	}
 }

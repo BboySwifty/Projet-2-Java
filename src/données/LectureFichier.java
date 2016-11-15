@@ -67,6 +67,7 @@ public class LectureFichier {
 						e.printStackTrace();
 					}*/
 
+					
 					// Nom de l'auteur
 					strAuteur = st.nextToken().trim();
 					Livre livre = new Livre(strNumeroDocument, strTitre, date, strAuteur);
@@ -106,7 +107,7 @@ public class LectureFichier {
 					intNombreDisques = Integer.parseInt(st.nextToken());
 					strAuteur = st.nextToken();
 
-					DVD dvd = new DVD(strNumeroDocument, strTitre, date, intNombreDisques, strAuteur);
+					DVD dvd = new DVD(strNumeroDocument, strTitre,date, intNombreDisques, strAuteur);
 
 					alDVDs.add(dvd);
 					alCollection.add(dvd);
@@ -145,8 +146,7 @@ public class LectureFichier {
 					intNumeroVolume = Integer.parseInt(st.nextToken());
 					intNumeroPeriodique = Integer.parseInt(st.nextToken());
 
-					Periodique periodique = new Periodique(strNumeroDocument, strTitre, date, intNumeroVolume,
-							intNumeroPeriodique);
+					Periodique periodique = new Periodique(strNumeroDocument, strTitre,date, intNumeroPeriodique, intNumeroVolume);
 
 					alPeriodiques.add(periodique);
 					alCollection.add(periodique);

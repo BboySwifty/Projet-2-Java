@@ -26,6 +26,8 @@ import données.LectureFichier;
 import données.TableModelCollection;
 
 public class Interface extends JFrame implements TableModelListener {
+	
+	//variables d'instances
 	LectureFichier lf = new LectureFichier();
 
 	JFrame jframe = new JFrame();
@@ -96,7 +98,8 @@ public class Interface extends JFrame implements TableModelListener {
 	private TableRowSorter<TableModel> sorterPer = new TableRowSorter<TableModel>(jtPer.getModel());
 	private TableRowSorter<TableModel> sorterColl = new TableRowSorter<TableModel>(jtColl.getModel());
 
-	Interface(String strUsager) {
+	Interface(String strUsager)
+	{
 		super("La mediatheque de GG");
 
 		CreeFunctionsButtons();
@@ -112,7 +115,8 @@ public class Interface extends JFrame implements TableModelListener {
 		setVisible(true);
 	}
 
-	private void GestionJPanels() {
+	private void GestionJPanels() 
+	{
 		jtab.setPreferredSize(new Dimension(980, 435));
 
 		jspLiv.setPreferredSize(new Dimension(975, 400));
@@ -142,7 +146,9 @@ public class Interface extends JFrame implements TableModelListener {
 		jpanelActions.setBorder(tbActions);
 	}
 
-	public void CreeTabRecherche() {
+	//creer tab recherche
+	public void CreeTabRecherche() 
+	{
 		for (int i = 0; i < strPrepose.length; i++) {
 			jtab.addTab(strPrepose[i], jpanelPrepose[i]);
 		}
@@ -198,16 +204,18 @@ public class Interface extends JFrame implements TableModelListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GestionDocuments gd = new GestionDocuments(lf);
+				
+				/*if (e.getSource() == jbtnAjouterPrepose) {
+				String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
+				System.out.println(strNomEntree);
+
+				String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
+				System.out.println(strMotDePasseEntree);
+				}*/
 			}
 		});
-				/*if (e.getSource() == jbtnAjouterPrepose) {
-					String strNomEntree = JOptionPane.showInputDialog("Entree le nom de l'usage: ");
-					System.out.println(strNomEntree);
-
-					String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
-					System.out.println(strMotDePasseEntree);
-				}*/
 		
+		//btn gestion utilisateur
 		jbtnGestionUtilisateur.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 
@@ -224,7 +232,8 @@ public class Interface extends JFrame implements TableModelListener {
 				
 			}
 		});
-
+		
+		//btn recherche
 		jbtnRecherche.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) {
