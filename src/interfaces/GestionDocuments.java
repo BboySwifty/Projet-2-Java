@@ -1,14 +1,11 @@
 package interfaces;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,7 +13,11 @@ import javax.swing.JTextField;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
+import données.LectureFichier;
+
 public class GestionDocuments extends JFrame {
+	
+	private LectureFichier lf;
 
 	private String[] strCombo = { "Ajouter un document", "Modifier un document", "Supprimer un document" };
 	private String[] strType = { "Livre", "DVD", "Périodique" };
@@ -40,7 +41,8 @@ public class GestionDocuments extends JFrame {
 	private JButton jBtnModifier = new JButton("Modifier");
 	private JButton jBtnSupprimer = new JButton("Supprimer");
 
-	private Hashtable hash = new Hashtable(5);
+	private Hashtable hash1 = new Hashtable(4);
+	private Hashtable hash2 = new Hashtable(4);
 
 	private JTextField jtf1 = new JTextField();
 	private JTextField jtf2 = new JTextField();
@@ -48,23 +50,34 @@ public class GestionDocuments extends JFrame {
 	private JTextField jtf4 = new JTextField();
 	private JTextField jtf5 = new JTextField();
 
-	private Component[] tabLivre = { jLabelNumDoc, jtf1, jLabelTitre, jtf2, jLabelAuteur, jtf3, jLabelDate, jtf4 };
-	private Component[] tabDVD = { jLabelNumDoc, jtf1, jLabelTitre, jtf2, jLabelRealisateur, jtf3, jLabelDisques, jtf4,
-			jLabelDate, jtf5 };
-	private Component[] tabPeriodique = { jLabelNumDoc, jtf1, jLabelTitre, jtf2, jLabelNoPer, jtf3, jLabelNoVolume,
-			jtf5 };
-	private Component[] tabSupprimer = { jLabelNumDoc, jtf1 };
+	private JLabel[] tabLivre = { jLabelNumDoc, jLabelTitre, jLabelAuteur, jLabelDate };
+	private JLabel[] tabDVD = { jLabelNumDoc, jLabelTitre, jLabelRealisateur, jLabelDisques, jLabelDate };
+	private JLabel[] tabPeriodique = { jLabelNumDoc, jLabelTitre, jLabelNoPer, jLabelNoVolume, jLabelDate };
+	private JLabel[] tabSupprimer = { jLabelNumDoc };
+	
+	private JTextField[] tabTfLivre = { jtf1, jtf2, jtf3, jtf4 };
+	private JTextField[] tabTfDVD = { jtf1, jtf2, jtf3, jtf4, jtf5 };
+	private JTextField[] tabTfPeriodique = { jtf1, jtf2, jtf3, jtf4, jtf5 };
+	private JTextField[] tabTfSupprimer = { jtf1 };
 
-	public GestionDocuments() {
+	public GestionDocuments(LectureFichier lf) {
 		super("Gérer les documents");
 		setSize(350, 300);
 		setLocationRelativeTo(null);
+		
+		this.lf = lf;
 
 		AjoutListeners();
-		hash.put("Livre", tabLivre);
-		hash.put("DVD", tabDVD);
-		hash.put("Périodique", tabPeriodique);
-		hash.put("Supprimer", tabSupprimer);
+		
+		hash1.put("Livre", tabLivre);
+		hash1.put("DVD", tabDVD);
+		hash1.put("Périodique", tabPeriodique);
+		hash1.put("Supprimer", tabSupprimer);
+
+		hash2.put("Livre", tabTfLivre);
+		hash2.put("DVD", tabTfDVD);
+		hash2.put("Périodique", tabTfPeriodique);
+		hash2.put("Supprimer", tabTfSupprimer);
 
 		jpTxt.setLayout(new GridLayout(4, 2));
 		jpMain.add(jcbType);
@@ -116,16 +129,34 @@ public class GestionDocuments extends JFrame {
 				GestionTextField(jcbType.getSelectedItem().toString());
 			}
 		});
+		
+		jBtnAjouter.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				/*if(jcbType.getSelectedItem().equals("Livre")){
+					Date date = new Date();
+					Livre l = new Livre(jtf1.getText(), jtf2.getText(),  date Date.valueOf(jtf3.getText()), jtf4.getText());
+					lf.alLivres.add(l);
+					lf.alCollection.add(l);
+				}*/
+			}
+		});
 	}
 
 	private void GestionTextField(String key) {
-		Component[] tab;
-		tab = (Component[]) hash.get(key);
+		JLabel[] tab1;
+		JTextField[] tab2;
+		
+		tab1 = (JLabel[]) hash1.get(key);
+		tab2 = (JTextField[]) hash2.get(key);
+		
 		jpTxt.removeAll();
-		jpTxt.setLayout(new GridLayout(tab.length / 2, 2));
+		jpTxt.setLayout(new GridLayout(tab1.length, 2));
 
-		for (int i = 0; i < tab.length; i++) {
-			jpTxt.add(tab[i]);
+		for (int i = 0; i < tab1.length; i++) {
+			tab2[i].setText("");
+			jpTxt.add(tab1[i]);
+			jpTxt.add(tab2[i]);
 		}
 
 		jpMain.validate();

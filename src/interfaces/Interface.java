@@ -38,6 +38,7 @@ public class Interface extends JFrame implements TableModelListener {
 	private JButton jbtnRecherche = new JButton("Recherche de la requete");
 	private JButton jbtnGestionDocuments = new JButton("Gérer les documents");
 	private JButton jbtnGestionUsagers = new JButton("Gérer les usagers");
+	private JButton jbtnGestionPrets = new JButton("Gérer les prêts");
 
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
 	private JLabel jlabelParMotCles = new JLabel("Par Mot cles: ");
@@ -58,23 +59,16 @@ public class Interface extends JFrame implements TableModelListener {
 	private JPanel jpanelPeriodiques = new JPanel();
 	private JPanel jpanelDVDs = new JPanel();
 	private JPanel jpanelRecherche = new JPanel();
-	private JPanel jpanelOptions = new JPanel();
 	private JPanel jpanelActions = new JPanel();
 	
 	private JLabel jlabelmario = new JLabel(new ImageIcon("mario.png"));
-	//private JLabel jlabelboo = new JLabel(new ImageIcon("boo.png"));
 	private JLabel jlabelluigi = new JLabel(new ImageIcon("luigi.png"));
 
-	private JPanel[] jpanelAdmin = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
-			jpanelOptions };
-	private JPanel[] jpanelAdherent = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
-			jpanelOptions };
-	private JPanel[] jpanelPrepose = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche,
-			jpanelOptions };
+	private JPanel[] jpanelAdherent = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche };
+	private JPanel[] jpanelPrepose = { jpanelCollection, jpanelLivres, jpanelPeriodiques, jpanelDVDs, jpanelRecherche };
 
-	private String[] strAdmin = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche", "Options" };
-	private String[] strAdherent = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche", "Options" };
-	private String[] strPrepose = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche", "Options" };
+	private String[] strAdherent = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche" };
+	private String[] strPrepose = { "Collection", "Livres", "Periodiques", "DVDs", "Recherche" };
 
 	private TitledBorder tbRecherche = new TitledBorder("Recherche");
 	private TitledBorder tbResultat = new TitledBorder("Résultats");
@@ -142,14 +136,15 @@ public class Interface extends JFrame implements TableModelListener {
 		jpanelCollection.add(jspColl);
 
 		jpanelActions.add(jbtnGestionDocuments);
+		jpanelActions.add(jbtnGestionPrets);
 		jpanelActions.add(jbtnGestionUsagers);
 		jpanelActions.add(jbtnQuitter);
 		jpanelActions.setBorder(tbActions);
 	}
 
 	public void CreeTabRecherche() {
-		for (int i = 0; i < strAdmin.length; i++) {
-			jtab.addTab(strAdmin[i], jpanelAdmin[i]);
+		for (int i = 0; i < strPrepose.length; i++) {
+			jtab.addTab(strPrepose[i], jpanelPrepose[i]);
 		}
 
 		jpanelRecherche.setLayout(new GridLayout(2, 1));
@@ -202,7 +197,9 @@ public class Interface extends JFrame implements TableModelListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GestionDocuments gd = new GestionDocuments();
+				GestionDocuments gd = new GestionDocuments(lf);
+				jspColl.validate();
+				jspLiv.repaint();
 			}
 		});
 				/*if (e.getSource() == jbtnAjouterPrepose) {
