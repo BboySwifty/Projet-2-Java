@@ -13,4 +13,14 @@ public class Personne {
 		this.strAdresse = strAdresse;
 		this.intNumeroTelephone = intNumeroTelephone;
 	}
+	
+	public int getIntNumeroTelephone()
+	{
+		return intNumeroTelephone;
+	}
+	
+	public String getNomEtNomFamille()
+	{
+		return strNom+strPrenom;
+	}
 }

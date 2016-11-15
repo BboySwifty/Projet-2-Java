@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.StringTokenizer;
 
 import javax.swing.ImageIcon;
@@ -38,6 +39,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import données.Adherent;
 import données.Personne;
@@ -70,11 +72,11 @@ public class Connexion extends JFrame {
 	private String[] strComboBox = { "Préposé","Adhérent"};
 	
 	private JComboBox jcBox = new JComboBox(strComboBox);
-
-	private ArrayList<Personne> alPersonne = new ArrayList<Personne>();
-	private ArrayList<Prepose> alPrepose = new ArrayList<Prepose>();
-	private ArrayList<Adherent> alAdherent = new ArrayList<Adherent>();
 	
+	private String strNomEtNomFamille;
+	private int intNumeroTelephone;
+	
+	private GestionUtilisateur gsu = new GestionUtilisateur();
 	
 	public Connexion() 
 	{
@@ -121,6 +123,7 @@ public class Connexion extends JFrame {
 		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);
+		
 	}
 
 	public String usager() 
@@ -137,7 +140,18 @@ public class Connexion extends JFrame {
 			{
 				BufferedReader br = null;
 				StringTokenizer st = null;
-
+				
+				try
+				{
+					strNomEtNomFamille = jtNomEtNomFamille.getText().trim();
+					intNumeroTelephone = Integer.parseInt(jtTelephone.getText());
+				}
+				
+				catch(Exception a)
+				{
+					
+				}
+				
 				try {
 					
 					String strLigne;
@@ -151,19 +165,37 @@ public class Connexion extends JFrame {
 						
 						else
 						{
-							if(!(jtTelephone.getText().matches(("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}"))))
+							
+							if((jtTelephone.getText().matches(("\\d{10}"))))
+							//if((jtTelephone.getText().matches(("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}"))))
 							{
-								JOptionPane.showMessageDialog(null,"Veuillez entree un telephone valide","Erreur", JOptionPane.INFORMATION_MESSAGE);
+								System.out.println(intNumeroTelephone);
+								
+								for(int i =0; i< gsu.getAlAdherent().size(); i++)
+								{
+									//compare numero de telephone
+									if(intNumeroTelephone == gsu.getAlAdherent().get(i).getIntNumeroTelephone())
+									{
+										
+									}
+									
+									//compare nom
+									if(strNomEtNomFamille.equalsIgnoreCase(gsu.getAlAdherent().get(i).getNomEtNomFamille()))
+									{
+										
+									}
+									
+									dispose();
+									Interface demarrage = new Interface(usager());
+									demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								}
+								
 							}
 							
 							else
 							{
-								String strNom = jtNomEtNomFamille.getText();
-								
-								dispose();
-								Interface demarrage = new Interface(usager());
-								demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-								System.out.println(strNom);
+								JOptionPane.showMessageDialog(null,"Le numero de telephone est invalide" + "\n                    "
+										+ "OU BIEN \nvous n'avez pas de compte existant.","Erreur", JOptionPane.INFORMATION_MESSAGE);
 							}
 						}
 					}
