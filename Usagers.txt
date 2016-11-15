@@ -1,2 +1,4 @@
-adhérent,a,a
 préposé,a,a
+adhérent,a,a 
+adhérent,a,a
+adhérent,a,a

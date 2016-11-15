@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import données.ListeUtilisateur;
+
 public class Connexion extends JFrame {
 	Container c = getContentPane();
 
@@ -51,7 +53,7 @@ public class Connexion extends JFrame {
 	private String strNomEtNomFamille;
 	private int intNumeroTelephone;
 	
-	private GestionUtilisateur gsu = new GestionUtilisateur();
+	private ListeUtilisateur gsu = new ListeUtilisateur();
 	
 	public Connexion() 
 	{
@@ -177,7 +179,7 @@ public class Connexion extends JFrame {
 					
 					else
 					{
-						br = new BufferedReader(new FileReader("Usagers.txt"));
+						br = new BufferedReader(new FileReader("Prepose.txt"));
 
 						while ((strLigne = br.readLine()) != null) 
 						{

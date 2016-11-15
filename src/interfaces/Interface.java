@@ -37,7 +37,7 @@ public class Interface extends JFrame implements TableModelListener {
 	private JButton jbtnQuitter = new JButton("Quitter");
 	private JButton jbtnRecherche = new JButton("Recherche de la requete");
 	private JButton jbtnGestionDocuments = new JButton("Gérer les documents");
-	private JButton jbtnGestionUsagers = new JButton("Gérer les usagers");
+	private JButton jbtnGestionUtilisateur = new JButton("Gérer les usagers");
 	private JButton jbtnGestionPrets = new JButton("Gérer les prêts");
 
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
@@ -137,7 +137,7 @@ public class Interface extends JFrame implements TableModelListener {
 
 		jpanelActions.add(jbtnGestionDocuments);
 		jpanelActions.add(jbtnGestionPrets);
-		jpanelActions.add(jbtnGestionUsagers);
+		jpanelActions.add(jbtnGestionUtilisateur);
 		jpanelActions.add(jbtnQuitter);
 		jpanelActions.setBorder(tbActions);
 	}
@@ -208,16 +208,25 @@ public class Interface extends JFrame implements TableModelListener {
 					System.out.println(strMotDePasseEntree);
 				}*/
 		
+		jbtnGestionUtilisateur.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						GestionUtilisateur gu = new GestionUtilisateur(lf);
+						
+					}
+				});
+		
 		jbtnGestionPrets.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				GestionPrets gp = new GestionPrets();
 				
 			}
 		});
 
-		jbtnRecherche.addActionListener(new ActionListener() {
+		jbtnRecherche.addActionListener(new ActionListener() 
+		{
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == jbtnRecherche) {
 					TableModelCollection tmRecherche = new TableModelCollection(lf, "Recherche");
