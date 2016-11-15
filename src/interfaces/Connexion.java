@@ -28,8 +28,6 @@ public class Connexion extends JFrame {
 	private JPanel jpanelLogin = new JPanel();
 	private JPanel jpanel = new JPanel();
 	
-	private JPanel jpanel1 = new JPanel();
-	
 	private JLabel jMediatheque = new JLabel("Mediatheque");
 	private JLabel jUsager = new JLabel("Type de connexion: ");
 	private JLabel jNom = new JLabel("Nom d'utilisateur: ");

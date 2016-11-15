@@ -198,8 +198,6 @@ public class Interface extends JFrame implements TableModelListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GestionDocuments gd = new GestionDocuments(lf);
-				jspColl.validate();
-				jspLiv.repaint();
 			}
 		});
 				/*if (e.getSource() == jbtnAjouterPrepose) {
@@ -209,6 +207,15 @@ public class Interface extends JFrame implements TableModelListener {
 					String strMotDePasseEntree = JOptionPane.showInputDialog("Entree le mot de passe: ");
 					System.out.println(strMotDePasseEntree);
 				}*/
+		
+		jbtnGestionPrets.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GestionPrets gp = new GestionPrets();
+				
+			}
+		});
 
 		jbtnRecherche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
