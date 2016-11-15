@@ -33,7 +33,7 @@ public class GestionUtilisateur extends JFrame
 	
 	//declarations d'instances
 	private int intCompteurInscription = 0;
-	private int intNumeroTelephone;
+	private String strTelephone;
 	
 	private String strPrenom;
 	private String strNomDeFamille;
@@ -80,14 +80,13 @@ public class GestionUtilisateur extends JFrame
 	private JTextField[] tabTfPeriodique = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4, jtf5 };
 	private JTextField[] tabTfSupprimer = { jtfPrenom };
 
-	
-	public GestionUtilisateur(LectureFichier lf) 
+	public GestionUtilisateur(ListeUtilisateur lu) 
 	{
 		super("Gérer les usagers");
 		setSize(350, 300);
 		setLocationRelativeTo(null);
 		
-		this.lf = lf;
+		this.lu = lu;
 
 		AjoutListeners();
 		
@@ -159,11 +158,11 @@ public class GestionUtilisateur extends JFrame
 				else
 				{
 					intCompteurInscription++;
-					intNumeroTelephone = Integer.parseInt(jtfTelephone.getText());
+					strTelephone = jtfTelephone.getText();
 					strPrenom = jtfPrenom.getText();
 					strNomDeFamille = jtfNomFamille.getText();
 					
-					Adherent adherent = new Adherent(intCompteurInscription,intNumeroTelephone,strPrenom,strNomDeFamille,"adresse");
+					Adherent adherent = new Adherent(intCompteurInscription,strNumeroTelephone,strPrenom,strNomDeFamille,"adresse");
 					
 					lu.getAlAdherent().add(adherent);
 					
@@ -182,7 +181,7 @@ public class GestionUtilisateur extends JFrame
 						a.printStackTrace();
 					}
 					
-					 JOptionPane.showMessageDialog(null,"L'utilisateur a ete ajouter","Erreur", JOptionPane.INFORMATION_MESSAGE);
+					 JOptionPane.showMessageDialog(null,"L'utilisateur a ete ajouter","", JOptionPane.INFORMATION_MESSAGE);
 					 
 				}
 			}

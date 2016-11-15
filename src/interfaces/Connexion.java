@@ -54,11 +54,13 @@ public class Connexion extends JFrame {
 	private String strNomEtNomFamille;
 	private int intNumeroTelephone;
 	
-	private ListeUtilisateur gsu = new ListeUtilisateur();
+	private ListeUtilisateur lu;
 	
 	public Connexion() 
 	{
 		super("Connexion");
+		
+		lu = new ListeUtilisateur();
 		
 		creerFunctionBouttons();
 		creerInterface();
@@ -109,11 +111,11 @@ public class Connexion extends JFrame {
 								
 							}
 							
-						//	if((jtTelephone.getText().matches(("\\d{10}"))))
+						 //if((jtTelephone.getText().matches(("\\d{10}"))))
 							{
-								System.out.println(gsu.getAlAdherent().size());
+								System.out.println(lu.getAlAdherent().size());
 								
-								for(int i =0; i< gsu.getAlAdherent().size(); i++)
+								for(int i =0; i< lu.getAlAdherent().size(); i++)
 								{
 									//compare numero de telephone
 									System.out.println("intNumeroTelephone :" + intNumeroTelephone);
@@ -124,7 +126,7 @@ public class Connexion extends JFrame {
 									}
 									
 									//compare nom
-									if(strNomEtNomFamille.equalsIgnoreCase(gsu.getAlAdherent().get(i).getNomEtNomFamille()))
+									if(strNomEtNomFamille.equalsIgnoreCase(lu.getAlAdherent().get(i).getNomEtNomFamille()))
 									{
 										dispose();
 										Interface demarrage = new Interface(usager());

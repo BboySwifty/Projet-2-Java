@@ -4,19 +4,19 @@ public class Personne {
 	private String strNom;
 	private String strPrenom;
 	private String strAdresse;
-	private int intNumeroTelephone;
+	private String strTelephone;
 
-	Personne(String strNom, String strPrenom, String strAdresse, int intNumeroTelephone) 
+	Personne(String strNom, String strPrenom, String strAdresse, String strTelephone ) 
 	{
 		this.strNom = strNom;
 		this.strPrenom = strPrenom;
 		this.strAdresse = strAdresse;
-		this.intNumeroTelephone = intNumeroTelephone;
+		this.strTelephone = strTelephone ;
 	}
 	
-	public int getIntNumeroTelephone()
+	public String getStrNumeroTelephone()
 	{
-		return intNumeroTelephone;
+		return strTelephone ;
 	}
 	
 	public String getNomEtNomFamille()

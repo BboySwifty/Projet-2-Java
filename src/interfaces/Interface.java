@@ -220,7 +220,7 @@ public class Interface extends JFrame implements TableModelListener {
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
-						GestionUtilisateur gu = new GestionUtilisateur(lf);
+					//	GestionUtilisateur gu = new GestionUtilisateur(lu);
 						
 					}
 				});

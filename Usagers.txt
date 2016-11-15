@@ -1,1 +1,6 @@
 préposé,a,a
+préposé,b,b
+adhérent,123,a a
+adhérent,1,a a
+adhérent,1,a a
+adhérent,1,a a
