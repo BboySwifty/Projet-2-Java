@@ -151,7 +151,6 @@ public class GestionDocuments extends JFrame {
 						DVD d = new DVD(jtfNumDocument.getText(),jtfTitre.getText(),date,Integer.parseInt(jtfNbDisque.getText()),jtfAuteur.getText());
 						lf.alDVDs.add(d);
 						lf.alCollection.add(d);
-						 JOptionPane.showMessageDialog(null,"Le document a ete ajoute","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
 					}
 					
 					else
@@ -161,17 +160,67 @@ public class GestionDocuments extends JFrame {
 						lf.alCollection.add(p);
 						
 					}
+					 JOptionPane.showMessageDialog(null,"Le document a ete ajoute","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
 					
 				} 
 				
-				catch (ParseException e1) {
-					// TODO Auto-generated catch block
+				catch (ParseException e1) 
+				{
 					e1.printStackTrace();
 				}
-				
-					
 			}
 		});
+		
+		//btn supprimer
+		jBtnSupprimer.addActionListener(new ActionListener()
+				{
+					
+					public void actionPerformed(ActionEvent e) 
+					{	
+						String strDocument = jtfNumDocument.getText();
+						String strSub= strDocument.substring(0, 3).toLowerCase();
+						boolean boolstrExiste = false;
+						
+						for(int i =0; i<lf.alCollection.size();i++)
+						{
+							if(jtfNumDocument.getText().compareToIgnoreCase(lf.alCollection.get(i).getStrNumeroDocument())==0)
+							{
+								lf.alCollection.remove(i);
+								boolstrExiste = true;
+							}
+						}
+						
+						if(strSub.equals("liv"))
+						{
+							for(int i = 0; i<lf.alLivres.size(); i++)
+							{
+								lf.alLivres.remove(i);
+							}
+						}
+						
+						else if(strSub.equals("dvd"))
+						{
+							for(int i=0; i< lf.alDVDs.size();i++)
+							{
+								lf.alDVDs.remove(i);
+							}
+						}
+						
+						else
+						{
+							for(int i =0; i< lf.alPeriodiques.size();i++)
+							{
+								lf.alPeriodiques.remove(i);
+							}
+						}
+						
+						if(boolstrExiste)
+						{
+							JOptionPane.showMessageDialog(null,"Le document a ete supprime","", JOptionPane.INFORMATION_MESSAGE);
+						}
+						
+					}
+				});
 	}
 
 	private void GestionTextField(String key) {

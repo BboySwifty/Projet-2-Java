@@ -48,7 +48,7 @@ public class GestionUtilisateur extends JFrame
 	private JPanel jpMain = new JPanel();
 	private JPanel jpTxt = new JPanel();
 
-	private JLabel jLabelNumDoc = new JLabel("Prenom de l'utilisateur : ");
+	private JLabel jLabelNumDoc = new JLabel("Prenom de l'utilisateur : "); 
 	private JLabel jLabelTitre = new JLabel("Nom famille de l'utilisateur: ");
 	private JLabel jLabelAuteur = new JLabel("Numero telephone: ");
 	
@@ -162,7 +162,7 @@ public class GestionUtilisateur extends JFrame
 					strPrenom = jtfPrenom.getText();
 					strNomDeFamille = jtfNomFamille.getText();
 					
-					Adherent adherent = new Adherent(intCompteurInscription,strNumeroTelephone,strPrenom,strNomDeFamille,"adresse");
+					Adherent adherent = new Adherent(intCompteurInscription,strTelephone,strPrenom,strNomDeFamille,"adresse");
 					
 					lu.getAlAdherent().add(adherent);
 					
@@ -172,7 +172,7 @@ public class GestionUtilisateur extends JFrame
 						BufferedWriter bw = new BufferedWriter(fw);
 						PrintWriter pw = new PrintWriter(bw);
 						
-						pw.println("adhérent,"+intNumeroTelephone+","+strPrenom+" " +strNomDeFamille);
+						pw.println("adhérent,"+strTelephone+","+strPrenom+" " +strNomDeFamille);
 						pw.close();
 					}
 					
