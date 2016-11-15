@@ -19,6 +19,7 @@ import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 import données.Adherent;
 import données.LectureFichier;
+import données.ListeUtilisateur;
 import données.Prepose;
 
 import java.io.BufferedWriter;
@@ -38,6 +39,7 @@ public class GestionUtilisateur extends JFrame
 	private String strNomDeFamille;
 
 	private LectureFichier lf;
+	private ListeUtilisateur lu;
 
 	private String[] strCombo = {"Ajouter un utilisateur","Ajouter un prepose", "Modifier un utilisateur", "Supprimer un utilisateur" };
 
@@ -78,7 +80,6 @@ public class GestionUtilisateur extends JFrame
 	private JTextField[] tabTfPeriodique = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4, jtf5 };
 	private JTextField[] tabTfSupprimer = { jtfPrenom };
 
-	private ArrayList<Adherent> alAdherent = new ArrayList<Adherent>();
 	
 	public GestionUtilisateur(LectureFichier lf) 
 	{
@@ -164,7 +165,7 @@ public class GestionUtilisateur extends JFrame
 					
 					Adherent adherent = new Adherent(intCompteurInscription,intNumeroTelephone,strPrenom,strNomDeFamille,"adresse");
 					
-					alAdherent.add(adherent);
+					lu.getAlAdherent().add(adherent);
 					
 					try
 					{

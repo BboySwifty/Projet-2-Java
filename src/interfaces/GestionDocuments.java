@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -52,21 +53,23 @@ public class GestionDocuments extends JFrame {
 	private Hashtable hash1 = new Hashtable(4);
 	private Hashtable hash2 = new Hashtable(4);
 
-	private JTextField jtf1 = new JTextField();
-	private JTextField jtf2 = new JTextField();
-	private JTextField jtf3 = new JTextField();
-	private JTextField jtf4 = new JTextField();
-	private JTextField jtf5 = new JTextField();
+	private JTextField jtfNumDocument = new JTextField();
+	private JTextField jtfTitre = new JTextField();
+	private JTextField jtfDate = new JTextField();
+	private JTextField jtfAuteur = new JTextField();
+	private JTextField jtfNbDisque = new JTextField();
+	private JTextField jtfNbVolume = new JTextField();
+	private JTextField jtfNbPeriodique = new JTextField();
 
-	private JLabel[] tabLivre = { jLabelNumDoc, jLabelTitre, jLabelAuteur, jLabelDate };
-	private JLabel[] tabDVD = { jLabelNumDoc, jLabelTitre, jLabelRealisateur, jLabelDisques, jLabelDate };
+	private JLabel[] tabLivre = { jLabelNumDoc, jLabelTitre,jLabelDate, jLabelAuteur };
+	private JLabel[] tabDVD = { jLabelNumDoc, jLabelTitre,jLabelDate, jLabelDisques , jLabelRealisateur};
 	private JLabel[] tabPeriodique = { jLabelNumDoc, jLabelTitre, jLabelNoPer, jLabelNoVolume, jLabelDate };
 	private JLabel[] tabSupprimer = { jLabelNumDoc };
 	
-	private JTextField[] tabTfLivre = { jtf1, jtf2, jtf3, jtf4 };
-	private JTextField[] tabTfDVD = { jtf1, jtf2, jtf3, jtf4, jtf5 };
-	private JTextField[] tabTfPeriodique = { jtf1, jtf2, jtf3, jtf4, jtf5 };
-	private JTextField[] tabTfSupprimer = { jtf1 };
+	private JTextField[] tabTfLivre = { jtfNumDocument, jtfTitre, jtfDate, jtfAuteur };
+	private JTextField[] tabTfDVD = { jtfNumDocument, jtfTitre, jtfDate, jtfNbDisque, jtfAuteur };
+	private JTextField[] tabTfPeriodique = { jtfNumDocument, jtfTitre, jtfDate,jtfNbVolume,jtfNbPeriodique };
+	private JTextField[] tabTfSupprimer = { jtfNumDocument };
 
 	public GestionDocuments(LectureFichier lf) 
 	{
@@ -123,6 +126,7 @@ public class GestionDocuments extends JFrame {
 			}
 		});
 		
+		//button ajouter document
 		jBtnAjouter.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e)
@@ -131,11 +135,11 @@ public class GestionDocuments extends JFrame {
 				
 				Date date;
 				try {
-					date = df.parse(jtf3.getText());
+					date = df.parse(jtfDate.getText());
 					
 					if(jcbType.getSelectedItem().equals("Livre"))
 					{
-						Livre l = new Livre(jtf1.getText(), jtf2.getText(),  date, jtf4.getText());
+						Livre l = new Livre(jtfNumDocument.getText(), jtfTitre.getText(),  date, jtfAuteur.getText());
 						lf.alLivres.add(l);
 						lf.alCollection.add(l);
 						
@@ -144,14 +148,20 @@ public class GestionDocuments extends JFrame {
 					else if(jcbType.getSelectedItem().equals("DVD"))
 					{
 						
-						DVD d = new DVD(jtf1.getText(),jtf2.getText(),date,Integer.parseInt(jtf4.getText()),jtf3.getText());
-						
+						DVD d = new DVD(jtfNumDocument.getText(),jtfTitre.getText(),date,Integer.parseInt(jtfNbDisque.getText()),jtfAuteur.getText());
+						lf.alDVDs.add(d);
+						lf.alCollection.add(d);
+						 JOptionPane.showMessageDialog(null,"Le document a ete ajoute","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
 					}
 					
 					else
 					{
-						Periodique p = new Periodique(jtf1.getText(),jtf2.getText(),date, Integer.parseInt(jtf3.getText()),Integer.parseInt(jtf4.getText()));
+						Periodique p = new Periodique(jtfNumDocument.getText(),jtfTitre.getText(),date, Integer.parseInt(jtfNbVolume.getText()),Integer.parseInt(jtfNbPeriodique.getText()));
+						lf.alPeriodiques.add(p);
+						lf.alCollection.add(p);
+						
 					}
+					
 				} 
 				
 				catch (ParseException e1) {
