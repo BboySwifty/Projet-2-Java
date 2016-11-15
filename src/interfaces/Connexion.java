@@ -23,6 +23,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import données.ListeUtilisateur;
+import données.Serialization;
 
 public class Connexion extends JFrame {
 	Container c = getContentPane();
@@ -54,6 +55,8 @@ public class Connexion extends JFrame {
 	private String strNomEtNomFamille;
 	private int intNumeroTelephone;
 	
+	private Serialization ser = new Serialization();
+	
 	private ListeUtilisateur lu;
 	
 	public Connexion() 
@@ -64,7 +67,7 @@ public class Connexion extends JFrame {
 		
 		creerFunctionBouttons();
 		creerInterface();
-		
+		ser.serializer();
 		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -108,10 +111,11 @@ public class Connexion extends JFrame {
 							
 							catch(Exception a)
 							{
-								
+								a.printStackTrace();
 							}
 							
-						 //if((jtTelephone.getText().matches(("\\d{10}"))))
+							
+							//if((jtTelephone.getText().matches(("\\d{10}"))))
 							{
 								System.out.println(lu.getAlAdherent().size());
 								
