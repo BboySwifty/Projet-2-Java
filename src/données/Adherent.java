@@ -8,4 +8,8 @@ public class Adherent extends Personne
 		super(strNom, strPrenom, strAdresse, strTelephone );
 		this.intNumeroInscription = intNumeroInscription;
 	}
+
+	public int getIntNumeroInscription() {
+		return intNumeroInscription;
+	}
 }

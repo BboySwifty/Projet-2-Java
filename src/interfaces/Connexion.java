@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import données.LectureFichier;
 import données.ListeUtilisateur;
 
 public class Connexion extends JFrame {
@@ -53,13 +54,12 @@ public class Connexion extends JFrame {
 	
 	private String strNomEtNomFamille;
 	private int intNumeroTelephone;
+
+	ListeUtilisateur lu;
 	
-	private ListeUtilisateur lu;
-	
-	public Connexion() 
+	public Connexion()
 	{
 		super("Connexion");
-		
 		lu = new ListeUtilisateur();
 		
 		creerFunctionBouttons();
@@ -111,11 +111,11 @@ public class Connexion extends JFrame {
 								
 							}
 							
-						 //if((jtTelephone.getText().matches(("\\d{10}"))))
+							//if((jtTelephone.getText().matches(("\\d{10}"))))
 							{
-								System.out.println(lu.getAlAdherent().size());
+								System.out.println(ListeUtilisateur.getAlAdherent().size());
 								
-								for(int i =0; i< lu.getAlAdherent().size(); i++)
+								for(int i =0; i< ListeUtilisateur.getAlAdherent().size(); i++)
 								{
 									//compare numero de telephone
 									System.out.println("intNumeroTelephone :" + intNumeroTelephone);
@@ -126,7 +126,7 @@ public class Connexion extends JFrame {
 									}
 									
 									//compare nom
-									if(strNomEtNomFamille.equalsIgnoreCase(lu.getAlAdherent().get(i).getNomEtNomFamille()))
+									if(strNomEtNomFamille.equalsIgnoreCase(ListeUtilisateur.getAlAdherent().get(i).getNomEtNomFamille()))
 									{
 										dispose();
 										Interface demarrage = new Interface(usager());
