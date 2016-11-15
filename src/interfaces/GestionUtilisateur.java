@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
@@ -23,7 +22,6 @@ import données.LectureFichier;
 import données.Prepose;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,15 +35,12 @@ public class GestionUtilisateur extends JFrame
 	
 	private String strPrenom;
 	private String strNomDeFamille;
-	private String strAdresse;
-	
+
 	private LectureFichier lf;
 
-	private String[] strCombo = { "Ajouter un document", "Modifier un document", "Supprimer un document" };
-	private String[] strType = { "Livre", "DVD", "Périodique" };
+	private String[] strCombo = {"Ajouter un utilisateur","Ajouter un prepose", "Modifier un utilisateur", "Supprimer un utilisateur" };
 
 	private JComboBox<?> jcb = new JComboBox<Object>(strCombo);
-	private JComboBox<?> jcbType = new JComboBox<Object>(strType);
 
 	private JPanel jpMain = new JPanel();
 	private JPanel jpTxt = new JPanel();
@@ -55,7 +50,6 @@ public class GestionUtilisateur extends JFrame
 	private JLabel jLabelAuteur = new JLabel("Numero telephone: ");
 	
 	private JLabel jLabelRealisateur = new JLabel("Nom du réalisateur : ");
-	private JLabel jLabelDate = new JLabel("Date de parution : ");
 	private JLabel jLabelDisques = new JLabel("Nombre de disques : ");
 	private JLabel jLabelNoPer = new JLabel("Numéro du périodique : ");
 	private JLabel jLabelNoVolume = new JLabel("Numéro du volume : ");
@@ -73,9 +67,9 @@ public class GestionUtilisateur extends JFrame
 	private JTextField jtf4 = new JTextField();
 	private JTextField jtf5 = new JTextField();
 
-	private JLabel[] tabLivre = { jLabelNumDoc, jLabelTitre, jLabelAuteur, jLabelDate };
-	private JLabel[] tabDVD = { jLabelNumDoc, jLabelTitre, jLabelRealisateur, jLabelDisques, jLabelDate };
-	private JLabel[] tabPeriodique = { jLabelNumDoc, jLabelTitre, jLabelNoPer, jLabelNoVolume, jLabelDate };
+	private JLabel[] tabLivre = { jLabelNumDoc, jLabelTitre, jLabelAuteur};
+	private JLabel[] tabDVD = { jLabelNumDoc, jLabelTitre, jLabelRealisateur, jLabelDisques};
+	private JLabel[] tabPeriodique = { jLabelNumDoc, jLabelTitre, jLabelNoPer, jLabelNoVolume};
 	private JLabel[] tabSupprimer = { jLabelNumDoc };
 	
 	private JTextField[] tabTfLivre = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4 };
@@ -83,7 +77,6 @@ public class GestionUtilisateur extends JFrame
 	private JTextField[] tabTfPeriodique = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4, jtf5 };
 	private JTextField[] tabTfSupprimer = { jtfPrenom };
 
-	private ArrayList<Prepose> alPrepose = new ArrayList<Prepose>();
 	private ArrayList<Adherent> alAdherent = new ArrayList<Adherent>();
 	
 	public GestionUtilisateur(LectureFichier lf) 
@@ -107,7 +100,6 @@ public class GestionUtilisateur extends JFrame
 		hash2.put("Supprimer", tabTfSupprimer);
 
 		jpTxt.setLayout(new GridLayout(4, 2));
-		jpMain.add(jcbType);
 		jpMain.add(jpTxt);
 		jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
 
@@ -128,34 +120,28 @@ public class GestionUtilisateur extends JFrame
 
 				if (jcb.getSelectedItem().equals(strCombo[0])) {
 
-					jpMain.add(jcbType);
 					jpMain.add(jpTxt);
 					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
 
-					GestionTextField(jcbType.getSelectedItem().toString());
 				} else if (jcb.getSelectedItem().equals(strCombo[1])) {
 
 					jpMain.add(jpTxt);
 					jpMain.add(jBtnModifier, BorderLayout.SOUTH);
 
 					GestionTextField("Supprimer");
-				} else {
-
+				} 
+				
+				
+				else 
+				{
 					jpMain.add(jpTxt);
-					jpMain.add(jBtnSupprimer, BorderLayout.SOUTH);
-
+					jpMain.add(jBtnSupprimer);
 					GestionTextField("Supprimer");
 				}
+
 			}
 		});
 
-		jcbType.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				GestionTextField(jcbType.getSelectedItem().toString());
-			}
-		});
 		
 		//ajouter adherents
 		jBtnAjouter.addActionListener(new ActionListener() 
@@ -170,11 +156,11 @@ public class GestionUtilisateur extends JFrame
 				else
 				{
 					intCompteurInscription++;
-					//intNumeroTelephone = Integer.parseInt(jtfTelephone.getText());
+					intNumeroTelephone = Integer.parseInt(jtfTelephone.getText());
 					strPrenom = jtfPrenom.getText();
 					strNomDeFamille = jtfNomFamille.getText();
 					
-					Adherent adherent = new Adherent(intCompteurInscription,1,strPrenom,strNomDeFamille,"adresse");
+					Adherent adherent = new Adherent(intCompteurInscription,intNumeroTelephone,strPrenom,strNomDeFamille,"adresse");
 					
 					alAdherent.add(adherent);
 					
@@ -184,9 +170,8 @@ public class GestionUtilisateur extends JFrame
 						BufferedWriter bw = new BufferedWriter(fw);
 						PrintWriter pw = new PrintWriter(bw);
 						
-						pw.println("adhérent,a,a");
+						pw.println("adhérent,"+intNumeroTelephone+","+strPrenom+" " +strNomDeFamille);
 						pw.close();
-						
 					}
 					
 					catch(IOException a)
@@ -199,6 +184,15 @@ public class GestionUtilisateur extends JFrame
 				}
 			}
 		});
+		
+		jBtnSupprimer.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						
+					}
+			
+				});
 	}
 
 	private void GestionTextField(String key) {

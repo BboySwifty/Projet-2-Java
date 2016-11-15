@@ -118,17 +118,6 @@ public class Connexion extends JFrame {
 				BufferedReader br = null;
 				StringTokenizer st = null;
 				
-				try
-				{
-					strNomEtNomFamille = jtNomEtNomFamille.getText().trim();
-					intNumeroTelephone = Integer.parseInt(jtTelephone.getText());
-				}
-				
-				catch(Exception a)
-				{
-					
-				}
-				
 				try {
 					
 					String strLigne;
@@ -142,31 +131,44 @@ public class Connexion extends JFrame {
 						
 						else
 						{
+							try
+							{
+								strNomEtNomFamille = jtNomEtNomFamille.getText().trim();
+								intNumeroTelephone = Integer.parseInt(jtTelephone.getText());
+							}
+							
+							catch(Exception a)
+							{
+								
+							}
 							
 							if((jtTelephone.getText().matches(("\\d{10}"))))
-							//if((jtTelephone.getText().matches(("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}"))))
 							{
-								System.out.println(intNumeroTelephone);
+								System.out.println(gsu.getAlAdherent().size());
 								
 								for(int i =0; i< gsu.getAlAdherent().size(); i++)
 								{
 									//compare numero de telephone
+									System.out.println("intNumeroTelephone :" + intNumeroTelephone);
 									if(intNumeroTelephone == gsu.getAlAdherent().get(i).getIntNumeroTelephone())
 									{
-										
+										dispose();
+										Interface demarrage = new Interface(usager());
+										demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+									}
+									
+									else
+									{
+										System.out.println("nexiste pas");
 									}
 									
 									//compare nom
-									if(strNomEtNomFamille.equalsIgnoreCase(gsu.getAlAdherent().get(i).getNomEtNomFamille()))
+									//if(strNomEtNomFamille.equalsIgnoreCase(gsu.getAlAdherent().get(i).getNomEtNomFamille()))
 									{
 										
 									}
 									
-									dispose();
-									Interface demarrage = new Interface(usager());
-									demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 								}
-								
 							}
 							
 							else
@@ -195,17 +197,14 @@ public class Connexion extends JFrame {
 										&& st.nextToken().compareTo(jtNom.getText()) == 0
 										&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) 
 								{
-									
 									dispose();
 									Interface demarrage = new Interface(usager());
 									demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 									
 								}
-
 							}
 						}
 					}
-					
 				}
 
 				catch (IOException o) 
@@ -220,6 +219,8 @@ public class Connexion extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				jtTelephone.setText("");
+				jtNomEtNomFamille.setText("");
 				jtNom.setText("");
 				jtMotDePasse.setText("");
 			}
@@ -231,7 +232,6 @@ public class Connexion extends JFrame {
 					{
 						if(jcBox.getSelectedItem().equals("Préposé"))
 						{
-							
 							jtTelephone.setEnabled(false);
 							jtNomEtNomFamille.setEnabled(false);
 							jtTelephone.setBackground(Color.gray.brighter());
@@ -245,8 +245,6 @@ public class Connexion extends JFrame {
 						
 						else
 						{
-							
-							
 							jtTelephone.setEnabled(true);
 							jtNomEtNomFamille.setEnabled(true);
 							jtTelephone.setBackground(Color.white);
@@ -256,10 +254,8 @@ public class Connexion extends JFrame {
 							jtMotDePasse.setEnabled(false);
 							jtNom.setBackground(Color.gray.brighter());
 							jtMotDePasse.setBackground(Color.gray.brighter());
-							
 						}
 					}
-			
 				});
 	}
 }
