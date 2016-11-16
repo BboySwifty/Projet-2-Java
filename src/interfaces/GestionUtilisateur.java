@@ -69,7 +69,7 @@ public class GestionUtilisateur extends JFrame
 	private JTextField jtfAdresse = new JTextField();
 	
 	private JLabel[] tabAjouterAdherent = { jLabelPrenom, jLabelTitre, jLabelTelephone,jLabelAdresse};
-	private JLabel[] tabModifierUtilisateur = { jLabelNumInscription, jLabelTitre};
+	private JLabel[] tabModifierUtilisateur = { jLabelNumInscription, jLabelAdresse,jLabelTelephone};
 	private JLabel[] tabSupprimerUtilisateur = {jLabelNumInscription };
 	
 	private JTextField[] tabTfAjouter = { jtfPrenom, jtfNomFamille, jtfTelephone, jtfNumInscrption };
