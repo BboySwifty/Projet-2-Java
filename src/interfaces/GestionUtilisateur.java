@@ -101,9 +101,11 @@ public class GestionUtilisateur extends JFrame
 				jpMain.removeAll();
 				jpMain.add(jpTxt);
 				
+				
 				if (jcb.getSelectedItem().equals(strCombo[0])) {
 
 					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
+					
 
 				} else if (jcb.getSelectedItem().equals(strCombo[1])) {
 
