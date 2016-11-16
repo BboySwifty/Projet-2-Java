@@ -53,7 +53,7 @@ public class ListeUtilisateur {
 		return alPrepose;
 	}
 
-	public static ArrayList<Adherent> getAlAdherent() {
+	public ArrayList<Adherent> getAlAdherent() {
 		return alAdherent;
 	}
 
