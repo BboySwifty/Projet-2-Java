@@ -33,7 +33,7 @@ public class GestionDocuments extends JFrame {
 
 	private LectureFichier lf;
 
-	private String[] strCombo = { "Ajouter un document", "Modifier un document", "Supprimer un document" };
+	private String[] strCombo = { "Ajouter un document", "Supprimer un document" };
 	private String[] strType = { "Livre", "DVD", "Périodique" };
 
 	private JComboBox<?> jcb = new JComboBox<Object>(strCombo);
@@ -52,7 +52,6 @@ public class GestionDocuments extends JFrame {
 	private JLabel jLabelNoVolume = new JLabel("Numéro du volume : ");
 
 	private JButton jBtnAjouter = new JButton("Ajouter");
-	private JButton jBtnModifier = new JButton("Modifier");
 	private JButton jBtnSupprimer = new JButton("Supprimer");
 
 	private Hashtable hash1 = new Hashtable(4);
@@ -73,7 +72,7 @@ public class GestionDocuments extends JFrame {
 	
 	private JTextField[] tabTfLivre = { jtfNumDocument, jtfTitre, jtfDate, jtfAuteur };
 	private JTextField[] tabTfDVD = { jtfNumDocument, jtfTitre, jtfDate, jtfNbDisque, jtfAuteur };
-	private JTextField[] tabTfPeriodique = { jtfNumDocument, jtfTitre, jtfDate,jtfNbVolume,jtfNbPeriodique };
+	private JTextField[] tabTfPeriodique = { jtfNumDocument, jtfTitre,jtfNbVolume,jtfNbPeriodique, jtfDate };
 	private JTextField[] tabTfSupprimer = { jtfNumDocument };
 
 	public GestionDocuments(LectureFichier lf) 
@@ -100,25 +99,20 @@ public class GestionDocuments extends JFrame {
 
 				jpMain.removeAll();
 				
-				jpMain.add(jcbType);
-				jpMain.add(jpTxt);
-				
 				if (jcb.getSelectedItem().equals(strCombo[0])) {
 
+					jpMain.add(jcbType);
+					jpMain.add(jpTxt);
 					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
-
-					GestionTextField(jcbType.getSelectedItem().toString());
 					
-				} else if (jcb.getSelectedItem().equals(strCombo[1])) {
-					
-					jpMain.add(jBtnModifier, BorderLayout.SOUTH);
-
 					GestionTextField(jcbType.getSelectedItem().toString());
 					
 				} else {
 					
+					jpMain.add(jpTxt);
 					jpMain.add(jBtnSupprimer, BorderLayout.SOUTH);
-					GestionTextField(jcbType.getSelectedItem().toString());
+					
+					GestionTextField("Supprimer");
 				}
 			}
 		});
@@ -127,7 +121,10 @@ public class GestionDocuments extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GestionTextField(jcbType.getSelectedItem().toString());
+				if(jcb.getSelectedIndex() == 0)
+				{
+					GestionTextField(jcbType.getSelectedItem().toString());
+				}
 			}
 		});
 		
@@ -139,96 +136,44 @@ public class GestionDocuments extends JFrame {
 				DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
 				
 				Date date;
+				
 				try {
-					date = df.parse(jtfDate.getText());
 					
 					if(jcbType.getSelectedItem().equals("Livre"))
 					{
-						Livre l = new Livre("Liv"+jtfNumDocument.getText(), jtfTitre.getText(),  date, jtfAuteur.getText());
+						date = df.parse(jtfDate.getText());
+						Livre l = new Livre(jtfNumDocument.getText(), jtfTitre.getText(),  date, jtfAuteur.getText());
 						lf.alLivres.add(l);
 						lf.alCollection.add(l);
 					}
 					
 					else if(jcbType.getSelectedItem().equals("DVD"))
 					{
-						
-						DVD d = new DVD("DVD"+jtfNumDocument.getText(),jtfTitre.getText(),date,Integer.parseInt(jtfNbDisque.getText()),jtfAuteur.getText());
+						date = df.parse(jtfDate.getText());
+						DVD d = new DVD(jtfNumDocument.getText(),jtfTitre.getText(),date,Integer.parseInt(jtfNbDisque.getText()),jtfAuteur.getText());
 						lf.alDVDs.add(d);
 						lf.alCollection.add(d);
 					}
 					
 					else
 					{
-						Periodique p = new Periodique("Per"+jtfNumDocument.getText(),jtfTitre.getText(),date, Integer.parseInt(jtfNbVolume.getText()),Integer.parseInt(jtfNbPeriodique.getText()));
+						date = df.parse(jtfDate.getText());
+						Periodique p = new Periodique(jtfNumDocument.getText(),jtfTitre.getText(),date, Integer.parseInt(jtfNbVolume.getText()),Integer.parseInt(jtfNbPeriodique.getText()));
 						lf.alPeriodiques.add(p);
 						lf.alCollection.add(p);
 						
 					}
-					 JOptionPane.showMessageDialog(null,"Le document a ete ajoute","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
+					
+					JOptionPane.showMessageDialog(null,"Le document a ete ajoute","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
 					
 				} 
 				
 				catch (ParseException e1) 
 				{
-					 JOptionPane.showMessageDialog(null,"La date doit etre en format 'dd-mm-yyyy'","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
+					 JOptionPane.showMessageDialog(null,"La date doit etre en format 'dd-mm-yyyy'","Ajoute de document", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		
-		//btn Modifier document
-		jBtnModifier.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent arg0) 
-					{
-						DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
-						String strDocument = jtfNumDocument.getText();
-						String strSub= strDocument.substring(0, 3).toLowerCase();
-						Date date;
-						
-						try {
-							date = df.parse(jtfDate.getText());
-							
-							if(jcbType.getSelectedItem().equals("Livre"))
-							{
-								for(int i =0; i<lf.alCollection.size();i++)
-								{
-									if(jtfNumDocument.getText().compareToIgnoreCase(lf.alCollection.get(i).getStrNumeroDocument())==0)
-									{
-										lf.alCollection.remove(i);
-									}
-								}
-								
-								Livre l = new Livre("Liv"+jtfNumDocument.getText(), jtfTitre.getText(),  date, jtfAuteur.getText());
-								lf.alLivres.add(l);
-								lf.alCollection.add(l);
-							}
-							
-							else if(jcbType.getSelectedItem().equals("DVD"))
-							{
-								
-								DVD d = new DVD("DVD"+jtfNumDocument.getText(),jtfTitre.getText(),date,Integer.parseInt(jtfNbDisque.getText()),jtfAuteur.getText());
-								lf.alDVDs.add(d);
-								lf.alCollection.add(d);
-							}
-							
-							else
-							{
-								Periodique p = new Periodique("Per"+jtfNumDocument.getText(),jtfTitre.getText(),date, Integer.parseInt(jtfNbVolume.getText()),Integer.parseInt(jtfNbPeriodique.getText()));
-								lf.alPeriodiques.add(p);
-								lf.alCollection.add(p);
-								
-							}
-							 JOptionPane.showMessageDialog(null,"Le document a ete modifier","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
-							
-						} 
-						
-						catch (ParseException e1) 
-						{
-							 JOptionPane.showMessageDialog(null,"La date doit etre en format 'dd-mm-yyyy'","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
-						}
-					
-					}
-				});
 		
 		
 		//btn supprimer
@@ -254,7 +199,10 @@ public class GestionDocuments extends JFrame {
 						{
 							for(int i = 0; i<lf.alLivres.size(); i++)
 							{
-								lf.alLivres.remove(i);
+								if(jtfNumDocument.getText().compareToIgnoreCase(lf.alLivres.get(i).getStrNumeroDocument())==0)
+								{
+									lf.alLivres.remove(i);
+								}
 							}
 						}
 						
@@ -262,7 +210,10 @@ public class GestionDocuments extends JFrame {
 						{
 							for(int i=0; i< lf.alDVDs.size();i++)
 							{
-								lf.alDVDs.remove(i);
+								if(jtfNumDocument.getText().compareToIgnoreCase(lf.alDVDs.get(i).getStrNumeroDocument())==0)
+								{
+									lf.alPeriodiques.remove(i);
+								}
 							}
 						}
 						
@@ -270,7 +221,10 @@ public class GestionDocuments extends JFrame {
 						{
 							for(int i =0; i< lf.alPeriodiques.size();i++)
 							{
-								lf.alPeriodiques.remove(i);
+								if(jtfNumDocument.getText().compareToIgnoreCase(lf.alPeriodiques.get(i).getStrNumeroDocument())==0)
+								{
+									lf.alPeriodiques.remove(i);
+								}
 							}
 						}
 						
@@ -278,7 +232,6 @@ public class GestionDocuments extends JFrame {
 						{
 							JOptionPane.showMessageDialog(null,"Le document a ete supprime","", JOptionPane.INFORMATION_MESSAGE);
 						}
-						
 					}
 				});
 	}

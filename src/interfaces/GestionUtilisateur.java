@@ -42,7 +42,7 @@ public class GestionUtilisateur extends JFrame
 	private LectureFichier lf;
 	private ListeUtilisateur lu;
 
-	private String[] strCombo = {"Ajouter adherent","Ajouter un prepose", "Modifier un utilisateur", "Supprimer un utilisateur" };
+	private String[] strCombo = {"Ajouter adherent", "Modifier un utilisateur", "Supprimer un utilisateur" };
 
 	private JComboBox<?> jcb = new JComboBox<Object>(strCombo);
 
@@ -54,10 +54,6 @@ public class GestionUtilisateur extends JFrame
 	private JLabel jLabelTitre = new JLabel("Nom famille de l'utilisateur: ");
 	private JLabel jLabelAdresse = new JLabel("Adresse de l'utilisateur: ");
 	
-	private JLabel jLabelRealisateur = new JLabel("Nom du réalisateur : ");
-	private JLabel jLabelDisques = new JLabel("Nombre de disques : ");
-	private JLabel jLabelNoPer = new JLabel("Numéro du périodique : ");
-	private JLabel jLabelNoVolume = new JLabel("Numéro du volume : ");
 
 	private JButton jBtnAjouter = new JButton("Ajouter");
 	private JButton jBtnModifier = new JButton("Modifier");
@@ -73,8 +69,8 @@ public class GestionUtilisateur extends JFrame
 	private JTextField jtf5 = new JTextField();
 
 	private JLabel[] tabAjouterAdherent = { jLabelNumDoc, jLabelTitre, jLabelAuteur,jLabelAdresse};
-	private JLabel[] tabAjouterPrepose = { jLabelNumDoc, jLabelTitre, jLabelRealisateur, jLabelDisques};
-	private JLabel[] tabModifierUtilisateur = { jLabelNumDoc, jLabelTitre, jLabelNoPer, jLabelNoVolume};
+	private JLabel[] tabAjouterPrepose = { jLabelNumDoc, jLabelTitre};
+	private JLabel[] tabModifierUtilisateur = { jLabelNumDoc, jLabelTitre};
 	private JLabel[] tabSupprimerUtilisateur = { jLabelNumDoc };
 	
 	private JTextField[] tabTfLivre = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4 };
@@ -114,11 +110,6 @@ public class GestionUtilisateur extends JFrame
 					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
 				} 
 				
-				 else if (jcb.getSelectedItem().equals(strCombo[1])) 
-				{
-					 jpMain.add(jBtnModifier, BorderLayout.SOUTH);
-				}
-				
 				else 
 				{
 					jpMain.add(jBtnSupprimer);
@@ -133,7 +124,7 @@ public class GestionUtilisateur extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if(jtfPrenom.getText().equals("") || jtfNomFamille.getText().equals("") || jtfPrenom.getText().equals("")  )
+				if(jtfNomFamille.getText().equals("") || jtfPrenom.getText().equals("")  )
 				{
 					 JOptionPane.showMessageDialog(null,"Le nom complet et le numero de telephone doivent etre remplis! ","Erreur", JOptionPane.INFORMATION_MESSAGE);
 				}
