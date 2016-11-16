@@ -103,13 +103,15 @@ public class GestionDocuments extends JFrame {
 
 					GestionTextField(jcbType.getSelectedItem().toString());
 				} else if (jcb.getSelectedItem().equals(strCombo[1])) {
-
+					
+					jpMain.add(jcbType);
 					jpMain.add(jpTxt);
 					jpMain.add(jBtnModifier, BorderLayout.SOUTH);
 
 					GestionTextField("Supprimer");
 				} else {
-
+					
+					jpMain.add(jcbType);
 					jpMain.add(jpTxt);
 					jpMain.add(jBtnSupprimer, BorderLayout.SOUTH);
 
@@ -139,23 +141,22 @@ public class GestionDocuments extends JFrame {
 					
 					if(jcbType.getSelectedItem().equals("Livre"))
 					{
-						Livre l = new Livre(jtfNumDocument.getText(), jtfTitre.getText(),  date, jtfAuteur.getText());
+						Livre l = new Livre("Liv"+jtfNumDocument.getText(), jtfTitre.getText(),  date, jtfAuteur.getText());
 						lf.alLivres.add(l);
 						lf.alCollection.add(l);
-						
 					}
 					
 					else if(jcbType.getSelectedItem().equals("DVD"))
 					{
 						
-						DVD d = new DVD(jtfNumDocument.getText(),jtfTitre.getText(),date,Integer.parseInt(jtfNbDisque.getText()),jtfAuteur.getText());
+						DVD d = new DVD("DVD"+jtfNumDocument.getText(),jtfTitre.getText(),date,Integer.parseInt(jtfNbDisque.getText()),jtfAuteur.getText());
 						lf.alDVDs.add(d);
 						lf.alCollection.add(d);
 					}
 					
 					else
 					{
-						Periodique p = new Periodique(jtfNumDocument.getText(),jtfTitre.getText(),date, Integer.parseInt(jtfNbVolume.getText()),Integer.parseInt(jtfNbPeriodique.getText()));
+						Periodique p = new Periodique("Per"+jtfNumDocument.getText(),jtfTitre.getText(),date, Integer.parseInt(jtfNbVolume.getText()),Integer.parseInt(jtfNbPeriodique.getText()));
 						lf.alPeriodiques.add(p);
 						lf.alCollection.add(p);
 						
@@ -166,7 +167,7 @@ public class GestionDocuments extends JFrame {
 				
 				catch (ParseException e1) 
 				{
-					e1.printStackTrace();
+					 JOptionPane.showMessageDialog(null,"La date doit etre en format 'dd-mm-yyyy'","Ajoute de document", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

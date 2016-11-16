@@ -1,4 +1,5 @@
 package interfaces;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -22,212 +23,192 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import données.LectureFichier;
 import données.ListeUtilisateur;
+import données.Serialization;
 
 public class Connexion extends JFrame {
 	Container c = getContentPane();
 
-	//declaration d'instances
+	// declaration d'instances
 	private JPanel jpanelLogin = new JPanel();
 	private JPanel jpanel = new JPanel();
-	
+
 	private JLabel jMediatheque = new JLabel("Mediatheque");
 	private JLabel jUsager = new JLabel("Type de connexion: ");
 	private JLabel jNom = new JLabel("Nom d'utilisateur: ");
 	private JLabel jMotDePasse = new JLabel("Mot de passe: ");
 	private JLabel jTelephone = new JLabel("Telephone: ");
 	private JLabel jNomEtNomFamille = new JLabel("Nom et nom de famille: ");
-	
+
 	private JTextField jtTelephone = new JTextField();
 	private JTextField jtNomEtNomFamille = new JTextField();
-	
+
 	private JTextField jtNom = new JTextField();
 	private JPasswordField jtMotDePasse = new JPasswordField();
 
 	private JButton jbConnexion = new JButton("Connexion");
 	private JButton jbEffacer = new JButton("Effacer");
 
-	private String[] strComboBox = { "Préposé","Adhérent"};
-	
-	private JComboBox jcBox = new JComboBox(strComboBox);
-	
+	private String[] strComboBox = { "Préposé", "Adhérent" };
+
+	private JComboBox<?> jcBox = new JComboBox<Object>(strComboBox);
+
 	private String strNomEtNomFamille;
 	private int intNumeroTelephone;
 
-	ListeUtilisateur lu;
-	
-	public Connexion()
-	{
+	private Serialization ser = new Serialization();
+
+	private ListeUtilisateur lu;
+
+	public Connexion() {
 		super("Connexion");
 		lu = new ListeUtilisateur();
-		
+
 		creerFunctionBouttons();
 		creerInterface();
-		
+		ser.serializer();
 		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		
+
 	}
 
-	public String usager() 
-	{
+	public String usager() {
 		return (String) jcBox.getSelectedItem();
 	}
-	
-	//creer les bouttons
-	public void creerFunctionBouttons()
-	{
-		//button connexion
-		jbConnexion.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+
+	// creer les bouttons
+	public void creerFunctionBouttons() {
+		// button connexion
+		jbConnexion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				BufferedReader br = null;
 				StringTokenizer st = null;
-				
+
 				try {
-					
+
 					String strLigne;
-					
-					if(jtNom.getText().equals("") && jtMotDePasse.getText().equals(""))
-					{
-						if(jtNomEtNomFamille.getText().equals("") && jtTelephone.getText().equals(""))
-						{
-						   JOptionPane.showMessageDialog(null,"Veuillez-entree vos donnees","Erreur", JOptionPane.INFORMATION_MESSAGE);
+
+					if (jtNom.getText().equals("") && jtMotDePasse.getText().equals("")) {
+						if (jtNomEtNomFamille.getText().equals("") && jtTelephone.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Veuillez-entree vos donnees", "Erreur",
+									JOptionPane.INFORMATION_MESSAGE);
 						}
-						
-						else
-						{
-							try
-							{
+
+						else {
+							try {
 								strNomEtNomFamille = jtNomEtNomFamille.getText().trim();
 								intNumeroTelephone = Integer.parseInt(jtTelephone.getText());
 							}
-							
-							catch(Exception a)
-							{
-								
+
+							catch (Exception a) {
+								a.printStackTrace();
 							}
-							
-							//if((jtTelephone.getText().matches(("\\d{10}"))))
-							{
-								System.out.println(ListeUtilisateur.getAlAdherent().size());
-								
-								for(int i =0; i< ListeUtilisateur.getAlAdherent().size(); i++)
+
+							// if((jtTelephone.getText().matches(("\\d{10}"))))
+							System.out.println(ListeUtilisateur.getAlAdherent().size());
+
+							for (int i = 0; i < ListeUtilisateur.getAlAdherent().size(); i++) {
+								// compare numero de telephone
+								System.out.println("intNumeroTelephone :" + intNumeroTelephone);
+
+								// if(intNumeroTelephone ==
+								// gsu.getAlAdherent().get(i).getIntNumeroTelephone())
 								{
-									//compare numero de telephone
-									System.out.println("intNumeroTelephone :" + intNumeroTelephone);
-									
-									//if(intNumeroTelephone == gsu.getAlAdherent().get(i).getIntNumeroTelephone())
-									{
-										
-									}
-									
-									//compare nom
-									if(strNomEtNomFamille.equalsIgnoreCase(ListeUtilisateur.getAlAdherent().get(i).getNomEtNomFamille()))
-									{
-										dispose();
-										Interface demarrage = new Interface(usager());
-										demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-									}
-									
+
 								}
-							}
-							/*
-							else
-							{
-								JOptionPane.showMessageDialog(null,"Le numero de telephone est invalide" + "\n                    "
-										+ "OU BIEN \nvous n'avez pas de compte existant.","Erreur", JOptionPane.INFORMATION_MESSAGE);
-							}
-							*/
-						}
-					}
-					
-					else
-					{
-						br = new BufferedReader(new FileReader("Prepose.txt"));
 
-						while ((strLigne = br.readLine()) != null) 
-						{
-							st = new StringTokenizer(strLigne, ",");
-
-							while (st.hasMoreTokens()) 
-							{
-								// verifie si l'usager est dans le bon compte
-								// verifie si l'usager existe
-								// verifie si c'est le meme mot de passe
-								
-								if (st.nextToken().compareToIgnoreCase((String) jcBox.getSelectedItem()) == 0
-										&& st.nextToken().compareTo(jtNom.getText()) == 0
-										&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) 
-								{
+								// compare nom
+								if (strNomEtNomFamille.equalsIgnoreCase(
+										ListeUtilisateur.getAlAdherent().get(i).getNomEtNomFamille())) {
 									dispose();
 									Interface demarrage = new Interface(usager());
 									demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-									
+								}
+
+							}
+						}
+						/*
+						 * else { JOptionPane.showMessageDialog(null,
+						 * "Le numero de telephone est invalide" +
+						 * "\n                    " +
+						 * "OU BIEN \nvous n'avez pas de compte existant."
+						 * ,"Erreur", JOptionPane.INFORMATION_MESSAGE); }
+						 */
+					}
+
+					else {
+						br = new BufferedReader(new FileReader("Prepose.txt"));
+
+						while ((strLigne = br.readLine()) != null) {
+							st = new StringTokenizer(strLigne, ",");
+
+							while (st.hasMoreTokens()) {
+								// verifie si l'usager est dans le bon compte
+								// verifie si l'usager existe
+								// verifie si c'est le meme mot de passe
+
+								if (st.nextToken().compareToIgnoreCase((String) jcBox.getSelectedItem()) == 0
+										&& st.nextToken().compareTo(jtNom.getText()) == 0
+										&& st.nextToken().compareTo(String.valueOf(jtMotDePasse.getPassword())) == 0) {
+									dispose();
+									Interface demarrage = new Interface(usager());
+									demarrage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 								}
 							}
 						}
 					}
 				}
 
-				catch (IOException o) 
-				{
+				catch (IOException o) {
 					System.out.println(e);
 				}
 			}
 		});
-		
-		//button effacer
-		jbEffacer.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
+
+		// button effacer
+		jbEffacer.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
 				jtTelephone.setText("");
 				jtNomEtNomFamille.setText("");
 				jtNom.setText("");
 				jtMotDePasse.setText("");
 			}
 		});
-		
-		jcBox.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{
-						if(jcBox.getSelectedItem().equals("Préposé"))
-						{
-							jtTelephone.setEnabled(false);
-							jtNomEtNomFamille.setEnabled(false);
-							jtTelephone.setBackground(Color.gray.brighter());
-							jtNomEtNomFamille.setBackground(Color.gray.brighter());
-							
-							jtNom.setEnabled(true);
-							jtMotDePasse.setEnabled(true);
-							jtNom.setBackground(Color.white);
-							jtMotDePasse.setBackground(Color.white);
-						}
-						
-						else
-						{
-							jtTelephone.setEnabled(true);
-							jtNomEtNomFamille.setEnabled(true);
-							jtTelephone.setBackground(Color.white);
-							jtNomEtNomFamille.setBackground(Color.white);
-							
-							jtNom.setEnabled(false);
-							jtMotDePasse.setEnabled(false);
-							jtNom.setBackground(Color.gray.brighter());
-							jtMotDePasse.setBackground(Color.gray.brighter());
-						}
-					}
-				});
+
+		jcBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (jcBox.getSelectedItem().equals("Préposé")) {
+					jtTelephone.setEnabled(false);
+					jtNomEtNomFamille.setEnabled(false);
+					jtTelephone.setBackground(Color.gray.brighter());
+					jtNomEtNomFamille.setBackground(Color.gray.brighter());
+
+					jtNom.setEnabled(true);
+					jtMotDePasse.setEnabled(true);
+					jtNom.setBackground(Color.white);
+					jtMotDePasse.setBackground(Color.white);
+				}
+
+				else {
+					jtTelephone.setEnabled(true);
+					jtNomEtNomFamille.setEnabled(true);
+					jtTelephone.setBackground(Color.white);
+					jtNomEtNomFamille.setBackground(Color.white);
+
+					jtNom.setEnabled(false);
+					jtMotDePasse.setEnabled(false);
+					jtNom.setBackground(Color.gray.brighter());
+					jtMotDePasse.setBackground(Color.gray.brighter());
+				}
+			}
+		});
 	}
-	
-	//creer interface
-	public void creerInterface()
-	{
+
+	// creer interface
+	public void creerInterface() {
 		setLayout(new GridLayout(2, 1));
 		jpanel.setLayout(new GridLayout(6, 2));
 		jMediatheque.setFont(new Font("Calibri", Font.PLAIN, 50));
@@ -241,7 +222,7 @@ public class Connexion extends JFrame {
 		jtNomEtNomFamille.setEnabled(false);
 		jtTelephone.setBackground(Color.gray.brighter());
 		jtNomEtNomFamille.setBackground(Color.gray.brighter());
-		
+
 		jpanel.add(jUsager);
 		jpanel.add(jcBox);
 		jpanel.add(jTelephone);
@@ -255,11 +236,11 @@ public class Connexion extends JFrame {
 		jpanel.add(jbConnexion);
 		jpanel.add(jbEffacer);
 
-		jtTelephone.setPreferredSize(new Dimension(200,50));
+		jtTelephone.setPreferredSize(new Dimension(200, 50));
 		jMediatheque.setIcon(new ImageIcon("authentification.png"));
-		
+
 		jpanelLogin.add(jMediatheque);
-		
+
 		add(jpanelLogin);
 		add(jpanel);
 	}
