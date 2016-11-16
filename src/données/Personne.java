@@ -21,7 +21,7 @@ public class Personne {
 	
 	public String getNomEtNomFamille()
 	{
-		return strNom+strPrenom;
+		return strPrenom + " " + strNom;
 	}
 
 	public String getStrAdresse() {

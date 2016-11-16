@@ -105,7 +105,6 @@ public class Interface extends JFrame implements TableModelListener {
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
-
 		CreeFunctionsButtons();
 		CreeTabRecherche();
 		GestionJPanels();
