@@ -53,7 +53,6 @@ public class Connexion extends JFrame {
 
 	private JComboBox<?> jcBox = new JComboBox<Object>(strComboBox);
 
-	private String strNomEtNomFamille;
 	private Serialization ser = new Serialization();
 
 	private ListeUtilisateur lu;
