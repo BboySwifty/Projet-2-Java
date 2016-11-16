@@ -30,7 +30,7 @@ public class Serialization
 		
 		catch(IOException o)
 		{
-			o.printStackTrace();	
+			o.printStackTrace();
 		}
 		
 		try

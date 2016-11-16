@@ -138,7 +138,7 @@ public class GestionUtilisateur extends JFrame
 					
 					Adherent adherent = new Adherent(intCompteurInscription,strTelephone,strPrenom,strNomDeFamille,"adresse");
 					
-					ListeUtilisateur.getAlAdherent().add(adherent);
+					lu.getAlAdherent().add(adherent);
 					
 					try
 					{
