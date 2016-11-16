@@ -49,42 +49,41 @@ public class GestionUtilisateur extends JFrame
 	private JPanel jpMain = new JPanel();
 	private JPanel jpTxt = new JPanel();
 
-	private JLabel jLabelAuteur = new JLabel("Numero telephone: ");
-	private JLabel jLabelNumDoc = new JLabel("Prenom de l'utilisateur : "); 
+	private JLabel jLabelTelephone = new JLabel("Numero telephone: ");
+	private JLabel jLabelPrenom = new JLabel("Prenom de l'utilisateur : "); 
 	private JLabel jLabelTitre = new JLabel("Nom famille de l'utilisateur: ");
 	private JLabel jLabelAdresse = new JLabel("Adresse de l'utilisateur: ");
+	private JLabel jLabelNumInscription= new JLabel("Numéro inscription: ");
 	
-
 	private JButton jBtnAjouter = new JButton("Ajouter");
 	private JButton jBtnModifier = new JButton("Modifier");
 	private JButton jBtnSupprimer = new JButton("Supprimer");
 
-	private Hashtable hash1 = new Hashtable(4);
-	private Hashtable hash2 = new Hashtable(4);
+	private Hashtable hash1 = new Hashtable(3);
+	private Hashtable hash2 = new Hashtable(3);
 
 	private JTextField jtfPrenom = new JTextField();
 	private JTextField jtfNomFamille = new JTextField();
 	private JTextField jtfTelephone = new JTextField();
-	private JTextField jtf4 = new JTextField();
-	private JTextField jtf5 = new JTextField();
-
-	private JLabel[] tabAjouterAdherent = { jLabelNumDoc, jLabelTitre, jLabelAuteur,jLabelAdresse};
-	private JLabel[] tabAjouterPrepose = { jLabelNumDoc, jLabelTitre};
-	private JLabel[] tabModifierUtilisateur = { jLabelNumDoc, jLabelTitre};
-	private JLabel[] tabSupprimerUtilisateur = { jLabelNumDoc };
+	private JTextField jtfNumInscrption = new JTextField();
+	private JTextField jtfAdresse = new JTextField();
 	
-	private JTextField[] tabTfLivre = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4 };
-	private JTextField[] tabTfDVD = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4, jtf5 };
-	private JTextField[] tabTfPeriodique = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4, jtf5 };
-	private JTextField[] tabTfSupprimer = { jtfPrenom };
+	private JLabel[] tabAjouterAdherent = { jLabelPrenom, jLabelTitre, jLabelTelephone,jLabelAdresse};
+	private JLabel[] tabModifierUtilisateur = { jLabelNumInscription, jLabelTitre};
+	private JLabel[] tabSupprimerUtilisateur = {jLabelNumInscription };
+	
+	private JTextField[] tabTfAjouter = { jtfPrenom, jtfNomFamille, jtfTelephone, jtfNumInscrption };
+	private JTextField[] tabTfModifier = { jtfNumInscrption,jtfAdresse, jtfTelephone};
+	private JTextField[] tabTfSupprimer = { jtfNumInscrption };
 
 	public GestionUtilisateur(ListeUtilisateur lu) 
 	{
 		super("Gérer les usagers");
 		this.lu = lu;
 		
-		AjoutListeners();
+
 		creerInterface();
+		AjoutListeners();
 		
 		setVisible(true);
 		setSize(350, 300);
@@ -99,20 +98,26 @@ public class GestionUtilisateur extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				
 				jpMain.removeAll();
-				jpMain.add(jpTxt);
+				
 				
 				if (jcb.getSelectedItem().equals(strCombo[0])) {
 
-					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
+					jpMain.add(jpTxt);
+					jpMain.add(jBtnModifier, BorderLayout.SOUTH);
+					GestionTextField("Ajouter");
 
 				} else if (jcb.getSelectedItem().equals(strCombo[1])) {
 
+					jpMain.add(jpTxt);
 					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
+					GestionTextField("Modifier");
 				} 
 				
 				else 
 				{
+					jpMain.add(jpTxt);
 					jpMain.add(jBtnSupprimer);
+					GestionTextField("Supprimer");
 				}
 
 			}
@@ -168,7 +173,6 @@ public class GestionUtilisateur extends JFrame
 					{
 						
 					}
-			
 				});
 	}
 
@@ -194,21 +198,19 @@ public class GestionUtilisateur extends JFrame
 	
 	public void creerInterface()
 	{
-		hash1.put("Livre", tabAjouterAdherent);
-		hash1.put("DVD", tabAjouterPrepose);
-		hash1.put("Périodique", tabModifierUtilisateur);
+		hash1.put("Ajouter", tabAjouterAdherent);
+		hash1.put("Modifier", tabModifierUtilisateur);
 		hash1.put("Supprimer", tabSupprimerUtilisateur);
 
-		hash2.put("Livre", tabTfLivre);
-		hash2.put("DVD", tabTfDVD);
-		hash2.put("Périodique", tabTfPeriodique);
+		hash2.put("Ajouter", tabTfAjouter);
+		hash2.put("Modifier", tabTfModifier);
 		hash2.put("Supprimer", tabTfSupprimer);
 
 		jpTxt.setLayout(new GridLayout(4, 2));
 		jpMain.add(jpTxt);
 		jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
 
-		GestionTextField("Livre");
+		GestionTextField("Ajouter");
 
 		add(jcb, BorderLayout.NORTH);
 		add(jpMain);

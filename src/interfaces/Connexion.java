@@ -35,7 +35,7 @@ public class Connexion extends JFrame {
 
 	private JLabel jMediatheque = new JLabel("Mediatheque");
 	private JLabel jUsager = new JLabel("Type de connexion: ");
-	private JLabel jNom = new JLabel("Nom d'utilisateur: ");
+	private JLabel jNom = new JLabel("Numéro employé: ");
 	private JLabel jMotDePasse = new JLabel("Mot de passe: ");
 	private JLabel jTelephone = new JLabel("Telephone: ");
 	private JLabel jNomEtNomFamille = new JLabel("Nom et nom de famille: ");
@@ -54,7 +54,6 @@ public class Connexion extends JFrame {
 	private JComboBox<?> jcBox = new JComboBox<Object>(strComboBox);
 
 	private String strNomEtNomFamille;
-
 	private Serialization ser = new Serialization();
 
 	private ListeUtilisateur lu;
@@ -86,36 +85,49 @@ public class Connexion extends JFrame {
 						&& (jtNomEtNomFamille.getText().equals("") && jtTelephone.getText().equals(""))) {
 					JOptionPane.showMessageDialog(null, "Veuillez-entree vos donnees", "Erreur",
 							JOptionPane.ERROR_MESSAGE);
-					/*
-					 * else { JOptionPane.showMessageDialog(null,
-					 * "Le numero de telephone est invalide" +
-					 * "\n                    " +
-					 * "OU BIEN \nvous n'avez pas de compte existant."
-					 * ,"Erreur", JOptionPane.INFORMATION_MESSAGE); }
-					 */
-				} else {
+				} 
+				
+				else 
+				{
 					boolean booConnexion = false;
 					if (jcBox.getSelectedIndex() == 0) {
+						
 						int noEmployé;
 						String motDePasse;
 						
+						try
+						{
+							
 						for (int i = 0; i < lu.getAlPrepose().size(); i++) {
 							noEmployé = lu.getAlPrepose().get(i).getNoEmployé();
 							motDePasse = lu.getAlPrepose().get(i).getMotpasse();
 							
-							if (noEmployé == Integer.parseInt(jtNom.getText()) && motDePasse.equals(String.valueOf(jtMotDePasse.getPassword()))) {
-								booConnexion = true;
-								Interface inf = new Interface("prepose");
-								dispose();
+							
+							
+								if (noEmployé == Integer.parseInt(jtNom.getText()) && motDePasse.equals(String.valueOf(jtMotDePasse.getPassword()))) {
+									booConnexion = true;
+									Interface inf = new Interface("prepose");
+									dispose();
+								}
 							}
-						}
-						if(!booConnexion){
+						
+						if(!booConnexion)
+						{
 							JOptionPane.showMessageDialog(null, "Numéro d'employé ou mot de passe invalide", "Erreur", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					else{
-						String strTel = "";
-						String strNom = "";
+				
+					catch(Exception a)
+					{
+						JOptionPane.showMessageDialog(null, "Numéro d'employé invalide ", "Erreur", JOptionPane.ERROR_MESSAGE);
+						booConnexion = true;
+					}
+				}
+					
+					else
+					{
+						String strTel;
+						String strNom;
 						
 						for(int i = 0; i < lu.getAlAdherent().size(); i++){
 							strTel = lu.getAlAdherent().get(i).getStrNumeroTelephone();
