@@ -65,7 +65,7 @@ public class Connexion extends JFrame {
 
 		creerFunctionBouttons();
 		creerInterface();
-		ser.serializer();
+		//ser.serializer();
 		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);

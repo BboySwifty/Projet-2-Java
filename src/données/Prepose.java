@@ -5,29 +5,13 @@ public class Prepose extends Personne
 	private String motpasse;
 	private Adherent adherent;
 
-	public Prepose(String strNom, String strPrenom, String strAdresse, String strTelephone , int noEmployé,String motpasse) 
+	public Prepose(String strNom, String strPrenom, String strAdresse, String strTelephone , int noEmployé, String motpasse) 
 	{
 		super(strNom, strPrenom, strAdresse, strTelephone );
 		
 		this.noEmployé = noEmployé;
 		this.motpasse = motpasse;
 	}
-	
-	public void ajouterAdherent(Adherent adherent)
-	{
-		
-	}
-	
-	public void supprimerAdherent(Adherent adherent)
-	{
-		
-	}
-	
-	public void seConnecter()
-	{
-		
-	}
-	
 	public int getNoEmployé() {
 		return noEmployé;
 	}
