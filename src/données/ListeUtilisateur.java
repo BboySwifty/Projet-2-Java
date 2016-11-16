@@ -33,7 +33,7 @@ public class ListeUtilisateur {
 							alAdherent.add(a);
 						}
 
-						else  if(st.nextToken().compareToIgnoreCase("PR") == 0) 
+						else  if(st.nextToken().compareToIgnoreCase("pr") == 0) 
 						{
 							Prepose p = new Prepose(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken(),
 									Integer.parseInt(st.nextToken()), st.nextToken());

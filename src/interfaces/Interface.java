@@ -227,13 +227,13 @@ public class Interface extends JFrame implements TableModelListener {
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
-					//	GestionUtilisateur gu = new GestionUtilisateur(lu);
+						
+					GestionUtilisateur gu = new GestionUtilisateur(null);
 						
 					}
 				});
 		
 		jbtnGestionPrets.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				GestionPrets gp = new GestionPrets();
 				

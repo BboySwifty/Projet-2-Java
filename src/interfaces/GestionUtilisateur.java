@@ -42,16 +42,17 @@ public class GestionUtilisateur extends JFrame
 	private LectureFichier lf;
 	private ListeUtilisateur lu;
 
-	private String[] strCombo = {"Ajouter un utilisateur","Ajouter un prepose", "Modifier un utilisateur", "Supprimer un utilisateur" };
+	private String[] strCombo = {"Ajouter adherent","Ajouter un prepose", "Modifier un utilisateur", "Supprimer un utilisateur" };
 
 	private JComboBox<?> jcb = new JComboBox<Object>(strCombo);
 
 	private JPanel jpMain = new JPanel();
 	private JPanel jpTxt = new JPanel();
 
+	private JLabel jLabelAuteur = new JLabel("Numero telephone: ");
 	private JLabel jLabelNumDoc = new JLabel("Prenom de l'utilisateur : "); 
 	private JLabel jLabelTitre = new JLabel("Nom famille de l'utilisateur: ");
-	private JLabel jLabelAuteur = new JLabel("Numero telephone: ");
+	private JLabel jLabelAdresse = new JLabel("Adresse de l'utilisateur: ");
 	
 	private JLabel jLabelRealisateur = new JLabel("Nom du réalisateur : ");
 	private JLabel jLabelDisques = new JLabel("Nombre de disques : ");
@@ -71,10 +72,10 @@ public class GestionUtilisateur extends JFrame
 	private JTextField jtf4 = new JTextField();
 	private JTextField jtf5 = new JTextField();
 
-	private JLabel[] tabLivre = { jLabelNumDoc, jLabelTitre, jLabelAuteur};
-	private JLabel[] tabDVD = { jLabelNumDoc, jLabelTitre, jLabelRealisateur, jLabelDisques};
-	private JLabel[] tabPeriodique = { jLabelNumDoc, jLabelTitre, jLabelNoPer, jLabelNoVolume};
-	private JLabel[] tabSupprimer = { jLabelNumDoc };
+	private JLabel[] tabAjouterAdherent = { jLabelNumDoc, jLabelTitre, jLabelAuteur,jLabelAdresse};
+	private JLabel[] tabAjouterPrepose = { jLabelNumDoc, jLabelTitre, jLabelRealisateur, jLabelDisques};
+	private JLabel[] tabModifierUtilisateur = { jLabelNumDoc, jLabelTitre, jLabelNoPer, jLabelNoVolume};
+	private JLabel[] tabSupprimerUtilisateur = { jLabelNumDoc };
 	
 	private JTextField[] tabTfLivre = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4 };
 	private JTextField[] tabTfDVD = { jtfPrenom, jtfNomFamille, jtfTelephone, jtf4, jtf5 };
@@ -84,32 +85,14 @@ public class GestionUtilisateur extends JFrame
 	public GestionUtilisateur(ListeUtilisateur lu) 
 	{
 		super("Gérer les usagers");
+		this.lu = lu;
+		
+		AjoutListeners();
+		creerInterface();
+		
+		setVisible(true);
 		setSize(350, 300);
 		setLocationRelativeTo(null);
-		
-		this.lu = lu;
-
-		AjoutListeners();
-		
-		hash1.put("Livre", tabLivre);
-		hash1.put("DVD", tabDVD);
-		hash1.put("Périodique", tabPeriodique);
-		hash1.put("Supprimer", tabSupprimer);
-
-		hash2.put("Livre", tabTfLivre);
-		hash2.put("DVD", tabTfDVD);
-		hash2.put("Périodique", tabTfPeriodique);
-		hash2.put("Supprimer", tabTfSupprimer);
-
-		jpTxt.setLayout(new GridLayout(4, 2));
-		jpMain.add(jpTxt);
-		jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
-
-		GestionTextField("Livre");
-
-		add(jcb, BorderLayout.NORTH);
-		add(jpMain);
-		setVisible(true);
 	}
 
 	//ajout des listeners
@@ -118,28 +101,27 @@ public class GestionUtilisateur extends JFrame
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				jpMain.removeAll();
-
+				jpMain.add(jpTxt);
+				
 				if (jcb.getSelectedItem().equals(strCombo[0])) {
 
-					jpMain.add(jpTxt);
 					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
 
 				} else if (jcb.getSelectedItem().equals(strCombo[1])) {
 
-					jpMain.add(jpTxt);
-					jpMain.add(jBtnModifier, BorderLayout.SOUTH);
-
-					GestionTextField("Supprimer");
+					jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
 				} 
 				
+				 else if (jcb.getSelectedItem().equals(strCombo[1])) 
+				{
+					 jpMain.add(jBtnModifier, BorderLayout.SOUTH);
+				}
 				
 				else 
 				{
-					jpMain.add(jpTxt);
 					jpMain.add(jBtnSupprimer);
-					GestionTextField("Supprimer");
 				}
 
 			}
@@ -217,5 +199,27 @@ public class GestionUtilisateur extends JFrame
 
 		jpMain.validate();
 		jpMain.repaint();
+	}
+	
+	public void creerInterface()
+	{
+		hash1.put("Livre", tabAjouterAdherent);
+		hash1.put("DVD", tabAjouterPrepose);
+		hash1.put("Périodique", tabModifierUtilisateur);
+		hash1.put("Supprimer", tabSupprimerUtilisateur);
+
+		hash2.put("Livre", tabTfLivre);
+		hash2.put("DVD", tabTfDVD);
+		hash2.put("Périodique", tabTfPeriodique);
+		hash2.put("Supprimer", tabTfSupprimer);
+
+		jpTxt.setLayout(new GridLayout(4, 2));
+		jpMain.add(jpTxt);
+		jpMain.add(jBtnAjouter, BorderLayout.SOUTH);
+
+		GestionTextField("Livre");
+
+		add(jcb, BorderLayout.NORTH);
+		add(jpMain);
 	}
 }
