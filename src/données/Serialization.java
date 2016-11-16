@@ -12,9 +12,6 @@ public class Serialization
 	
 	public void serializer()
 	{
-		BufferedReader br = null;
-		String strLigne;
-		
 		try
 		{
 			

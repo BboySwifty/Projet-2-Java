@@ -33,12 +33,13 @@ public class GestionUtilisateur extends JFrame
 	Container c = getContentPane();
 	
 	//declarations d'instances
-	private int intCompteurInscription = 0;
+	private int intNumInscription=0;
 	private String strTelephone;
-	
+	private String strAdresse;
 	private String strPrenom;
 	private String strNomDeFamille;
-
+	private String strNumInscription;
+	
 	private LectureFichier lf;
 	private ListeUtilisateur lu;
 
@@ -72,7 +73,7 @@ public class GestionUtilisateur extends JFrame
 	private JLabel[] tabModifierUtilisateur = { jLabelNumInscription, jLabelAdresse,jLabelTelephone};
 	private JLabel[] tabSupprimerUtilisateur = {jLabelNumInscription };
 	
-	private JTextField[] tabTfAjouter = { jtfPrenom, jtfNomFamille, jtfTelephone, jtfNumInscrption };
+	private JTextField[] tabTfAjouter = { jtfPrenom, jtfNomFamille, jtfTelephone, jtfAdresse };
 	private JTextField[] tabTfModifier = { jtfNumInscrption,jtfAdresse, jtfTelephone};
 	private JTextField[] tabTfSupprimer = { jtfNumInscrption };
 
@@ -129,6 +130,8 @@ public class GestionUtilisateur extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				boolean boolAjouter = false;
+				
 				if(jtfNomFamille.getText().equals("") || jtfPrenom.getText().equals("")  )
 				{
 					 JOptionPane.showMessageDialog(null,"Le nom complet et le numero de telephone doivent etre remplis! ","Erreur", JOptionPane.INFORMATION_MESSAGE);
@@ -136,23 +139,28 @@ public class GestionUtilisateur extends JFrame
 				
 				else
 				{
-					intCompteurInscription++;
+					intNumInscription = lu.getAlAdherent().size();
+					intNumInscription++;
+					
 					strTelephone = jtfTelephone.getText();
 					strPrenom = jtfPrenom.getText();
 					strNomDeFamille = jtfNomFamille.getText();
+					strAdresse = jtfAdresse.getText();
 					
-					Adherent adherent = new Adherent(intCompteurInscription,strTelephone,strPrenom,strNomDeFamille,"adresse");
-					
+					Adherent adherent = new Adherent(intNumInscription,strTelephone,strPrenom,strNomDeFamille,strAdresse);
 					lu.getAlAdherent().add(adherent);
+					
+					boolAjouter = true;
 					
 					try
 					{
-						FileWriter fw = new FileWriter("Adherent.txt",true);
+						FileWriter fw = new FileWriter("Usagers.txt",true);
 						BufferedWriter bw = new BufferedWriter(fw);
 						PrintWriter pw = new PrintWriter(bw);
 						
-						pw.println("adhérent,"+strTelephone+","+strPrenom+" " +strNomDeFamille);
+						pw.println("AD"+","+intNumInscription+","+strTelephone+"," +strNomDeFamille+","+strPrenom+","+strAdresse);
 						pw.close();
+						
 					}
 					
 					catch(IOException a)
@@ -160,18 +168,69 @@ public class GestionUtilisateur extends JFrame
 						a.printStackTrace();
 					}
 					
-					 JOptionPane.showMessageDialog(null,"L'utilisateur a ete ajouter","", JOptionPane.INFORMATION_MESSAGE);
+					if(boolAjouter)
+					{
+						JOptionPane.showMessageDialog(null,"L'utilisateur a ete ajouter","", JOptionPane.INFORMATION_MESSAGE);
+					}
 					 
 				}
 			}
 		});
+		
+		jBtnModifier.addActionListener(new ActionListener()
+				{
+
+					public void actionPerformed(ActionEvent e) 
+					{
+						boolean boolModifier = false;
+						
+						strNumInscription = jtfNumInscrption.getText();
+						intNumInscription = Integer.parseInt(strNumInscription);
+						
+						for(int i= 0; i<lu.getAlAdherent().size();i++)
+						{
+							if(strNumInscription.equals(lu.getAlAdherent().get(i)))
+							{
+								intNumInscription = lu.getAlAdherent().get(i).getIntNumeroInscription();
+								strTelephone = jtfTelephone.getText();
+								strPrenom = lu.getAlAdherent().get(i).getNomEtNomFamille();
+								strAdresse = jtfAdresse.getText();
+								
+								lu.getAlAdherent().remove(i);
+								
+								Adherent adherent = new Adherent(intNumInscription,strTelephone,strPrenom,strNomDeFamille,strAdresse);
+								lu.getAlAdherent().add(adherent);
+							}
+						}
+						
+						if(boolModifier)
+						{
+							JOptionPane.showMessageDialog(null,"L'utilisateur a ete modifier","", JOptionPane.INFORMATION_MESSAGE);
+						}
+					}
+					
+				});
 		
 		//supprimer lutilisateur
 		jBtnSupprimer.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
+						boolean boolenlever = false;
+						strNumInscription = jtfNumInscrption.getText();
 						
+						for(int i= 0; i<lu.getAlAdherent().size();i++)
+						{
+							if(strNumInscription.equals(lu.getAlAdherent().get(i)))
+							{
+								lu.getAlAdherent().remove(i);
+							}
+						}
+						
+						if(boolenlever)
+						{
+							JOptionPane.showMessageDialog(null,"L'utilisateur a ete supprimer","", JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
 				});
 	}
