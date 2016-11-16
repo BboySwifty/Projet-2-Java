@@ -46,6 +46,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alLivre.get(i).getDate());
 				ligne.add(alLivre.get(i).getBoolRetourner() ? "oui" : "non");
 				alDonnees.add(ligne);
+				
 			}
 		}
 
