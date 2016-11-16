@@ -133,7 +133,7 @@ public class Connexion extends JFrame {
 							strTel = lu.getAlAdherent().get(i).getStrNumeroTelephone();
 							strNom = lu.getAlAdherent().get(i).getNomEtNomFamille();
 							
-							if(strTel.equals(jtTelephone.getText().trim()) && strNom.equalsIgnoreCase(jtNomEtNomFamille.getText().trim())){
+							if(strTel.equals(jtTelephone.getText().trim()) || strNom.equalsIgnoreCase(jtNomEtNomFamille.getText().trim())){
 								booConnexion = true;
 								Interface inf = new Interface("adherent");
 								dispose();
