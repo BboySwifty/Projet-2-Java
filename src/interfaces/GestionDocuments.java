@@ -26,6 +26,11 @@ import données.Periodique;
 
 public class GestionDocuments extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private LectureFichier lf;
 
 	private String[] strCombo = { "Ajouter un document", "Modifier un document", "Supprimer un document" };

@@ -2,10 +2,6 @@ package données;
 
 import java.util.Date;
 
-import javax.swing.JOptionPane;
-
-import interfaces.Interface;
-
 public class Document 
 {
 	private String strNumeroDocument;

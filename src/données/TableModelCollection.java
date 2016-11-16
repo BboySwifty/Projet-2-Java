@@ -7,6 +7,12 @@ import interfaces.Interface;
 
 public class TableModelCollection extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("rawtypes")
+	
 	ArrayList<ArrayList> alDonnees = new ArrayList<ArrayList>();
 	ArrayList<Document> alCollection;
 	ArrayList<Periodique> alPeriodique;

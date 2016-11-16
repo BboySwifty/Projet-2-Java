@@ -5,8 +5,6 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,8 +18,6 @@ import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import données.Adherent;
 import données.LectureFichier;
 import données.ListeUtilisateur;
-import données.Prepose;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,6 +25,11 @@ import java.io.PrintWriter;
 
 public class GestionUtilisateur extends JFrame
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Container c = getContentPane();
 	
 	//declarations d'instances
@@ -164,7 +165,7 @@ public class GestionUtilisateur extends JFrame
 					
 					Adherent adherent = new Adherent(intCompteurInscription,strTelephone,strPrenom,strNomDeFamille,"adresse");
 					
-					lu.getAlAdherent().add(adherent);
+					ListeUtilisateur.getAlAdherent().add(adherent);
 					
 					try
 					{

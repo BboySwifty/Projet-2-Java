@@ -27,6 +27,11 @@ import données.ListeUtilisateur;
 import données.Serialization;
 
 public class Connexion extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Container c = getContentPane();
 
 	// declaration d'instances
@@ -86,10 +91,10 @@ public class Connexion extends JFrame {
 				StringTokenizer st = null;
 
 				try {
-
+					
 					String strLigne;
 
-					if (jtNom.getText().equals("") && jtMotDePasse.getText().equals("")) {
+					if (jtNom.getText().equals("") && String.valueOf(jtMotDePasse.getPassword()).equals("")) {
 						if (jtNomEtNomFamille.getText().equals("") && jtTelephone.getText().equals("")) {
 							JOptionPane.showMessageDialog(null, "Veuillez-entree vos donnees", "Erreur",
 									JOptionPane.INFORMATION_MESSAGE);

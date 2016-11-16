@@ -23,4 +23,8 @@ public class Personne {
 	{
 		return strNom+strPrenom;
 	}
+
+	public String getStrAdresse() {
+		return strAdresse;
+	}
 }
