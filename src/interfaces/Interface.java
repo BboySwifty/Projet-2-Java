@@ -22,6 +22,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import données.LectureFichier;
+import données.Serialization;
 import données.TableModelCollection;
 
 public class Interface extends JFrame implements TableModelListener {
@@ -101,7 +102,9 @@ public class Interface extends JFrame implements TableModelListener {
 	private TableRowSorter<TableModel> sorterDVD = new TableRowSorter<TableModel>(jtDVD.getModel());
 	private TableRowSorter<TableModel> sorterPer = new TableRowSorter<TableModel>(jtPer.getModel());
 	private TableRowSorter<TableModel> sorterColl = new TableRowSorter<TableModel>(jtColl.getModel());
-
+	
+	private Serialization ser = new Serialization();
+	
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
@@ -270,6 +273,7 @@ public class Interface extends JFrame implements TableModelListener {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == jbtnQuitter) {
 					dispose();
+					ser.serializer();
 				}
 			}
 		});

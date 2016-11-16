@@ -12,22 +12,6 @@ public class Prepose extends Personne
 		this.noEmployé = noEmployé;
 		this.motpasse = motpasse;
 	}
-	
-	public void ajouterAdherent(Adherent adherent)
-	{
-		
-	}
-	
-	public void supprimerAdherent(Adherent adherent)
-	{
-		
-	}
-	
-	public void seConnecter()
-	{
-		
-	}
-	
 	public int getNoEmployé() {
 		return noEmployé;
 	}

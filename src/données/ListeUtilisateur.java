@@ -27,13 +27,14 @@ public class ListeUtilisateur {
 						// verifie si l'usager existe
 						// verifie si c'est le meme mot de passe
 
-						if (st.nextToken().compareToIgnoreCase("Adhérent") == 0) {
+						if (st.nextToken().compareToIgnoreCase("ad") == 0) {
 							Adherent a = new Adherent(Integer.parseInt(st.nextToken()), st.nextToken(), st.nextToken(),
 									st.nextToken(), st.nextToken());
 							alAdherent.add(a);
 						}
 
-						else {
+						else  if(st.nextToken().compareToIgnoreCase("PR") == 0) 
+						{
 							Prepose p = new Prepose(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken(),
 									Integer.parseInt(st.nextToken()), st.nextToken());
 							alPrepose.add(p);
