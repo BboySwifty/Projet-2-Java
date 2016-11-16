@@ -44,7 +44,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alLivre.get(i).getStrTitre());
 				ligne.add(alLivre.get(i).getStrNomAuteur());
 				ligne.add(alLivre.get(i).getDate());
-				ligne.add(alLivre.get(i).getBoolRetourner().toString());
+				ligne.add(alLivre.get(i).getBoolRetourner() ? "oui" : "non");
 				alDonnees.add(ligne);
 			}
 		}
@@ -57,7 +57,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alDVD.get(i).getStrNomRealisateur());
 				ligne.add(alDVD.get(i).getIntNombreDisques());
 				ligne.add(alDVD.get(i).getDate());
-				ligne.add(alDVD.get(i).getBoolRetourner().toString());
+				ligne.add(alDVD.get(i).getBoolRetourner() ? "oui" : "non");
 				alDonnees.add(ligne);
 			}
 
@@ -69,7 +69,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alPeriodique.get(i).getIntNumeroPeriodique());
 				ligne.add(alPeriodique.get(i).getIntNumeroVolume());
 				ligne.add(alPeriodique.get(i).getDate());
-				ligne.add(alPeriodique.get(i).getBoolRetourner().toString());
+				ligne.add(alPeriodique.get(i).getBoolRetourner() ? "oui" : "non");
 				alDonnees.add(ligne);
 			}
 
@@ -79,7 +79,7 @@ public class TableModelCollection extends AbstractTableModel {
 				ligne.add(alCollection.get(i).getStrNumeroDocument());
 				ligne.add(alCollection.get(i).getStrTitre());
 				ligne.add(alCollection.get(i).getDate());
-				ligne.add(alCollection.get(i).getBoolRetourner().toString());
+				ligne.add(alCollection.get(i).getBoolRetourner() ? "oui" : "non");
 				alDonnees.add(ligne);
 			}
 		}
@@ -92,7 +92,7 @@ public class TableModelCollection extends AbstractTableModel {
 					ligne.add(alDVD.get(i).getStrTitre());
 					ligne.add(alDVD.get(i).getStrNomRealisateur());
 					ligne.add(alDVD.get(i).getDate());
-					ligne.add(alDVD.get(i).getBoolRetourner().toString());
+					ligne.add(alDVD.get(i).getBoolRetourner() ? "oui" : "non");
 					alDonnees.add(ligne);
 				}
 			}
@@ -103,7 +103,7 @@ public class TableModelCollection extends AbstractTableModel {
 					ligne.add(alLivre.get(i).getStrTitre());
 					ligne.add(alLivre.get(i).getStrNomAuteur());
 					ligne.add(alLivre.get(i).getDate());
-					ligne.add(alLivre.get(i).getBoolRetourner().toString());
+					ligne.add(alLivre.get(i).getBoolRetourner() ? "oui" : "non");
 					alDonnees.add(ligne);
 				}
 			}
