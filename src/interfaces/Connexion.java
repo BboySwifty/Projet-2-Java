@@ -57,13 +57,16 @@ public class Connexion extends JFrame {
 
 	private ListeUtilisateur lu;
 
-	public Connexion() {
+	public Connexion() 
+	{
 		super("Connexion");
 		lu = new ListeUtilisateur();
 
 		creerFunctionBouttons();
 		creerInterface();
-		//ser.serializer();
+		
+		ser.deserializerDVD();
+		
 		setSize(500, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);

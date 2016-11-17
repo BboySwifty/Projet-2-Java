@@ -35,8 +35,8 @@ public class Interface extends JFrame implements TableModelListener {
 	//variables d'instances
 	LectureFichier lf = new LectureFichier();
 
-	JFrame jframe = new JFrame();
-	JTabbedPane jtab = new JTabbedPane();
+	private JFrame jframe = new JFrame();
+	private JTabbedPane jtab = new JTabbedPane();
 
 	public static JTextField jtAuteur = new JTextField();
 	public static JTextField jtMotDePasse = new JTextField();
@@ -46,7 +46,8 @@ public class Interface extends JFrame implements TableModelListener {
 	private JButton jbtnGestionDocuments = new JButton("Gérer les documents");
 	private JButton jbtnGestionUtilisateur = new JButton("Gérer les usagers");
 	private JButton jbtnGestionPrets = new JButton("Gérer les prêts");
-
+	private JButton jbtnInfo = new JButton("Information de votre compte");
+	
 	private JLabel jlabelParAuteur = new JLabel("Par Auteur: ");
 	private JLabel jlabelParMotCles = new JLabel("Par Mot cles: ");
 
@@ -105,10 +106,14 @@ public class Interface extends JFrame implements TableModelListener {
 	
 	private Serialization ser = new Serialization();
 	
+	private String strUsager;
+	
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
 
+		this.strUsager = strUsager;
+		
 		CreeFunctionsButtons();
 		CreeTabRecherche();
 		GestionJPanels();
@@ -145,10 +150,19 @@ public class Interface extends JFrame implements TableModelListener {
 		jpanelDVDs.add(jspDVD);
 		jpanelPeriodiques.add(jspPer);
 		jpanelCollection.add(jspColl);
-
-		jpanelActions.add(jbtnGestionDocuments);
-		jpanelActions.add(jbtnGestionPrets);
-		jpanelActions.add(jbtnGestionUtilisateur);
+		
+		if(strUsager == "prepose")
+		{
+			jpanelActions.add(jbtnGestionDocuments);
+			jpanelActions.add(jbtnGestionPrets);
+			jpanelActions.add(jbtnGestionUtilisateur);
+		}
+		
+		else
+		{
+			jpanelActions.add(jbtnInfo);
+		}
+		
 		jpanelActions.add(jbtnQuitter);
 		jpanelActions.setBorder(tbActions);
 	}
@@ -233,10 +247,11 @@ public class Interface extends JFrame implements TableModelListener {
 					}
 				});
 		
+		//btn pret
 		jbtnGestionPrets.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				GestionPrets gp = new GestionPrets();
-				
 			}
 		});
 		
@@ -267,13 +282,27 @@ public class Interface extends JFrame implements TableModelListener {
 			}
 
 		});
+		
+		//btn information
+		jbtnInfo.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						if(e.getSource() == jbtnInfo)
+						{
+							GestionInformation gi = new GestionInformation();
+						}
+					}
+					
+				});
 
 		// button Quitter
 		jbtnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == jbtnQuitter) {
+				if (e.getSource() == jbtnQuitter) 
+				{
+					ser.serializerDVD();
 					dispose();
-					ser.serializer();
 				}
 			}
 		});

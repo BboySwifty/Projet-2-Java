@@ -218,10 +218,11 @@ public class GestionUtilisateur extends JFrame
 					{
 						boolean boolenlever = false;
 						strNumInscription = jtfNumInscrption.getText();
+						intNumInscription = Integer.parseInt(strNumInscription);
 						
 						for(int i= 0; i<lu.getAlAdherent().size();i++)
 						{
-							if(strNumInscription.equals(lu.getAlAdherent().get(i)))
+							if(intNumInscription == lu.getAlAdherent().get(i).getIntNumeroInscription())
 							{
 								lu.getAlAdherent().remove(i);
 							}
