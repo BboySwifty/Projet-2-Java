@@ -31,8 +31,8 @@ public class GestionDocuments extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//declaration d'instance
 	private LectureFichier lf;
-
 	private String[] strCombo = { "Ajouter un document", "Supprimer un document" };
 	private String[] strType = { "Livre", "DVD", "Périodique" };
 
@@ -117,9 +117,8 @@ public class GestionDocuments extends JFrame {
 			}
 		});
 
+		
 		jcbType.addActionListener(new ActionListener() {
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(jcb.getSelectedIndex() == 0)
 				{
@@ -236,6 +235,7 @@ public class GestionDocuments extends JFrame {
 				});
 	}
 
+	//creer les tabs
 	private void GestionTextField(String key) {
 		JLabel[] tab1;
 		JTextField[] tab2;
@@ -257,6 +257,7 @@ public class GestionDocuments extends JFrame {
 		jpMain.repaint();
 	}
 	
+	//creer linterface
 	public void creerInterface()
 	{
 		hash1.put("Livre", tabLivre);

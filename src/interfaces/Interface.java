@@ -108,6 +108,7 @@ public class Interface extends JFrame implements TableModelListener {
 	
 	private String strUsager;
 	
+	//creer interface
 	Interface(String strUsager)
 	{
 		super("La mediatheque de GG");
@@ -127,6 +128,8 @@ public class Interface extends JFrame implements TableModelListener {
 		setVisible(true);
 	}
 
+	
+	//creer jpanels
 	private void GestionJPanels() 
 	{
 		jtab.setPreferredSize(new Dimension(980, 435));
@@ -308,8 +311,10 @@ public class Interface extends JFrame implements TableModelListener {
 		});
 	}
 
-	@Override
-	public void tableChanged(TableModelEvent e) {
 
+	@Override
+	public void tableChanged(TableModelEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

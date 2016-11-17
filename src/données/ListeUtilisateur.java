@@ -10,7 +10,8 @@ public class ListeUtilisateur {
 	private static ArrayList<Adherent> alAdherent = new ArrayList<Adherent>();
 	private BufferedReader br = null;
 
-	public ListeUtilisateur() {
+	public ListeUtilisateur() 
+	{
 		StringTokenizer st;
 
 		try {
@@ -49,6 +50,7 @@ public class ListeUtilisateur {
 		}
 	}
 
+	//getters et setters
 	public ArrayList<Prepose> getAlPrepose() {
 		return alPrepose;
 	}

@@ -1,6 +1,7 @@
 package données;
 public class Personne {
 
+	//declaration d'instance
 	private String strNom;
 	private String strPrenom;
 	private String strAdresse;
@@ -14,6 +15,7 @@ public class Personne {
 		this.strTelephone = strTelephone ;
 	}
 	
+	//setters et getters
 	public String getStrNumeroTelephone()
 	{
 		return strTelephone ;

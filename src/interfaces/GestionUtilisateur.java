@@ -77,6 +77,7 @@ public class GestionUtilisateur extends JFrame
 	private JTextField[] tabTfModifier = { jtfNumInscrption,jtfAdresse, jtfTelephone};
 	private JTextField[] tabTfSupprimer = { jtfNumInscrption };
 
+	//creer linterface
 	public GestionUtilisateur(ListeUtilisateur lu) 
 	{
 		super("Gérer les usagers");
@@ -93,6 +94,8 @@ public class GestionUtilisateur extends JFrame
 
 	//ajout des listeners
 	private void AjoutListeners() {
+		
+		//lajoute des actionsListeners
 		jcb.addActionListener(new ActionListener() {
 
 			@Override
@@ -177,6 +180,7 @@ public class GestionUtilisateur extends JFrame
 			}
 		});
 		
+		//modifier adherent
 		jBtnModifier.addActionListener(new ActionListener()
 				{
 
@@ -236,6 +240,7 @@ public class GestionUtilisateur extends JFrame
 				});
 	}
 
+	//creer des tableaux
 	private void GestionTextField(String key) {
 		JLabel[] tab1;
 		JTextField[] tab2;
@@ -256,6 +261,7 @@ public class GestionUtilisateur extends JFrame
 		jpMain.repaint();
 	}
 	
+	//creer interface
 	public void creerInterface()
 	{
 		hash1.put("Ajouter", tabAjouterAdherent);

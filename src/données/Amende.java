@@ -1,5 +1,6 @@
 package données;
 
+//declaration d'instance
 public class Amende {
 	private int intNo;
 	private int intMontant;
@@ -11,6 +12,7 @@ public class Amende {
 		this.boolPayer = boolPayer;
 	}
 
+	//getters et setters
 	public int getIntNo() {
 		return intNo;
 	}
@@ -23,11 +25,4 @@ public class Amende {
 		return boolPayer;
 	}
 
-	public void inscrireAmende() {
-
-	}
-
-	public void payerAmende() {
-
-	}
 }

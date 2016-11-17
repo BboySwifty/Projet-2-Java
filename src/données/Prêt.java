@@ -3,7 +3,7 @@ package données;
 import java.sql.Date;
 
 public class Prêt {
-
+	//declaration d'instance
 	private int noPrêt;
 	private Date dateDuJour;
 	private Date dateRetourPrevue;
@@ -28,6 +28,7 @@ public class Prêt {
 		System.out.println(noPrêt);
 	}
 
+	//getters et setters
 	public int getNoPrêt() {
 		return noPrêt;
 	}

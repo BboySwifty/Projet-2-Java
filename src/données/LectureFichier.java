@@ -12,22 +12,24 @@ import java.util.StringTokenizer;
 
 public class LectureFichier {
 
+	//declaration d'instance
 	public ArrayList<DVD> alDVDs = new ArrayList<DVD>();
 	public ArrayList<Livre> alLivres = new ArrayList<Livre>();
 	public ArrayList<Periodique> alPeriodiques = new ArrayList<Periodique>();
 	public ArrayList<Document> alCollection = new ArrayList<Document>();
 
-	int intRef;
-	int intNombreDisques;
-	int intNumeroVolume;
-	int intNumeroPeriodique;
+	private int intRef;
+	private int intNombreDisques;
+	private int intNumeroVolume;
+	private int intNumeroPeriodique;
 
-	String strLigne;
-	String strNumeroDocument;
-	String strTitre;
-	String strDate;
-	String strAuteur;
+	private String strLigne;
+	private String strNumeroDocument;
+	private String strTitre;
+	private String strDate;
+	private String strAuteur;
 
+	//lire les fichiers et les stock dans des arrayList
 	public LectureFichier() {
 
 		BufferedReader br1 = null;
@@ -61,13 +63,6 @@ public class LectureFichier {
 						e.printStackTrace();
 					}
 
-					/*try {
-						cal.setTime(sdf.parse(strDate));
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}*/
-
-					
 					// Nom de l'auteur
 					strAuteur = st.nextToken().trim();
 					Livre livre = new Livre(strNumeroDocument, strTitre, date, strAuteur);
@@ -96,13 +91,6 @@ public class LectureFichier {
 						
 						e.printStackTrace();
 					}
-					/*Calendar cal = Calendar.getInstance();
-
-					try {
-						cal.setTime(sdf.parse(strDate));
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}*/
 
 					intNombreDisques = Integer.parseInt(st.nextToken());
 					strAuteur = st.nextToken();
@@ -135,14 +123,6 @@ public class LectureFichier {
 						e.printStackTrace();
 					}
 					
-					/*Calendar cal = Calendar.getInstance();
-
-					try {
-						cal.setTime(sdf.parse(strDate));
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}*/
-
 					intNumeroVolume = Integer.parseInt(st.nextToken());
 					intNumeroPeriodique = Integer.parseInt(st.nextToken());
 

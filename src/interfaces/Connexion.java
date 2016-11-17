@@ -50,11 +50,8 @@ public class Connexion extends JFrame {
 	private JButton jbEffacer = new JButton("Effacer");
 
 	private String[] strComboBox = { "Préposé", "Adhérent" };
-
 	private JComboBox<?> jcBox = new JComboBox<Object>(strComboBox);
-
 	private Serialization ser = new Serialization();
-
 	private ListeUtilisateur lu;
 
 	public Connexion() 
@@ -78,7 +75,8 @@ public class Connexion extends JFrame {
 	}
 
 	// creer les bouttons
-	public void creerFunctionBouttons() {
+	public void creerFunctionBouttons()
+	{
 		// button connexion
 		jbConnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -160,6 +158,7 @@ public class Connexion extends JFrame {
 			}
 		});
 
+		//interface pour prepose
 		jcBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (jcBox.getSelectedItem().equals("Préposé")) {
@@ -177,6 +176,7 @@ public class Connexion extends JFrame {
 				}
 
 				else {
+					// interface pour adherent
 					jtTelephone.setEnabled(true);
 					jtNomEtNomFamille.setEnabled(true);
 					jtTelephone.setBackground(Color.white);

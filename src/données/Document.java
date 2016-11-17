@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Document 
 {
+	//declaration d'instance
 	private String strNumeroDocument;
 	private String strTitre;
 	private Date dateParution;
@@ -17,6 +18,7 @@ public class Document
 		Document.boolRetourner = boolRetourner;
 	}
 	
+	//getters et setters
 	public String getStrNumeroDocument() 
 	{
 		return strNumeroDocument;
@@ -36,42 +38,12 @@ public class Document
 	{
 		return boolRetourner;
 	}
-
-	public void modifierDocument()
-	{
-		
-	}
 	
-	public void listerDocument()
-	{
-		
-	}
-	
-	public void ajouterDocument()
-	{
-		
-	}
-	
-	public void emprunterDocument()
-	{
-		
-	}
-	
+	/*
 	public void changerEtat()
 	{
-		//	this.boolRetourner = !boolRetourner;
+		this.boolRetourner = !boolRetourner;
 	}
+	*/
 	
-	public void verifierDisponibiliteDocument()
-	{
-		if(boolRetourner)
-		{
-			System.out.println("Le document est disponible");
-		}
-		
-		else
-		{
-			System.out.println("Le document n'est pas disponible");
-		}
-	}
 }

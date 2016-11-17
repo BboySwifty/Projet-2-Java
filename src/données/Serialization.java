@@ -12,6 +12,7 @@ public class Serialization
 {	
 	LectureFichier lf;
 	
+	//serialization et deserialization
 	public void serializerDVD()
 	{
 		try

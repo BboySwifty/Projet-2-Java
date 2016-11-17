@@ -1,6 +1,7 @@
 package données;
 public class Prepose extends Personne 
 {
+	//declaration d'instance
 	private int noEmployé;
 	private String motpasse;
 	private Adherent adherent;
@@ -12,6 +13,8 @@ public class Prepose extends Personne
 		this.noEmployé = noEmployé;
 		this.motpasse = motpasse;
 	}
+	
+	//getters et setters
 	public int getNoEmployé() {
 		return noEmployé;
 	}

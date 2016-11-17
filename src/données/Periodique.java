@@ -15,6 +15,7 @@ public class Periodique extends Document
 		this.intNumeroPeriodique = intNumeroPeriodique;
 	}
 
+	//setters et getters
 	public int getIntNumeroVolume() {
 		return intNumeroVolume;
 	}

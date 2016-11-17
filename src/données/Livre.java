@@ -13,6 +13,7 @@ public class Livre extends Document {
 
 	}
 
+	//getters et setters
 	public String getStrNomAuteur() 
 	{
 		return strNomAuteur;

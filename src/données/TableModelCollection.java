@@ -12,7 +12,8 @@ public class TableModelCollection extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = -4492531178394267055L;
 	@SuppressWarnings("rawtypes")
-	
+
+	//declaration d'instance
 	ArrayList<ArrayList> alDonnees = new ArrayList<ArrayList>();
 	ArrayList<Document> alCollection;
 	ArrayList<Periodique> alPeriodique;
@@ -30,6 +31,7 @@ public class TableModelCollection extends AbstractTableModel {
 
 	boolean editable = true;
 
+	//creer tableau
 	public TableModelCollection(LectureFichier lf, String strColl) {
 		this.strColl = strColl;
 		this.alCollection = lf.alCollection;
